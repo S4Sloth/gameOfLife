@@ -33,75 +33,34 @@ const moraleDisplay = document.querySelector('#morale');
 const monthDeathDisplay = document.querySelector('#deathMonths');
 
 // SHOP DOM
-// 1. Permanent Items
-// 1.1. Divs
-// 1.1.1. Items in shop
-const shopItemPhone = document.querySelector('#shopPhone');
-const shopItemCar = document.querySelector('#shopCar');
-const shopItemPlane = document.querySelector('#shopPlane');
-// 1.1.2 Items owned
-const myPropertyPhone = document.querySelector('#ownedPhone');
-const myPropertyCar = document.querySelector('#ownedCar');
-const myPropertyPlane = document.querySelector('#ownedPlane');
-// 1.2. Buttons to...
-// 1.2.1. ...buy items
-const buyButtonPhone = document.querySelector('#buyPhone');
-const buyButtonCar = document.querySelector('#buyCar');
-const buyButtonPlane = document.querySelector('#buyPlane');
-// 1.2.1. ...sell Items
-const sellButtonPhone = document.querySelector('#sellPhone');
-const sellButtonCar = document.querySelector('#sellCar');
-const sellButtonPlane = document.querySelector('#sellPlane');
-
-// 2. Instant items
-// 2.1. Divs
-const shopItemAlcohol = document.querySelector('#shopAlcohol');
-const shopItemTreatment = document.querySelector('#shopTreatment');
-// 2.2. Buttons
-const buyButtonAlcohol = document.querySelector('#buyAlcohol');
-const buyButtonTreatment = document.querySelector('#buyTreatment');
-
-// Shop Items - permanent
-function PermanentItem(namePI, type, buyPI, sellPI, healthPI, moralePI, boughtPI, shopDivPI, shopBtnPI, inventoryDivPI, inventoryBtnPI, messageBought, messageSold) {
-  this.namePI = namePI;
+// Shop Items Class
+function ShopItem(name, type, buy, sell, health, morale, bought, shopDiv, shopBtn, inventoryDiv, inventoryBtn, messageBought, messageSold) {
+  this.name = name;
   this.type = type;
-  this.buyPI = buyPI;
-  this.sellPI = sellPI;
-  this.healthPI = healthPI;
-  this.moralePI = moralePI;
-  this.boughtPI = boughtPI;
-  this.shopDivPI = shopDivPI;
-  this.shopBtnPI = shopBtnPI;
-  this.inventoryDivPI = inventoryDivPI;
-  this.inventoryBtnPI = inventoryBtnPI;
+  this.buy = buy;
+  this.sell = sell;
+  this.health = health;
+  this.morale = morale;
+  this.bought = bought;
+  this.shopDiv = shopDiv;
+  this.shopBtn = shopBtn;
+  this.inventoryDiv = inventoryDiv;
+  this.inventoryBtn = inventoryBtn;
   this.messageBought = messageBought;
   this.messageSold = messageSold;
 };
 
 // Permanent Items List
-let phone = new PermanentItem('Phone', 'permanent', 200, 100, 0, 1, false, shopItemPhone, buyButtonPhone, myPropertyPhone, sellButtonPhone, 'Congratulations, you bought phone!', 'Congratulations, you sold your phone!');
-let car = new PermanentItem('Plane', 'permanent', 5000, 3000, -1, 2, false, shopItemCar, buyButtonCar, myPropertyCar, sellButtonCar, 'Congratulations, you bought car!', 'Congratulations, you sold your car!');
-let plane = new PermanentItem('Plane','permanent', 199, 100, 20, 20, false, shopItemPlane, buyButtonPlane, myPropertyPlane, sellButtonPlane, 'Congratulations, you bought plane!', 'Congratulations, you sold your plane!');
-let test = new PermanentItem('Plane','permanent', 199, 100, 20, 20, false, shopItemPlane, buyButtonPlane, myPropertyPlane, sellButtonPlane, 'Congratulations, you bought plane!');
+let phone = new ShopItem('Phone', 'permanent', 200, 100, 0, 1, false, document.querySelector('#shopPhone'), document.querySelector('#buyPhone'), document.querySelector('#ownedPhone'), document.querySelector('#sellPhone'), 'Congratulations, you bought phone!', 'Congratulations, you sold your phone!');
+let car = new ShopItem('Car', 'permanent', 5000, 3000, -1, 2, false, document.querySelector('#shopCar'), document.querySelector('#buyCar'), document.querySelector('#ownedCar'), document.querySelector('#sellCar'), 'Congratulations, you bought car!', 'Congratulations, you sold your car!');
+let plane = new ShopItem('Plane','permanent', 199, 100, 20, 20, false, document.querySelector('#shopPlane'), document.querySelector('#buyPlane'), document.querySelector('#ownedPlane'), document.querySelector('#sellPlane'), 'Congratulations, you bought plane!', 'Congratulations, you sold your plane!');
 
+// Instant Items List
+let alcohol = new ShopItem('Alcohol', 'instant', 100, undefined, -1, 1, undefined, document.querySelector('#shopAlcohol'), document.querySelector('#buyAlcohol'), undefined, undefined, 'Congratulations, you bought alcohol!', undefined);
+let treatment = new ShopItem('Treatment', 'instant', 100, undefined, 1, -1, undefined, document.querySelector('#shopTreatment'), document.querySelector('#buyTreatment'), undefined, undefined, 'Congratulations, you went through medical treatment!', undefined);
 
-console.log(test.messageSold);
-
-
-// Shop Items - instant
-function InstantItem(nameII, type, buyII, healthII, moraleII, shopDivII, shopBtnII, messageBought) {
-  this.nameII = nameII;
-  this.type = type;
-  this.buyII = buyII;
-  this.healthII = healthII;
-  this.moraleII = moraleII;
-  this.shopDivII = shopDivII;
-  this.shopBtnII = shopBtnII;
-  this.messageBought = messageBought;
-};
-
-let alcohol = new InstantItem('Alcohol', 'instant', 100, -1, 1, shopItemAlcohol, buyButtonAlcohol, 'Congratulations, you bought alcohol!');
-let treatment = new InstantItem('Treatment', 'instant', 100, 1, -1, shopItemTreatment, buyButtonTreatment, 'Congratulations, you went through medical treatment!');
+// All Items Array
+let allItems = [phone, car, plane, alcohol, treatment];
 
 // STAGE 0 (WELCOME SCREEN)
 window.addEventListener('load', birth);
@@ -245,19 +204,19 @@ function liveOneMonth() {
 
   // Items influence
   // Phone
-  if (phone.boughtPI === true) {
-    itemsHealth = itemsHealth + phone.healthPI;
-    itemsMorale = itemsMorale + phone.moralePI;
+  if (phone.bought === true) {
+    itemsHealth = itemsHealth + phone.health;
+    itemsMorale = itemsMorale + phone.morale;
   };
   // Car
-  if (car.boughtPI === true) {
-    itemsHealth = itemsHealth + car.healthPI;
-    itemsMorale = itemsMorale + car.moralePI;
+  if (car.bought === true) {
+    itemsHealth = itemsHealth + car.health;
+    itemsMorale = itemsMorale + car.morale;
   };
   // Plane
-  if (plane.boughtPI === true) {
-    itemsHealth = itemsHealth + plane.healthPI;
-    itemsMorale = itemsMorale + plane.moralePI;
+  if (plane.bought === true) {
+    itemsHealth = itemsHealth + plane.health;
+    itemsMorale = itemsMorale + plane.morale;
   };
 
 
@@ -290,12 +249,12 @@ function liveOneMonth() {
 
 // Reset Shop
 function resetShop() {
-  phone.inventoryDivPI.style.display = 'none';
-  phone.shopDivPI.style.display = 'block';
-  car.inventoryDivPI.style.display = 'none';
-  car.shopDivPI.style.display = 'block';
-  plane.inventoryDivPI.style.display = 'none';
-  plane.shopDivPI.style.display = 'block';
+  phone.inventoryDiv.style.display = 'none';
+  phone.shopDiv.style.display = 'block';
+  car.inventoryDiv.style.display = 'none';
+  car.shopDiv.style.display = 'block';
+  plane.inventoryDiv.style.display = 'none';
+  plane.shopDiv.style.display = 'block';
 };
 
 // Reset Messages
@@ -306,47 +265,49 @@ function resetMessages () {
 
 // PERMANENT ITEMS
 // Phone
-phone.shopBtnPI.addEventListener('click', phoneFunction);
+phone.shopBtn.addEventListener('click', phoneFunction);
 function phoneFunction() { 
   buyPermanentItem(phone); 
 };
 // Car
-car.shopBtnPI.addEventListener('click', carFunction);
+car.shopBtn.addEventListener('click', carFunction);
 function carFunction() { 
   buyPermanentItem(car); 
 };
 // Plane
-plane.shopBtnPI.addEventListener('click', planeFunction);
+plane.shopBtn.addEventListener('click', planeFunction);
 function planeFunction() { 
   buyPermanentItem(plane); 
 };
 
 // Permanent Items Function
 function buyPermanentItem(buyingPermanentItem) {
-  buyingPermanentItem.shopDivPI.style.display = 'none';
-  buyingPermanentItem.inventoryDivPI.style.display = 'block';
-  money = money - buyingPermanentItem.buyPI;
-  buyingPermanentItem.boughtPI = true;
+  buyingPermanentItem.shopDiv.style.display = 'none';
+  buyingPermanentItem.inventoryDiv.style.display = 'block';
+  money = money - buyingPermanentItem.buy;
+  buyingPermanentItem.bought = true;
   updateStats();
   sendMessage(buyingPermanentItem);
 };
 
 // INSTANT ITEMS
-// Treatment
-treatment.shopBtnII.addEventListener('click', treatmentFunction);
-function treatmentFunction() { 
-  buyInstantItem(treatment); 
-};
 // Alcohol
-alcohol.shopBtnII.addEventListener('click', alcoholFunction);
+alcohol.shopBtn.addEventListener('click', alcoholFunction);
 function alcoholFunction() { 
   buyInstantItem(alcohol); 
 };
+
+// Treatment
+treatment.shopBtn.addEventListener('click', treatmentFunction);
+function treatmentFunction() { 
+  buyInstantItem(treatment); 
+};
+
 // Instant Items Function
 function buyInstantItem(buyingInstantItem) {
-  money = money - buyingInstantItem.buyII;
-  morale = morale + buyingInstantItem.moraleII;
-  health = health + buyingInstantItem.healthII;
+  money = money - buyingInstantItem.buy;
+  morale = morale + buyingInstantItem.morale;
+  health = health + buyingInstantItem.health;
   updateStats();
   sendMessage(buyingInstantItem);
 }
@@ -357,29 +318,29 @@ function clickButton (item) {
   item.BuyingBtn.addEventListener('click', item.BuyingFunction);
 }
 
-phone.inventoryBtnPI.addEventListener('click', phoneSellFunction);
+phone.inventoryBtn.addEventListener('click', phoneSellFunction);
 function phoneSellFunction() { 
   sellItem(phone); 
 };
 
 // Car
-car.inventoryBtnPI.addEventListener('click', carSellFunction);
+car.inventoryBtn.addEventListener('click', carSellFunction);
 function carSellFunction() { 
   sellItem(car); 
 };
 
 // Plane
-plane.inventoryBtnPI.addEventListener('click', planeSellFunction);
+plane.inventoryBtn.addEventListener('click', planeSellFunction);
 function planeSellFunction() { 
   sellItem(plane); 
 };
 
 // Selling Function
 function sellItem(sellingItem) {
-  sellingItem.shopDivPI.style.display = 'block';
-  sellingItem.inventoryDivPI.style.display = 'none';
-  money = money + sellingItem.sellPI;
-  sellingItem.boughtPI = false;
+  sellingItem.shopDiv.style.display = 'block';
+  sellingItem.inventoryDiv.style.display = 'none';
+  money = money + sellingItem.sell;
+  sellingItem.bought = false;
   updateStats();
   sendMessage(sellingItem);
 };
@@ -423,7 +384,7 @@ function sendMessage(sender) {
   const li = document.createElement('li');
   if (sender.type === 'instant') {
     li.appendChild(document.createTextNode(`- ${sender.messageBought}`));
-  } else if (sender.boughtPI === true) {
+  } else if (sender.bought === true) {
     li.appendChild(document.createTextNode(`- ${sender.messageBought}`));
   } else {
     li.appendChild(document.createTextNode(`- ${sender.messageSold}`));
