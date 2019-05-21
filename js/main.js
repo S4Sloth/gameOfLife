@@ -28,6 +28,28 @@ const moraleDisplay = document.querySelector('#morale');
 // Death DOM Variable
 const monthDeathDisplay = document.querySelector('#deathMonths');
 
+//ROUTINE
+function Routine(name, type, DOM, money, health, morale, disabledOption) {
+  this.name = name;
+  this.type = type;
+  this.DOM = DOM;
+  this.money = money;
+  this.health = health;
+  this.morale = morale;
+  this.disabledOption = disabledOption;
+};
+
+let unemployed = new Routine('Unemployed', 'job', document.querySelector("#unemployedJob"), 0, -3, -5, false);
+let cashier = new Routine('Cashier', 'job', document.querySelector("#cheapJob"), 500, 0, -2, false);
+let webDeveloper = new Routine('Web-Dev', 'job', document.querySelector("#midJob"), 2000, 0, 0, false);
+let businessman = new Routine('Businessman', 'job', document.querySelector("#luxJob"), 5000, -1, -2, true);
+let starveFood = new Routine('Starve', 'diet', document.querySelector("#starveFood"), 0, -20, -20, false);
+let cheapFood = new Routine('Cheap Food', 'diet', document.querySelector("#cheapFood"), 0, -1, -1, false);
+let mediumFood = new Routine('Medium Food', 'diet', document.querySelector("#midFood"), 0, 0, 0, false);
+let expensiveFood = new Routine('Expensive Food', 'diet', document.querySelector("#luxFood"), 0, 1, 2, false);
+
+routineArray = [unemployed, cashier, webDeveloper, businessman, starveFood, cheapFood, mediumFood, expensiveFood];
+
 // SHOP DOM
 // Shop Items Class
 function ShopItem(name, type, buy, sell, health, morale, bought, shopDiv, shopBtn, inventoryDiv, inventoryBtn, messageBought, messageSold) {
@@ -49,7 +71,7 @@ function ShopItem(name, type, buy, sell, health, morale, bought, shopDiv, shopBt
 // Permanent Items List
 let phone = new ShopItem('Phone', 'permanent', 200, 100, 0, 1, false, document.querySelector('#shopPhone'), document.querySelector('#buyPhone'), document.querySelector('#ownedPhone'), document.querySelector('#sellPhone'), 'Congratulations, you bought phone!', 'Congratulations, you sold your phone!');
 let car = new ShopItem('Car', 'permanent', 5000, 3000, -1, 2, false, document.querySelector('#shopCar'), document.querySelector('#buyCar'), document.querySelector('#ownedCar'), document.querySelector('#sellCar'), 'Congratulations, you bought car!', 'Congratulations, you sold your car!');
-let plane = new ShopItem('Plane','permanent', 199, 100, 20, 20, false, document.querySelector('#shopPlane'), document.querySelector('#buyPlane'), document.querySelector('#ownedPlane'), document.querySelector('#sellPlane'), 'Congratulations, you bought plane!', 'Congratulations, you sold your plane!');
+let plane = new ShopItem('Plane','permanent', 100000, 50000, 1, 5, false, document.querySelector('#shopPlane'), document.querySelector('#buyPlane'), document.querySelector('#ownedPlane'), document.querySelector('#sellPlane'), 'Congratulations, you bought plane!', 'Congratulations, you sold your plane!');
 
 // Instant Items List
 let alcohol = new ShopItem('Alcohol', 'instant', 100, undefined, -1, 1, undefined, document.querySelector('#shopAlcohol'), document.querySelector('#buyAlcohol'), undefined, undefined, 'Congratulations, you bought alcohol!', undefined);
@@ -135,86 +157,27 @@ function newGame () {
 // STAGE 3 (GAME)
 gameButton.addEventListener('click', liveOneMonth);
 function liveOneMonth() {
-  // UTILITY VARIABLES
-  // Work
-  let workMoney = 0;
-  let workHealth = 0;
-  let workMorale = 0;
-  // Food
-  let foodMoney = 0;
-  let foodHealth = 0;
-  let foodMorale = 0;
-  // Home
-  let homeMoney = 0;
-  let homeHealth = 0;
-  let homeMorale = 0;
-  // Items
-  let itemsMoney = 0;
-  let itemsHealth = 0;
-  let itemsMorale = 0;
-  
+
   month++;
   monthDisplay.innerHTML = month;
   yearsDisplay.innerHTML = Math.floor(month/12);
 
-  // Job Stat Influence
-  if (lawyerCheck.checked) {
-    workMoney = workMoney + 2000;
-  } else if (webdevCheck.checked) {
-    workMoney = workMoney + 4000;
-  } else if (businessmanCheck.checked) {
-    workMoney = workMoney + 5000;
-    workMorale = workMorale - 1;
-  };
-  
-  // Food Stat Influence
-  if (cheapFood.checked) {
-    foodMoney = foodMoney - 100;
-    foodHealth = foodHealth - 2;
-    foodMorale = foodMorale - 1;
-  } else if (mediumFood.checked) {
-    foodMoney = foodMoney - 500;
-  } else if (expensiveFood.checked) {
-    foodMoney = foodMoney - 1000;
-    foodHealth = foodHealth + 1;
-    foodMorale = foodMorale + 2;
-  } else {
-    foodHealth = foodHealth - 20;
-    foodMorale = foodMorale - 10;
-  };
-  
-  // Home Stat Influence
-  if (cheapHome.checked) {
-    homeMoney = homeMoney - 1000;
-    homeHealth = homeHealth - 1;
-    homeMorale = homeMorale - 2;
-  } else if (mediumHome.checked) {
-    homeMoney = homeMoney - 2000;
-  } else if (expensiveHome.checked) {
-    homeMoney = homeMoney - 10000;
-    homeMorale = homeMorale + 3;
-  } else {
-    homeHealth = homeHealth - 10;
-    homeMorale = homeMorale - 20;
-  };
+  // Routine Influence
+  routineArray.forEach(function(item) {
+    if (item.DOM.selected === true) {
+      money = money + item.money;
+      health = health + item.health;
+      morale = morale + item.morale;
+    };
+  });
 
-  // Items influence
-  // Phone
-  if (phone.bought === true) {
-    itemsHealth = itemsHealth + phone.health;
-    itemsMorale = itemsMorale + phone.morale;
-  };
-  // Car
-  if (car.bought === true) {
-    itemsHealth = itemsHealth + car.health;
-    itemsMorale = itemsMorale + car.morale;
-  };
-  // Plane
-  if (plane.bought === true) {
-    itemsHealth = itemsHealth + plane.health;
-    itemsMorale = itemsMorale + plane.morale;
-  };
-
+  // Items Influence
+  itemsArray.forEach(function(item) {
+    if (item.bought === true) {
+      health = health + item.health;
+      morale = morale + item.morale;
+    };
+  });
 
   // Stats influencing stats
   // Broke decrease morale
@@ -226,11 +189,6 @@ function liveOneMonth() {
   if (morale <= 0) {
     health = health - 5;
   }; 
-
-  // Getting Final Results
-  money = money + (workMoney + foodMoney + homeMoney + itemsMoney);
-  health = health + (workHealth + foodHealth + homeHealth + itemsHealth);
-  morale = morale + (workMorale + foodMorale + homeMorale + itemsMorale);
   
   // Show Updated Correct Stats (can't be negative)
   updateStats();
@@ -242,15 +200,14 @@ function liveOneMonth() {
 };
 
 // STAGE 3.1 (SHOP AND MESSAGES)
-
 // Reset Shop
 function resetShop() {
-  phone.inventoryDiv.style.display = 'none';
-  phone.shopDiv.style.display = 'block';
-  car.inventoryDiv.style.display = 'none';
-  car.shopDiv.style.display = 'block';
-  plane.inventoryDiv.style.display = 'none';
-  plane.shopDiv.style.display = 'block';
+  itemsArray.forEach(function(item) {
+    if (item.type === 'permanent') {
+      item.inventoryDiv.style.display = 'none';
+      item.shopDiv.style.display = 'block';
+    };
+  });
 };
 
 // Reset Messages

@@ -68,19 +68,13 @@
         <!-- Main indicators -->
         <div class="row">
           <div class="col-md-4 bg-success text-dark">
-            <h4>Money:
-              <span id="money"></span>$
-            </h4>
+            <h4>Money:<span id="money"></span>$</h4>
           </div>
           <div class="col-md-4 bg-warning text-dark">
-            <h4>Health:
-              <span id="health"></span>
-            </h4>
+            <h4>Health:<span id="health"></span></h4>
           </div>
           <div class="col-md-4 bg-primary text-dark">
-            <h4>Morale:
-              <span id="morale"></span>
-            </h4>
+            <h4>Morale:<span id="morale"></span></h4>
           </div>
         </div>
         
@@ -93,61 +87,33 @@
 
           <!--INCOME DIV -->
           <div class="col-md-4 bg-secondary text-light px-0">
-            <h3 class="bg-light text-dark py-2">Income</h3>
+            <h3 class="bg-light text-dark py-2">Routine</h3>
             
             <!-- Job DIV -->
-            <div class="column text-left px-1 ml-2">
+            <div class="column text-left px-1">
               <h4 class="mt-1">Choose Your Job</h4>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="exampleCheckbox" id="lawyerCheck" value="option1">
-                <label class="form-check-label" for="lawyerCheck">
-                  Lawyer (2,000$)
-                </label>
-              </div>
-              <div class="form-check mr-5">
-                <input class="form-check-input" type="radio" name="exampleCheckbox" id="webdevCheck" value="option2">
-                <label class="form-check-label" for="webdevCheck">
-                  Web Dev (4,000$)
-                </label>
-              </div>
-              <div class="form-check mr-5">
-                <input class="form-check-input" type="radio" name="exampleCheckbox" id="businessmanCheck" value="option3">
-                <label class="form-check-label" for="businessmanCheck">
-                  Businessman (5,000$)
-                </label>
-              </div>
+              <select id="job" class="form-control">
+                <option id="unemployedJob">Unemployed</option>
+                <option id="cheapJob">Cashier (500$)</option>
+                <option id="midJob">Web-Developer (2,000$)</option>
+                <option id="luxJob">Businessman (5,000$)</option>
+              </select>
+
+              <h4 class="mt-1">Choose Your Diet</h4>
+              <select id="food" class="form-control">
+                <option id="starveFood">Starve</option>
+                <option id="cheapFood">Cheap (100$)</option>
+                <option id="midFood">Middle (500$)</option>
+                <option id="luxFood">Luxury (1,000$)</option>
+              </select>
             </div>
           </div>
           
           <!-- EXPENSES DIV -->
           <div class="col-md-4 bg-light text-secondary px-0">
-            <h3 class="bg-secondary text-light py-2">Expenses</h3>
-            
-            <!-- Meal DIV -->
-            <div class="column text-left ml-2">
-              <h4 class="mt-1 text-dark">Choose Your Diet</h4>
-              <div class="form-check mr-5">
-                <input class="form-check-input" type="radio" name="exampleCheckbox2" id="cheapFood" value="option1">
-                <label class="form-check-label" for="cheapFood">
-                  Junk Food (100$)
-                </label>
-              </div>
-              <div class="form-check mr-5">
-                <input class="form-check-input" type="radio" name="exampleCheckbox2" id="mediumFood" value="option2">
-                <label class="form-check-label" for="mediumFood">
-                  Balanced Diet (500$)
-                </label>
-              </div>
-              <div class="form-check mr-5">
-                <input class="form-check-input" type="radio" name="exampleCheckbox2" id="expensiveFood" value="option3">
-                <label class="form-check-label" for="expensiveFood">
-                  Extraordinary Food (1000$)
-                </label>
-              </div>
-            </div>
-            
-            <!-- Home DIV -->
-            <div class="column text-left ml-2 mt-3">
+            <h3 class="bg-secondary text-light py-2">Something</h3>
+            <!-- Home DIV
+            <div class="column text-left ml-2 mt-1">
               <h4 class="mt-1 text-dark">Rent Home</h4>
               <div class="form-check mr-5">
                 <input class="form-check-input" type="radio" name="exampleCheckbox3" id="cheapHome" value="option1">
@@ -167,7 +133,7 @@
                   Expensive appartment (10,000$)
                 </label>
               </div>
-            </div>
+            </div> -->
           </div>
           
           <!-- PROPERTY -->
@@ -177,7 +143,7 @@
             <!-- Phone -->
             <div id="ownedPhone">
               <div class="row col-md-12 bg-info px-0 mx-0 py-2">
-                <p class="col-md-11 text-left py-0 my-0 pt-1">Phone</p>
+                <p class="col-md-11 text-left py-0 my-0 pt-1">Phone (100$)</p>
                 <button id="sellPhone" type="button" class="close col-md-1" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -186,7 +152,7 @@
             <!-- Car -->
             <div id="ownedCar">
               <div class="row col-md-12 bg-info px-0 mx-0 py-2">
-                <p class="col-md-11 text-left py-0 my-0 pt-1">Car</p>
+                <p class="col-md-11 text-left py-0 my-0 pt-1">Car (3,000$)</p>
                 <button id="sellCar" type="button" class="close col-md-1" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -195,13 +161,12 @@
             <!-- Plane -->
             <div id="ownedPlane">
               <div class="row col-md-12 bg-info px-0 mx-0 py-2">
-                <p class="col-md-11 text-left py-0 my-0 pt-1">Plane</p>
+                <p class="col-md-11 text-left py-0 my-0 pt-1">Plane (50,000$)</p>
                 <button id="sellPlane" type="button" class="close col-md-1" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
             </div>
-
           </div>
         </div>        
 
@@ -272,7 +237,7 @@
       <div id="shopPlane" class="col-6 px-0">
         <div class="row px-0 mx-0 bg-secondary py-1 border">
           <p class="col-8 text-left mb-0 py-0 mt-2 border-right"> Plane (+Morale)</p>
-          <p class="col-2 mb-0 pb-0 mt-2">199$</p>
+          <p class="col-2 mb-0 pb-0 mt-2">100,000$</p>
           <button class="col-2 btn btn-danger" type="button" id="buyPlane">Buy</button>
         </div>
       </div>
