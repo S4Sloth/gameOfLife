@@ -10,25 +10,21 @@ const birthStage = document.querySelector('#birthDIV');
 const statsStage = document.querySelector('#statsDIV');
 const gameStage = document.querySelector('#gameDIV');
 const deathStage = document.querySelector('#deathDIV');
-
 // Stages Buttons DOM
 const birthButton = document.querySelector('#birthBTN');
 const statsButton = document.querySelector('#statsBTN');
 const gameButton = document.querySelector('#gameBTN');
 const restartButton = document.querySelector('#restartBTN');
-
 // Stat DOM
 const moneyStatDisplay = document.querySelector('#statMoney');
 const healthStatDisplay = document.querySelector('#statHealth');
 const moraleStatDisplay = document.querySelector('#statMorale');
-
 // Main Game DOM Variable
 const monthDisplay = document.querySelector('#months');
 const yearsDisplay = document.querySelector('#years');
 const moneyDisplay = document.querySelector('#money');
 const healthDisplay = document.querySelector('#health');
 const moraleDisplay = document.querySelector('#morale');
-
 // Death DOM Variable
 const monthDeathDisplay = document.querySelector('#deathMonths');
 
@@ -60,7 +56,7 @@ let alcohol = new ShopItem('Alcohol', 'instant', 100, undefined, -1, 1, undefine
 let treatment = new ShopItem('Treatment', 'instant', 100, undefined, 1, -1, undefined, document.querySelector('#shopTreatment'), document.querySelector('#buyTreatment'), undefined, undefined, 'Congratulations, you went through medical treatment!', undefined);
 
 // All Items Array
-let allItems = [phone, car, plane, alcohol, treatment];
+let itemsArray = [phone, car, plane, alcohol, treatment];
 
 // STAGE 0 (WELCOME SCREEN)
 window.addEventListener('load', birth);
@@ -258,91 +254,64 @@ function resetShop() {
 };
 
 // Reset Messages
-function resetMessages () {
+function resetMessages() {
   const messages = document.querySelector('#messages');
   messages.innerHTML = '';
 };
 
-// PERMANENT ITEMS
-// Phone
-phone.shopBtn.addEventListener('click', phoneFunction);
-function phoneFunction() { 
-  buyPermanentItem(phone); 
-};
-// Car
-car.shopBtn.addEventListener('click', carFunction);
-function carFunction() { 
-  buyPermanentItem(car); 
-};
-// Plane
-plane.shopBtn.addEventListener('click', planeFunction);
-function planeFunction() { 
-  buyPermanentItem(plane); 
+//////////// SHOPPING \\\\\\\\\\\\\\
+// Select item array to initiate function to buy or seell if someItem is clicked
+itemsArray.forEach(function(someItem) {
+  clickToBuy(someItem);
+  clickToSell(someItem);
+});
+
+// Buy
+// Function listens to click on one of those items and initiates function to buy someItemFromShop
+function clickToBuy(someItemFromShop) {
+  someItemFromShop.shopBtn.addEventListener('click', functionToBuy);
+
+  // Functions starts another function to buy specific item
+  function functionToBuy() {
+    buySpecificItem(someItemFromShop);
+  };
 };
 
-// Permanent Items Function
-function buyPermanentItem(buyingPermanentItem) {
-  buyingPermanentItem.shopDiv.style.display = 'none';
-  buyingPermanentItem.inventoryDiv.style.display = 'block';
-  money = money - buyingPermanentItem.buy;
-  buyingPermanentItem.bought = true;
+// certainItem is bought - divs manipulated, all stats changed 
+function buySpecificItem(item) {
+  if (item.type === 'permanent') {
+    item.shopDiv.style.display = 'none';
+    item.inventoryDiv.style.display = 'block';
+    item.bought = true;
+  };
+  if (item.type === 'instant') {
+    morale = morale + item.morale;
+    health = health + item.health;
+  };
+  money = money - item.buy;
   updateStats();
-  sendMessage(buyingPermanentItem);
+  sendMessage(item);
 };
 
-// INSTANT ITEMS
-// Alcohol
-alcohol.shopBtn.addEventListener('click', alcoholFunction);
-function alcoholFunction() { 
-  buyInstantItem(alcohol); 
+// Sell - same structure, difference - to check if item is permanent, because instant got btn undefined
+function clickToSell(someItemFromInventory) {
+  if (someItemFromInventory.type === 'permanent') {
+    someItemFromInventory.inventoryBtn.addEventListener('click', functionToSell);
+  };
+
+  function functionToSell() {
+    sellSpecificItem(someItemFromInventory);
+  };
 };
 
-// Treatment
-treatment.shopBtn.addEventListener('click', treatmentFunction);
-function treatmentFunction() { 
-  buyInstantItem(treatment); 
-};
-
-// Instant Items Function
-function buyInstantItem(buyingInstantItem) {
-  money = money - buyingInstantItem.buy;
-  morale = morale + buyingInstantItem.morale;
-  health = health + buyingInstantItem.health;
+// certainItem is sold - divs manipulated, money comes back 
+function sellSpecificItem(item) {
+  item.shopDiv.style.display = 'block';
+  item.inventoryDiv.style.display = 'none';
+  money = money + item.sell;
+  item.bought = false;
   updateStats();
-  sendMessage(buyingInstantItem);
-}
-
-// Selling Item
-// Phone
-function clickButton (item) {
-  item.BuyingBtn.addEventListener('click', item.BuyingFunction);
-}
-
-phone.inventoryBtn.addEventListener('click', phoneSellFunction);
-function phoneSellFunction() { 
-  sellItem(phone); 
-};
-
-// Car
-car.inventoryBtn.addEventListener('click', carSellFunction);
-function carSellFunction() { 
-  sellItem(car); 
-};
-
-// Plane
-plane.inventoryBtn.addEventListener('click', planeSellFunction);
-function planeSellFunction() { 
-  sellItem(plane); 
-};
-
-// Selling Function
-function sellItem(sellingItem) {
-  sellingItem.shopDiv.style.display = 'block';
-  sellingItem.inventoryDiv.style.display = 'none';
-  money = money + sellingItem.sell;
-  sellingItem.bought = false;
-  updateStats();
-  sendMessage(sellingItem);
+  sendMessage(item);
 };
 
 // STAGE 4 (DEATH)
