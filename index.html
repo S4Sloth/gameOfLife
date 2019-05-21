@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Game Of Life</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-dark text-white">
+  <header class="bg-secondary text-center p-3 mb-3">
+    <h1>The Game of Life</h1>
+  </header>
+
+  <!-- BIRTH STAGE -->
+  <div clas="container text-center" id="birthDIV">
+    <div class="col-md-12 mx-auto text-center">
+      <h4 class="mt-3" id="message">Welcome to The Game Of Life!</h4>
+        <p class="lead mb-5">If you are somehow new to the concept of living - your main goal is to survive!</p>
+        <p> - Manage your <span class="text-success">money</span> wisely - so you always could pay for food, home and other necessities.</p>
+        <p> - Take care of your <span class="text-warning">health</span> - if your health will reach 0, you will die.</p>
+        <p> - And keep an eye on your <span class="text-primary">morale</span> - cause good morale will give you bonuses, bad - can make you unhealthy.</p>
+        <p class="lead mt-5">To get your stats for the next life click button below.</p>
+        <div class="row mt-5 justify-content-center">
+          <button type="button" id="birthBTN" class="btn btn-danger p-4">Get stats for new life!</button>
+        </div>
+    </div>
+  </div>
+
+  <!-- STATS STAGE -->
+  <div clas="container text-center" id="statsDIV">
+    <div class="col-md-10 mx-auto text-center">
+      <h1 class="mb-5" id="message">You were born with these stats</h1>
+        <p class="lead"><span class="text-success mr-3">Money</span><span id="statMoney"></span>$</p>
+        <p class="lead"><span class="text-warning mr-3">Health</span><span id="statHealth"></span> / 100</p>
+        <p class="lead"><span class="text-primary mr-3">Morale</span><span id="statMorale"></span> / 100</p>
+        <p class="mt-5">All of this didn't depend on you.</p>
+        <p>Now you are a grown up and you choose everything by yourself. Almost.</p>
+        <p>Make thoughtful decisions, but don't forget - human life is full of random and wild sh#t.</p>
+        <div class="row mt-5 justify-content-center">
+          <button type="button" id="statsBTN" class="btn btn-danger p-4">Start game!</button>
+        </div>
+    </div>
+  </div>
+
+  <!-- GAME STAGE -->
+  <div class="container text-center" id="gameDIV">
+    
+    <!-- STATS AND DECISION -->
+    <div class="row">
+      <div class="col-md-12">
+
+        <!-- Age -->
+        <div class="row justify-content-center">
+          <div class="col-md-12 bg-white text-dark">
+            <h3>Months Old:
+              <span id="months">0</span>
+              (Full Years:
+              <span id="years"></span>)
+            </h3>
+          </div>
+        </div>
+        
+        <!-- Main indicators -->
+        <div class="row">
+          <div class="col-md-4 bg-success text-dark">
+            <h4>Money:
+              <span id="money"></span>$
+            </h4>
+          </div>
+          <div class="col-md-4 bg-warning text-dark">
+            <h4>Health:
+              <span id="health"></span>
+            </h4>
+          </div>
+          <div class="col-md-4 bg-primary text-dark">
+            <h4>Morale:
+              <span id="morale"></span>
+            </h4>
+          </div>
+        </div>
+        
+        
+        <!-- Slogan -->
+        <h2 class="mt-5">Plan Your Life!</h2>
+
+        <!-- INCOME, EXPENSES, PROPERTY -->
+        <div class="row mt-3">
+
+          <!--INCOME DIV -->
+          <div class="col-md-4 bg-secondary text-light px-0">
+            <h3 class="bg-light text-dark py-2">Income</h3>
+            
+            <!-- Job DIV -->
+            <div class="column text-left px-1 ml-2">
+              <h4 class="mt-1">Choose Your Job</h4>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="exampleCheckbox" id="lawyerCheck" value="option1">
+                <label class="form-check-label" for="lawyerCheck">
+                  Lawyer (2,000$)
+                </label>
+              </div>
+              <div class="form-check mr-5">
+                <input class="form-check-input" type="radio" name="exampleCheckbox" id="webdevCheck" value="option2">
+                <label class="form-check-label" for="webdevCheck">
+                  Web Dev (4,000$)
+                </label>
+              </div>
+              <div class="form-check mr-5">
+                <input class="form-check-input" type="radio" name="exampleCheckbox" id="businessmanCheck" value="option3">
+                <label class="form-check-label" for="businessmanCheck">
+                  Businessman (5,000$)
+                </label>
+              </div>
+            </div>
+          </div>
+          
+          <!-- EXPENSES DIV -->
+          <div class="col-md-4 bg-light text-secondary px-0">
+            <h3 class="bg-secondary text-light py-2">Expenses</h3>
+            
+            <!-- Meal DIV -->
+            <div class="column text-left ml-2">
+              <h4 class="mt-1 text-dark">Choose Your Diet</h4>
+              <div class="form-check mr-5">
+                <input class="form-check-input" type="radio" name="exampleCheckbox2" id="cheapFood" value="option1">
+                <label class="form-check-label" for="cheapFood">
+                  Junk Food (100$)
+                </label>
+              </div>
+              <div class="form-check mr-5">
+                <input class="form-check-input" type="radio" name="exampleCheckbox2" id="mediumFood" value="option2">
+                <label class="form-check-label" for="mediumFood">
+                  Balanced Diet (500$)
+                </label>
+              </div>
+              <div class="form-check mr-5">
+                <input class="form-check-input" type="radio" name="exampleCheckbox2" id="expensiveFood" value="option3">
+                <label class="form-check-label" for="expensiveFood">
+                  Extraordinary Food (1000$)
+                </label>
+              </div>
+            </div>
+            
+            <!-- Home DIV -->
+            <div class="column text-left ml-2 mt-3">
+              <h4 class="mt-1 text-dark">Rent Home</h4>
+              <div class="form-check mr-5">
+                <input class="form-check-input" type="radio" name="exampleCheckbox3" id="cheapHome" value="option1">
+                <label class="form-check-label" for="cheapHome">
+                  Cheap appartment (1,000$)
+                </label>
+              </div>
+              <div class="form-check mr-5">
+                <input class="form-check-input" type="radio" name="exampleCheckbox3" id="mediumHome" value="option2">
+                <label class="form-check-label" for="mediumHome">
+                  Good appartment (2,000$)
+                </label>
+              </div>
+              <div class="form-check mr-5">
+                <input class="form-check-input" type="radio" name="exampleCheckbox3" id="expensiveHome" value="option3">
+                <label class="form-check-label" for="expensiveHome">
+                  Expensive appartment (10,000$)
+                </label>
+              </div>
+            </div>
+          </div>
+          
+          <!-- PROPERTY -->
+          <div class="col-md-4 bg-secondary text-light px-0">
+            <h3 class="bg-light text-dark py-2">You Own</h3>
+
+            <!-- Phone -->
+            <div id="ownedPhone">
+              <div class="row col-md-12 bg-info px-0 mx-0 py-2">
+                <p class="col-md-11 text-left py-0 my-0 pt-1">Phone</p>
+                <button id="sellPhone" type="button" class="close col-md-1" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            </div>
+            <!-- Car -->
+            <div id="ownedCar">
+              <div class="row col-md-12 bg-info px-0 mx-0 py-2">
+                <p class="col-md-11 text-left py-0 my-0 pt-1">Car</p>
+                <button id="sellCar" type="button" class="close col-md-1" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            </div>
+            <!-- Plane -->
+            <div id="ownedPlane">
+              <div class="row col-md-12 bg-info px-0 mx-0 py-2">
+                <p class="col-md-11 text-left py-0 my-0 pt-1">Plane</p>
+                <button id="sellPlane" type="button" class="close col-md-1" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>        
+
+        <!-- MESSAGES AND BUTTON -->
+        <div class="row col-12 mx-0 px-0 mt-5">
+          <!-- Messages -->
+          <div class="col-8 mx-0 px-0">
+            <div class="bg-info">
+              <h4 class="text-center bg-primary mb-0 py-2">Messages From Life</h4>
+              <ul id="messages" class="list-group text-left ml-2">
+              </ul>
+            </div>
+          </div>
+          <!-- Button -->
+          <div class="col-4 mx-0 px-0 row justify-content-center">
+            <button type="button" id="gameBTN" class="btn btn-danger p-5">Spend One Month</button>
+          </div>
+        </div>
+      </div>    
+    </div>
+    
+    <!-- SHOP -->
+    <h3 class="col-md-12 bg-light text-secondary mt-5 py-3">Shop</h3>        
+    <div class="col-12 mx-0 px-0 row">
+      
+      <!-- Instant -->
+      <div class="col-12">
+        <h4 class="text-center">Instant Items</h4>
+      </div>
+      <!-- Alcohol -->
+      <div id="shopAlcohol" class="col-6 px-0">
+        <div class="row px-0 mx-0 bg-secondary py-1 border">
+          <p class="col-8 text-left mb-0 py-0 mt-2 border-right"> Alcohol (+Morale & -Health)</p>
+          <p class="col-2 mb-0 pb-0 mt-2">100$</p>
+          <button class="col-2 btn btn-danger" type="button" id="buyAlcohol">Buy</button>
+        </div>
+      </div>
+      <!-- Medical Treatment -->
+      <div id="shopTreatment" class="col-6 px-0">
+        <div class="row px-0 mx-0 bg-secondary py-1 border">
+          <p class="col-8 text-left mb-0 py-0 mt-2 border-right"> Treatment (-Morale & +Health)</p>
+          <p class="col-2 mb-0 pb-0 mt-2">500$</p>
+          <button class="col-2 btn btn-danger" type="button" id="buyTreatment">Buy</button>
+        </div>
+      </div>
+
+      <!-- Permanent -->
+      <div class="col-12">
+        <h4 class="text-center">Permanent Items</h4>
+      </div>
+      <!-- Phone -->
+      <div id="shopPhone" class="col-6 px-0">
+        <div class="row px-0 mx-0 bg-secondary py-1 border">
+          <p class="col-8 text-left mb-0 py-0 mt-2 border-right"> Mobile Phone (+ Morale)</p>
+          <p class="col-2 mb-0 pb-0 mt-2">200$</p>
+          <button class="col-2 btn btn-danger" type="button" id="buyPhone">Buy</button>
+        </div>
+      </div>
+      <!-- Car -->
+      <div id="shopCar" class="col-6 px-0">
+        <div class="row px-0 mx-0 bg-secondary py-1 border">
+          <p class="col-8 text-left mb-0 py-0 mt-2 border-right"> Car (+Morale)</p>
+          <p class="col-2 mb-0 pb-0 mt-2">5,000$</p>
+          <button class="col-2 btn btn-danger" type="button" id="buyCar">Buy</button>
+        </div>
+      </div>
+      <!-- Plane -->
+      <div id="shopPlane" class="col-6 px-0">
+        <div class="row px-0 mx-0 bg-secondary py-1 border">
+          <p class="col-8 text-left mb-0 py-0 mt-2 border-right"> Plane (+Morale)</p>
+          <p class="col-2 mb-0 pb-0 mt-2">199$</p>
+          <button class="col-2 btn btn-danger" type="button" id="buyPlane">Buy</button>
+        </div>
+      </div>
+      
+    </div>
+  
+  </div>
+
+  <!-- DEATH DIV -->
+  <div clas="container text-center" id="deathDIV">
+    <div class="col-md-12 mx-auto text-center">
+      <h4 class="mt-3" id="message">Unfortunately, you died! </h4>
+        <p class="lead mb-5">Yet, somehow you managed to survive <span class="font-weight-bold" id="deathMonths"></span> months in this cruel world (or <span class="font-weight-bold" id="deathYears"></span> full years)!</p></p>
+        <div class="row mt-5 justify-content-center">
+          <button type="button" id="restartBTN" class="btn btn-danger p-4">Try one more time!</button>
+        </div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+
+</html>
