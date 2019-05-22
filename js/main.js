@@ -44,15 +44,33 @@ let cashier = new Routine('Cashier', 'job', document.querySelector("#cheapJob"),
 let webDeveloper = new Routine('Web-Dev', 'job', document.querySelector("#midJob"), 2000, 0, 0, false);
 let businessman = new Routine('Businessman', 'job', document.querySelector("#luxJob"), 5000, -1, -2, true);
 let starveFood = new Routine('Starve', 'diet', document.querySelector("#starveFood"), 0, -20, -20, false);
-let cheapFood = new Routine('Cheap Food', 'diet', document.querySelector("#cheapFood"), 0, -1, -1, false);
-let mediumFood = new Routine('Medium Food', 'diet', document.querySelector("#midFood"), 0, 0, 0, false);
-let expensiveFood = new Routine('Expensive Food', 'diet', document.querySelector("#luxFood"), 0, 1, 2, false);
+let cheapFood = new Routine('Cheap Food', 'diet', document.querySelector("#cheapFood"), -100, -1, -1, false);
+let mediumFood = new Routine('Medium Food', 'diet', document.querySelector("#midFood"), -500, 0, 0, false);
+let expensiveFood = new Routine('Expensive Food', 'diet', document.querySelector("#luxFood"), -1000, 1, 2, false);
 
 routineArray = [unemployed, cashier, webDeveloper, businessman, starveFood, cheapFood, mediumFood, expensiveFood];
 
+// EVENTS
+function Event(name, type, DOM, money, health, morale, isHappening, probability) {
+  this.name = name;
+  this.type = type;
+  this.DOM = DOM;
+  this.money = money;
+  this.health = health;
+  this.morale = morale;
+  this.isHappening = isHappening;
+  this.probability = probability;
+};
+
+let cold = new Event('Cold', 'illness', document.querySelector("#eventCold"), 0, -1, -2, false, 0.7);
+let depression = new Event('Depression', 'illness', document.querySelector("#eventDepression"), 0, -2, -1, false, 0.7);
+
+eventsArray = [cold, depression];
+
+
 // SHOP DOM
 // Shop Items Class
-function ShopItem(name, type, buy, sell, health, morale, bought, shopDiv, shopBtn, inventoryDiv, inventoryBtn, messageBought, messageSold) {
+function ShopItem(name, type, buy, sell, health, morale, bought, shopDiv, shopBtn, inventoryDiv, inventoryBtn, messageBought, messageSold, usageCount) {
   this.name = name;
   this.type = type;
   this.buy = buy;
@@ -66,16 +84,18 @@ function ShopItem(name, type, buy, sell, health, morale, bought, shopDiv, shopBt
   this.inventoryBtn = inventoryBtn;
   this.messageBought = messageBought;
   this.messageSold = messageSold;
+  this.usageCount = usageCount;
+  this.sellingPrice = function() {return this.name + " " + this.usageCount};
 };
 
 // Permanent Items List
-let phone = new ShopItem('Phone', 'permanent', 200, 100, 0, 1, false, document.querySelector('#shopPhone'), document.querySelector('#buyPhone'), document.querySelector('#ownedPhone'), document.querySelector('#sellPhone'), 'Congratulations, you bought phone!', 'Congratulations, you sold your phone!');
-let car = new ShopItem('Car', 'permanent', 5000, 3000, -1, 2, false, document.querySelector('#shopCar'), document.querySelector('#buyCar'), document.querySelector('#ownedCar'), document.querySelector('#sellCar'), 'Congratulations, you bought car!', 'Congratulations, you sold your car!');
-let plane = new ShopItem('Plane','permanent', 100000, 50000, 1, 5, false, document.querySelector('#shopPlane'), document.querySelector('#buyPlane'), document.querySelector('#ownedPlane'), document.querySelector('#sellPlane'), 'Congratulations, you bought plane!', 'Congratulations, you sold your plane!');
+let phone = new ShopItem('Phone', 'permanent', 200, 100, 0, 1, false, document.querySelector('#shopPhone'), document.querySelector('#buyPhone'), document.querySelector('#ownedPhone'), document.querySelector('#sellPhone'), 'Congratulations, you bought phone!', 'Congratulations, you sold your phone!', 0);
+let car = new ShopItem('Car', 'permanent', 5000, 3000, -1, 2, false, document.querySelector('#shopCar'), document.querySelector('#buyCar'), document.querySelector('#ownedCar'), document.querySelector('#sellCar'), 'Congratulations, you bought car!', 'Congratulations, you sold your car!', 0);
+let plane = new ShopItem('Plane','permanent', 100000, 50000, 1, 5, false, document.querySelector('#shopPlane'), document.querySelector('#buyPlane'), document.querySelector('#ownedPlane'), document.querySelector('#sellPlane'), 'Congratulations, you bought plane!', 'Congratulations, you sold your plane!', 0);
 
 // Instant Items List
-let alcohol = new ShopItem('Alcohol', 'instant', 100, undefined, -1, 1, undefined, document.querySelector('#shopAlcohol'), document.querySelector('#buyAlcohol'), undefined, undefined, 'Congratulations, you bought alcohol!', undefined);
-let treatment = new ShopItem('Treatment', 'instant', 100, undefined, 1, -1, undefined, document.querySelector('#shopTreatment'), document.querySelector('#buyTreatment'), undefined, undefined, 'Congratulations, you went through medical treatment!', undefined);
+let alcohol = new ShopItem('Alcohol', 'instant', 100, undefined, -1, 1, undefined, document.querySelector('#shopAlcohol'), document.querySelector('#buyAlcohol'), undefined, undefined, 'Congratulations, you bought alcohol!', undefined, 0);
+let treatment = new ShopItem('Treatment', 'instant', 100, undefined, 1, -1, undefined, document.querySelector('#shopTreatment'), document.querySelector('#buyTreatment'), undefined, undefined, 'Congratulations, you went through medical treatment!', undefined, 0);
 
 // All Items Array
 let itemsArray = [phone, car, plane, alcohol, treatment];
@@ -92,6 +112,9 @@ function birth() {
   money = 0;
   health = 0;
   morale = 0;
+  itemsArray.forEach(function(item) {
+    item.usageCount = 0;
+  });
 };
 
 // STAGE 1 (Click button - get stats)
@@ -152,12 +175,12 @@ function newGame () {
 
   resetShop();
   resetMessages();
+  resetEvents();
 };
 
 // STAGE 3 (GAME)
 gameButton.addEventListener('click', liveOneMonth);
 function liveOneMonth() {
-
   month++;
   monthDisplay.innerHTML = month;
   yearsDisplay.innerHTML = Math.floor(month/12);
@@ -171,11 +194,22 @@ function liveOneMonth() {
     };
   });
 
+  // Event Influence
+  eventsArray.forEach(function(item) {
+    if (item.isHappening === true) {
+      money = money + item.money;
+      health = health + item.health;
+      morale = morale + item.morale;
+    };
+  });
+
   // Items Influence
   itemsArray.forEach(function(item) {
     if (item.bought === true) {
       health = health + item.health;
       morale = morale + item.morale;
+      item.usageCount ++;
+      console.log(item.usageCount);
     };
   });
 
@@ -189,6 +223,40 @@ function liveOneMonth() {
   if (morale <= 0) {
     health = health - 5;
   }; 
+
+
+  // Experimental events influence
+  // eventsArray.forEach(function(item) {
+  //   item.probability = item.probability + (health/100); 
+  //   console.log(item.probability);
+  //   if (item.probability >= 1) {
+  //     item.isHappening = true;
+  //     if (item.isHappening === true) {
+  //       item.DOM.style.display = 'block';
+  //       money = money + item.money;
+  //       health = health + item.health;
+  //       morale = morale + item.morale;
+  //     };
+  //   };
+  // });
+
+  // Low Health starts Cold
+  if (health < 30) {
+    cold.isHappening = true;
+    cold.DOM.style.display = 'block';
+  } else if (health >= 30) {
+    cold.isHappening = false;
+    cold.DOM.style.display = 'none';
+  };
+  
+  // Low Morale starts Depression
+  if (morale < 30) {
+    depression.isHappening = true;
+    depression.DOM.style.display = 'block';
+  } else if (morale >= 30) {
+    depression.isHappening = false;
+    depression.DOM.style.display = 'none';
+  };
   
   // Show Updated Correct Stats (can't be negative)
   updateStats();
@@ -199,24 +267,7 @@ function liveOneMonth() {
   };
 };
 
-// STAGE 3.1 (SHOP AND MESSAGES)
-// Reset Shop
-function resetShop() {
-  itemsArray.forEach(function(item) {
-    if (item.type === 'permanent') {
-      item.inventoryDiv.style.display = 'none';
-      item.shopDiv.style.display = 'block';
-    };
-  });
-};
-
-// Reset Messages
-function resetMessages() {
-  const messages = document.querySelector('#messages');
-  messages.innerHTML = '';
-};
-
-//////////// SHOPPING \\\\\\\\\\\\\\
+// STAGE 3.1 (SHOP)
 // Select item array to initiate function to buy or seell if someItem is clicked
 itemsArray.forEach(function(someItem) {
   clickToBuy(someItem);
@@ -244,6 +295,7 @@ function buySpecificItem(item) {
   if (item.type === 'instant') {
     morale = morale + item.morale;
     health = health + item.health;
+    item.usageCount ++;
   };
   money = money - item.buy;
   updateStats();
@@ -269,6 +321,8 @@ function sellSpecificItem(item) {
   item.bought = false;
   updateStats();
   sendMessage(item);
+  item.usageCount = 0;
+  console.log(item.usageCount);
 };
 
 // STAGE 4 (DEATH)
@@ -284,7 +338,7 @@ function youDead () {
 restartButton.addEventListener('click', birth);
 
 
-/////////////////////// UTILITY FUNCTIONS
+/////////////////////// UTILITY FUNCTIONS \\\\\\\\\\\\\\\\\\\\\\\\\\\
 // Function To Update Stats in UI and forbid going negative
 function updateStats () {
   // Morale Limit to 0
@@ -317,4 +371,28 @@ function sendMessage(sender) {
   };
   
   messages.insertBefore(li, messages.firstChild);
+};
+
+// Reset Shop
+function resetShop() {
+  itemsArray.forEach(function(item) {
+    if (item.type === 'permanent') {
+      item.inventoryDiv.style.display = 'none';
+      item.shopDiv.style.display = 'block';
+    };
+  });
+};
+
+// Reset Messages
+function resetMessages() {
+  const messages = document.querySelector('#messages');
+  messages.innerHTML = '';
+};
+
+// Reset Events
+function resetEvents() {
+  eventsArray.forEach(function(item) {
+    item.DOM.style.display = 'none';
+    item.isHappening = 'false';
+  });
 };

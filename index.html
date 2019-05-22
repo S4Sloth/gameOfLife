@@ -68,13 +68,13 @@
         <!-- Main indicators -->
         <div class="row">
           <div class="col-md-4 bg-success text-dark">
-            <h4>Money:<span id="money"></span>$</h4>
+            <h4>Money: <span id="money"></span>$</h4>
           </div>
           <div class="col-md-4 bg-warning text-dark">
-            <h4>Health:<span id="health"></span></h4>
+            <h4>Health: <span id="health"></span></h4>
           </div>
           <div class="col-md-4 bg-primary text-dark">
-            <h4>Morale:<span id="morale"></span></h4>
+            <h4>Morale: <span id="morale"></span></h4>
           </div>
         </div>
         
@@ -93,25 +93,39 @@
             <div class="column text-left px-1">
               <h4 class="mt-1">Choose Your Job</h4>
               <select id="job" class="form-control">
-                <option id="unemployedJob">Unemployed</option>
-                <option id="cheapJob">Cashier (500$)</option>
-                <option id="midJob">Web-Developer (2,000$)</option>
-                <option id="luxJob">Businessman (5,000$)</option>
+                <option id="unemployedJob">Unemployed</option> 
+                <option id="cheapJob">Cashier</option>
+                <option id="midJob">Web-Developer</option>
+                <option id="luxJob">Businessman</option>
+                
               </select>
+              
 
               <h4 class="mt-1">Choose Your Diet</h4>
               <select id="food" class="form-control">
                 <option id="starveFood">Starve</option>
-                <option id="cheapFood">Cheap (100$)</option>
-                <option id="midFood">Middle (500$)</option>
-                <option id="luxFood">Luxury (1,000$)</option>
+                <option id="cheapFood">Cheap</option>
+                <option id="midFood">Middle</option>
+                <option id="luxFood">Luxury</option>
               </select>
             </div>
           </div>
           
           <!-- EXPENSES DIV -->
           <div class="col-md-4 bg-light text-secondary px-0">
-            <h3 class="bg-secondary text-light py-2">Something</h3>
+            <h3 class="bg-secondary text-light py-2">Events</h3>
+
+            <div id="eventCold">
+              <div class="row col-md-12 bg-info px-0 mx-0 py-2">
+                <p class="col-md-11 text-left py-0 my-0 pt-1">Cold</p>
+              </div>
+            </div>
+            
+            <div id="eventDepression">
+              <div class="row col-md-12 bg-info px-0 mx-0 py-2">
+                <p class="col-md-11 text-left py-0 my-0 pt-1">Depression</p>
+              </div>
+            </div>
             <!-- Home DIV
             <div class="column text-left ml-2 mt-1">
               <h4 class="mt-1 text-dark">Rent Home</h4>
@@ -171,9 +185,9 @@
         </div>        
 
         <!-- MESSAGES AND BUTTON -->
-        <div class="row col-12 mx-0 px-0 mt-5">
+        <div class="row col-md-12 mx-0 px-0">
           <!-- Messages -->
-          <div class="col-8 mx-0 px-0">
+          <div class="col-md-8 mx-0 px-0">
             <div class="bg-info">
               <h4 class="text-center bg-primary mb-0 py-2">Messages From Life</h4>
               <ul id="messages" class="list-group text-left ml-2">
@@ -181,7 +195,7 @@
             </div>
           </div>
           <!-- Button -->
-          <div class="col-4 mx-0 px-0 row justify-content-center">
+          <div class="col-md-4 mx-0 px-0 row justify-content-center">
             <button type="button" id="gameBTN" class="btn btn-danger p-5">Spend One Month</button>
           </div>
         </div>
@@ -190,58 +204,58 @@
     
     <!-- SHOP -->
     <h3 class="col-md-12 bg-light text-secondary mt-5 py-3">Shop</h3>        
-    <div class="col-12 mx-0 px-0 row">
+    <div class="col-md-12 mx-0 px-0 row">
       
       <!-- Instant -->
-      <div class="col-12">
+      <div class="col-md-12">
         <h4 class="text-center">Instant Items</h4>
       </div>
       <!-- Alcohol -->
-      <div id="shopAlcohol" class="col-6 px-0">
+      <div id="shopAlcohol" class="col-md-6 px-0">
         <div class="row px-0 mx-0 bg-secondary py-1 border">
-          <p class="col-8 text-left mb-0 py-0 mt-2 border-right"> Alcohol (+Morale & -Health)</p>
-          <p class="col-2 mb-0 pb-0 mt-2">100$</p>
-          <button class="col-2 btn btn-danger" type="button" id="buyAlcohol">Buy</button>
+          <p class="col-md-8 text-left mb-0 py-0 mt-2 border-right"> Alcohol (+Morale & -Health)</p>
+          <p class="col-md-2 mb-0 pb-0 mt-2">100$</p>
+          <button class="col-md-2 btn btn-danger" type="button" id="buyAlcohol">Buy</button>
         </div>
       </div>
       <!-- Medical Treatment -->
-      <div id="shopTreatment" class="col-6 px-0">
+      <div id="shopTreatment" class="col-md-6 px-0">
         <div class="row px-0 mx-0 bg-secondary py-1 border">
-          <p class="col-8 text-left mb-0 py-0 mt-2 border-right"> Treatment (-Morale & +Health)</p>
-          <p class="col-2 mb-0 pb-0 mt-2">500$</p>
-          <button class="col-2 btn btn-danger" type="button" id="buyTreatment">Buy</button>
+          <p class="col-md-8 text-left mb-0 py-0 mt-2 border-right"> Treatment (-Morale & +Health)</p>
+          <p class="col-md-2 mb-0 pb-0 mt-2">500$</p>
+          <button class="col-md-2 btn btn-danger" type="button" id="buyTreatment">Buy</button>
         </div>
       </div>
 
       <!-- Permanent -->
-      <div class="col-12">
+      <div class="col-md-12">
         <h4 class="text-center">Permanent Items</h4>
       </div>
       <!-- Phone -->
-      <div id="shopPhone" class="col-6 px-0">
+      <div id="shopPhone" class="col-md-6 px-0">
         <div class="row px-0 mx-0 bg-secondary py-1 border">
-          <p class="col-8 text-left mb-0 py-0 mt-2 border-right"> Mobile Phone (+ Morale)</p>
-          <p class="col-2 mb-0 pb-0 mt-2">200$</p>
-          <button class="col-2 btn btn-danger" type="button" id="buyPhone">Buy</button>
+          <p class="col-md-8 text-left mb-0 py-0 mt-2 border-right"> Mobile Phone (+ Morale)</p>
+          <p class="col-md-2 mb-0 pb-0 mt-2">200$</p>
+          <button class="col-md-2 btn btn-danger" type="button" id="buyPhone">Buy</button>
         </div>
       </div>
       <!-- Car -->
-      <div id="shopCar" class="col-6 px-0">
+      <div id="shopCar" class="col-md-6 px-0">
         <div class="row px-0 mx-0 bg-secondary py-1 border">
-          <p class="col-8 text-left mb-0 py-0 mt-2 border-right"> Car (+Morale)</p>
-          <p class="col-2 mb-0 pb-0 mt-2">5,000$</p>
-          <button class="col-2 btn btn-danger" type="button" id="buyCar">Buy</button>
+          <p class="col-md-8 text-left mb-0 py-0 mt-2 border-right"> Car (+Morale)</p>
+          <p class="col-md-2 mb-0 pb-0 mt-2">5,000$</p>
+          <button class="col-md-2 btn btn-danger" type="button" id="buyCar">Buy</button>
         </div>
       </div>
       <!-- Plane -->
-      <div id="shopPlane" class="col-6 px-0">
+      <div id="shopPlane" class="col-md-6 px-0">
         <div class="row px-0 mx-0 bg-secondary py-1 border">
-          <p class="col-8 text-left mb-0 py-0 mt-2 border-right"> Plane (+Morale)</p>
-          <p class="col-2 mb-0 pb-0 mt-2">100,000$</p>
-          <button class="col-2 btn btn-danger" type="button" id="buyPlane">Buy</button>
+          <p class="col-md-8 text-left mb-0 py-0 mt-2 border-right"> Plane (+Morale)</p>
+          <p class="col-md-2 mb-0 pb-0 mt-2">100,000$</p>
+          <button class="col-md-2 btn btn-danger" type="button" id="buyPlane">Buy</button>
         </div>
       </div>
-      
+
     </div>
   
   </div>
