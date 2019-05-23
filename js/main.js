@@ -53,7 +53,7 @@ routineArray = [unemployed, cashier, webDeveloper, businessman, starveFood, chea
 
 // EVENTS
 // Routine Function
-function Event(name, type, DOM, money, health, morale, isHappening, probability) {
+function Event(name, type, DOM, money, health, morale, isHappening, probability, healthCoeff, moraleCoeff) {
   this.name = name;
   this.type = type;
   this.DOM = DOM;
@@ -62,10 +62,12 @@ function Event(name, type, DOM, money, health, morale, isHappening, probability)
   this.morale = morale;
   this.isHappening = isHappening;
   this.probability = probability;
+  this.healthCoeff = healthCoeff; 
+  this.moraleCoeff = moraleCoeff; //Health+Morale Coeff Should not be more than 1
 };
 // Routine Variables
-let cold = new Event('Cold', 'illness', document.querySelector("#eventCold"), 0, -1, -2, false, 0.5);
-let depression = new Event('Depression', 'illness', document.querySelector("#eventDepression"), 0, -2, -1, false, 0.01);
+let cold = new Event('Cold', 'illness', document.querySelector("#eventCold"), 0, -1, -2, false, 0.5, 0.5, 0.5);
+let depression = new Event('Depression', 'illness', document.querySelector("#eventDepression"), 0, -2, -1, false, 0.01, 0.3, 0.7);
 // Routine Array
 eventsArray = [cold, depression];
 
@@ -112,9 +114,6 @@ function birth() {
   money = 0;
   health = 0;
   morale = 0;
-  itemsArray.forEach(function(item) {
-    item.usageCount = 0;
-  });
 };
 
 
@@ -181,6 +180,7 @@ function newGame () {
   resetShop();
   resetMessages();
   resetEvents();
+  resetUsageCount();
 };
 
 
@@ -200,12 +200,28 @@ function liveOneMonth() {
     };
   });
 
-  // Event Influence
+  // Events Influence
   eventsArray.forEach(function(item) {
-    if (item.isHappening === true) {
+    // If event is happening, than this event change stats
+    if (item.isHappening === true) {     
       money = money + item.money;
       health = health + item.health;
       morale = morale + item.morale;
+    // If event isn't happening, app checks probability of this event to happen
+    } else if (item.isHappening === false) {
+      // Get random munber of bad luck
+      var badLuck = Math.random();
+      // Counts coeffMulitiplier based on items coeffs and present stats
+      var coeffMultiplier = 2 - (((health * item.healthCoeff) + (morale * item.moraleCoeff)) / 100);
+      // Multiplies coeff with items probability
+      var eventProbability = item.probability * coeffMultiplier;
+      // Counts risk
+      var risk = eventProbability + badLuck;
+      // If risk is more than 1, then event happens and show in UI
+      if (risk >= 1) {
+        item.isHappening = true;
+        item.DOM.style.display = 'block';
+      };
     };
   });
 
@@ -229,22 +245,6 @@ function liveOneMonth() {
   if (morale <= 0) {
     health = health - 5;
   }; 
-
-  // Experimental events influence
-  eventsArray.forEach(function(item) {
-    var badLuck = Math.random();
-    var risk = item.probability + badLuck; 
-    console.log(risk);
-    if (risk >= 1) {
-      item.isHappening = true;
-      if (item.isHappening === true) {
-        item.DOM.style.display = 'block';
-        money = money + item.money;
-        health = health + item.health;
-        morale = morale + item.morale;
-      };
-    };
-  });
   
   // Show Updated Correct Stats (can't be negative)
   updateStats();
@@ -367,6 +367,7 @@ function sendMessage(sender) {
 function resetShop() {
   itemsArray.forEach(function(item) {
     if (item.type === 'permanent') {
+      item.bought = false;
       item.inventoryDiv.style.display = 'none';
       item.shopDiv.style.display = 'block';
     };
@@ -383,6 +384,13 @@ function resetMessages() {
 function resetEvents() {
   eventsArray.forEach(function(item) {
     item.DOM.style.display = 'none';
-    item.isHappening = 'false';
+    item.isHappening = false;
+  });
+};
+
+// Rest Usage Count
+function resetUsageCount() {
+  itemsArray.forEach(function(item) {
+    item.usageCount = 0;
   });
 };
