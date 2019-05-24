@@ -70,9 +70,9 @@ function Event(name, type, DOM, money, health, morale, isHappening, probability,
   this.messageEnd = messageEnd;
 };
 // Routine Variables
-let diarrhea = new Event('Diarrhea', 'illness', document.querySelector("#eventDiarrhea"), 0, 0, -2, false, 0.1, 1, 0, 0, 1, 'Youve just got ill with diarhhea', 'You are suffered enough. Diarrhea is over');
-let cold = new Event('Cold', 'illness', document.querySelector("#eventCold"), 0, -1, -1, false, 0.05, 0.5, 0.5, 0, 5, 'Youve just got ill with cold', 'You are suffered enough. Cold is over');
-let cancer = new Event('Cancer', 'illness', document.querySelector("#eventCancer"), 0, -5, -5, false, 0.0001, 0.3, 0.7, 0, 9999,'Youve just got ill with cancer', 'You are suffered enough. Cancer is over');
+let cold = new Event('Cold', 'illness', document.querySelector("#eventCold"), 0, -1, -1, false, 0.1, 0.5, 0.5, 0, 1, 'Youve just got ill with cold', 'You are suffered enough. Cold is over');
+let diarrhea = new Event('Diarrhea', 'illness', document.querySelector("#eventDiarrhea"), 0, 0, -2, false, 0.05, 1, 0, 0, 3, 'Youve just got ill with diarhhea', 'You are suffered enough. Diarrhea is over');
+let cancer = new Event('Cancer', 'illness', document.querySelector("#eventCancer"), 0, -5, -5, false, 0.01, 0.5, 0.5, 0, 9999,'Youve just got ill with cancer', 'You are suffered enough. Cancer is over');
 // Routine Array
 eventsArray = [diarrhea, cold, cancer];
 
@@ -98,11 +98,11 @@ function ShopItem(name, type, buy, sell, health, morale, bought, shopDiv, shopBt
 let phone = new ShopItem('Phone', 'permanent', 200, 100, 0, 1, false, document.querySelector('#shopPhone'), document.querySelector('#buyPhone'), document.querySelector('#ownedPhone'), document.querySelector('#sellPhone'), 'Congratulations, you bought phone!', 'Congratulations, you sold your phone!', 0, undefined);
 let car = new ShopItem('Car', 'permanent', 5000, 3000, -1, 2, false, document.querySelector('#shopCar'), document.querySelector('#buyCar'), document.querySelector('#ownedCar'), document.querySelector('#sellCar'), 'Congratulations, you bought car!', 'Congratulations, you sold your car!', 0, undefined);
 let plane = new ShopItem('Plane','permanent', 100000, 50000, 1, 5, false, document.querySelector('#shopPlane'), document.querySelector('#buyPlane'), document.querySelector('#ownedPlane'), document.querySelector('#sellPlane'), 'Congratulations, you bought plane!', 'Congratulations, you sold your plane!', 0);
-// Shop Items Variables - instant items
-let alcohol = new ShopItem('Alcohol', 'instant', 100, undefined, -1, 1, undefined, document.querySelector('#shopAlcohol'), document.querySelector('#buyAlcohol'), undefined, undefined, 'Congratulations, you bought alcohol!', undefined, 0, undefined);
-let treatmentDiarrhea = new ShopItem('Diarrhea Treatment', 'instant', 10, undefined, 0, -1, undefined, document.querySelector('#shopTreatmentDiarrhea'), document.querySelector('#buyTreatmentDiarrhea'), undefined, undefined, 'Congratulations, you took medicine for diarrhea', undefined, 0);
-let treatmentCold = new ShopItem('Cold Treatment', 'instant', 50, undefined, 0, -1, undefined, document.querySelector('#shopTreatmentCold'), document.querySelector('#buyTreatmentCold'), undefined, undefined, 'Congratulations, you took medicine for cold', undefined, 0);
-let treatmentCancer = new ShopItem('Cancer Treatment', 'instant', 10000, undefined, 0, -3, undefined, document.querySelector('#shopTreatmentCancer'), document.querySelector('#buyTreatmentCancer'), undefined, undefined, 'Congratulations, you took medicine for Cancer', undefined, 0);
+// Shop Items Variables - instant
+let alcohol = new ShopItem('Alcohol', 'instant', 100, undefined, -1, 1, false, document.querySelector('#shopAlcohol'), document.querySelector('#buyAlcohol'), undefined, undefined, 'Congratulations, you bought alcohol!', undefined, 0, undefined);
+let treatmentCold = new ShopItem('Cold Treatment', 'instant', 50, undefined, 0, -1, false, document.querySelector('#shopTreatmentCold'), document.querySelector('#buyTreatmentCold'), undefined, undefined, 'Congratulations, you took medicine and no longer suffer from cold', undefined, 0);
+let treatmentDiarrhea = new ShopItem('Diarrhea Treatment', 'instant', 10, undefined, 0, -1, false, document.querySelector('#shopTreatmentDiarrhea'), document.querySelector('#buyTreatmentDiarrhea'), undefined, undefined, 'Congratulations, you took medicine and no longer suffer from diarrhea', undefined, 0);
+let treatmentCancer = new ShopItem('Cancer Treatment', 'instant', 10000, undefined, 0, -3, false, document.querySelector('#shopTreatmentCancer'), document.querySelector('#buyTreatmentCancer'), undefined, undefined, 'Congratulations, you took medicine and no longer suffer from cancer', undefined, 0);
 // Shop Items Array (permanent & instant)
 let itemsArray = [phone, car, plane, alcohol, treatmentDiarrhea, treatmentCold, treatmentCancer];
 
@@ -298,10 +298,29 @@ function buySpecificItem(item) {
     morale = morale + item.morale;
     health = health + item.health;
     item.usageCount ++;
+    item.bought = true; //Make true so item can heal
+    // Special healing for different diseases
+    if (item.name === 'Cold Treatment') { coldHeal(); };
+    if (item.name === 'Diarrhea Treatment') { diarrheaHeal(); };
+    if (item.name === 'Cancer Treatment') { cancerHeal(); };
+    item.bought = false; //Make false so item is no longer bought
+    updateEvents();
   };
   money = money - item.buy;
   updateStats();
   message(item.messageBought);
+};
+
+// Healing diseases
+function coldHeal() { isHealing(cold, treatmentCold); };
+function diarrheaHeal() { isHealing(diarrhea, treatmentDiarrhea); };
+function cancerHeal() { isHealing(cancer, treatmentCancer); };
+
+//Commom Healing Function 
+function isHealing(item1, item2) {
+  if (item2.bought === true) {
+    item1.isHappening = false;
+  };
 };
 
 // SELL (same structure, difference - to check if item is permanent, because instant got btn undefined)
@@ -400,5 +419,16 @@ function resetEvents() {
 function resetUsageCount() {
   itemsArray.forEach(function(item) {
     item.usageCount = 0;
+  });
+};
+
+// Update Events
+function updateEvents() {
+  eventsArray.forEach(function(item) {
+    if (item.isHappening === true) {
+      item.DOM.style.display = 'block';
+    } else if (item.isHappening === false) {
+      item.DOM.style.display = 'none';
+    };
   });
 };
