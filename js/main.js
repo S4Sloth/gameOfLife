@@ -53,7 +53,7 @@ routineArray = [unemployed, cashier, webDeveloper, businessman, starveFood, chea
 
 // EVENTS
 // Routine Function
-function Event(name, type, DOM, money, health, morale, isHappening, probability, healthCoeff, moraleCoeff) {
+function Event(name, type, DOM, money, health, morale, isHappening, probability, healthCoeff, moraleCoeff, duration, maxDuration, messageBegin, messageEnd) {
   this.name = name;
   this.type = type;
   this.DOM = DOM;
@@ -64,12 +64,17 @@ function Event(name, type, DOM, money, health, morale, isHappening, probability,
   this.probability = probability;
   this.healthCoeff = healthCoeff; 
   this.moraleCoeff = moraleCoeff; //Health+Morale Coeff Should not be more than 1
+  this.duration = duration;
+  this.maxDuration = maxDuration;
+  this.messageBegin = messageBegin;
+  this.messageEnd = messageEnd;
 };
 // Routine Variables
-let cold = new Event('Cold', 'illness', document.querySelector("#eventCold"), 0, -1, -2, false, 0.5, 0.5, 0.5);
-let depression = new Event('Depression', 'illness', document.querySelector("#eventDepression"), 0, -2, -1, false, 0.01, 0.3, 0.7);
+let diarrhea = new Event('Diarrhea', 'illness', document.querySelector("#eventDiarrhea"), 0, 0, -2, false, 0.1, 1, 0, 0, 1, 'Youve just got ill with diarhhea', 'You are suffered enough. Diarrhea is over');
+let cold = new Event('Cold', 'illness', document.querySelector("#eventCold"), 0, -1, -1, false, 0.05, 0.5, 0.5, 0, 5, 'Youve just got ill with cold', 'You are suffered enough. Cold is over');
+let cancer = new Event('Cancer', 'illness', document.querySelector("#eventCancer"), 0, -5, -5, false, 0.0001, 0.3, 0.7, 0, 9999,'Youve just got ill with cancer', 'You are suffered enough. Cancer is over');
 // Routine Array
-eventsArray = [cold, depression];
+eventsArray = [diarrhea, cold, cancer];
 
 // SHOP
 // Shop Item Function
@@ -88,17 +93,18 @@ function ShopItem(name, type, buy, sell, health, morale, bought, shopDiv, shopBt
   this.messageBought = messageBought;
   this.messageSold = messageSold;
   this.usageCount = usageCount;
-  this.sellingPrice = function() {return this.name + " " + this.usageCount};
 };
 // Shop Items Variables - permanent items
-let phone = new ShopItem('Phone', 'permanent', 200, 100, 0, 1, false, document.querySelector('#shopPhone'), document.querySelector('#buyPhone'), document.querySelector('#ownedPhone'), document.querySelector('#sellPhone'), 'Congratulations, you bought phone!', 'Congratulations, you sold your phone!', 0);
-let car = new ShopItem('Car', 'permanent', 5000, 3000, -1, 2, false, document.querySelector('#shopCar'), document.querySelector('#buyCar'), document.querySelector('#ownedCar'), document.querySelector('#sellCar'), 'Congratulations, you bought car!', 'Congratulations, you sold your car!', 0);
+let phone = new ShopItem('Phone', 'permanent', 200, 100, 0, 1, false, document.querySelector('#shopPhone'), document.querySelector('#buyPhone'), document.querySelector('#ownedPhone'), document.querySelector('#sellPhone'), 'Congratulations, you bought phone!', 'Congratulations, you sold your phone!', 0, undefined);
+let car = new ShopItem('Car', 'permanent', 5000, 3000, -1, 2, false, document.querySelector('#shopCar'), document.querySelector('#buyCar'), document.querySelector('#ownedCar'), document.querySelector('#sellCar'), 'Congratulations, you bought car!', 'Congratulations, you sold your car!', 0, undefined);
 let plane = new ShopItem('Plane','permanent', 100000, 50000, 1, 5, false, document.querySelector('#shopPlane'), document.querySelector('#buyPlane'), document.querySelector('#ownedPlane'), document.querySelector('#sellPlane'), 'Congratulations, you bought plane!', 'Congratulations, you sold your plane!', 0);
 // Shop Items Variables - instant items
-let alcohol = new ShopItem('Alcohol', 'instant', 100, undefined, -1, 1, undefined, document.querySelector('#shopAlcohol'), document.querySelector('#buyAlcohol'), undefined, undefined, 'Congratulations, you bought alcohol!', undefined, 0);
-let treatment = new ShopItem('Treatment', 'instant', 100, undefined, 1, -1, undefined, document.querySelector('#shopTreatment'), document.querySelector('#buyTreatment'), undefined, undefined, 'Congratulations, you went through medical treatment!', undefined, 0);
+let alcohol = new ShopItem('Alcohol', 'instant', 100, undefined, -1, 1, undefined, document.querySelector('#shopAlcohol'), document.querySelector('#buyAlcohol'), undefined, undefined, 'Congratulations, you bought alcohol!', undefined, 0, undefined);
+let treatmentDiarrhea = new ShopItem('Diarrhea Treatment', 'instant', 10, undefined, 0, -1, undefined, document.querySelector('#shopTreatmentDiarrhea'), document.querySelector('#buyTreatmentDiarrhea'), undefined, undefined, 'Congratulations, you took medicine for diarrhea', undefined, 0);
+let treatmentCold = new ShopItem('Cold Treatment', 'instant', 50, undefined, 0, -1, undefined, document.querySelector('#shopTreatmentCold'), document.querySelector('#buyTreatmentCold'), undefined, undefined, 'Congratulations, you took medicine for cold', undefined, 0);
+let treatmentCancer = new ShopItem('Cancer Treatment', 'instant', 10000, undefined, 0, -3, undefined, document.querySelector('#shopTreatmentCancer'), document.querySelector('#buyTreatmentCancer'), undefined, undefined, 'Congratulations, you took medicine for Cancer', undefined, 0);
 // Shop Items Array (permanent & instant)
-let itemsArray = [phone, car, plane, alcohol, treatment];
+let itemsArray = [phone, car, plane, alcohol, treatmentDiarrhea, treatmentCold, treatmentCancer];
 
 
 
@@ -202,14 +208,22 @@ function liveOneMonth() {
 
   // Events Influence
   eventsArray.forEach(function(item) {
-    // If event is happening, than this event change stats
-    if (item.isHappening === true) {     
+    if (item.isHappening === true) {
       money = money + item.money;
       health = health + item.health;
       morale = morale + item.morale;
-    // If event isn't happening, app checks probability of this event to happen
-    } else if (item.isHappening === false) {
-      // Get random munber of bad luck
+      item.duration++;
+      if (item.duration >= item.maxDuration) {
+        item.isHappening = false;
+        item.duration = 0;
+        item.DOM.style.display = 'none'; 
+        message(item.messageEnd); 
+      };
+    };
+  });
+  // Check is event happening
+  eventsArray.forEach(function(item) {
+    if (item.isHappening === false) {
       var badLuck = Math.random();
       // Counts coeffMulitiplier based on items coeffs and present stats
       var coeffMultiplier = 2 - (((health * item.healthCoeff) + (morale * item.moraleCoeff)) / 100);
@@ -221,6 +235,7 @@ function liveOneMonth() {
       if (risk >= 1) {
         item.isHappening = true;
         item.DOM.style.display = 'block';
+        message(item.messageBegin);
       };
     };
   });
@@ -231,7 +246,6 @@ function liveOneMonth() {
       health = health + item.health;
       morale = morale + item.morale;
       item.usageCount ++;
-      console.log(item.usageCount);
     };
   });
 
@@ -287,7 +301,7 @@ function buySpecificItem(item) {
   };
   money = money - item.buy;
   updateStats();
-  sendMessage(item);
+  message(item.messageBought);
 };
 
 // SELL (same structure, difference - to check if item is permanent, because instant got btn undefined)
@@ -308,7 +322,8 @@ function sellSpecificItem(item) {
   money = money + item.sell;
   item.bought = false;
   updateStats();
-  sendMessage(item);
+  message(item.messageSold);
+  // sendMessage(item);
   item.usageCount = 0;
   console.log(item.usageCount);
 };
@@ -349,17 +364,10 @@ function updateStats () {
   moraleDisplay.innerHTML = morale;
 };
 
-// Send Messages
-function sendMessage(sender) {
+// Send Message to player
+function message(theme) {
   const li = document.createElement('li');
-  if (sender.type === 'instant') {
-    li.appendChild(document.createTextNode(`- ${sender.messageBought}`));
-  } else if (sender.bought === true) {
-    li.appendChild(document.createTextNode(`- ${sender.messageBought}`));
-  } else {
-    li.appendChild(document.createTextNode(`- ${sender.messageSold}`));
-  };
-  
+  li.appendChild(document.createTextNode(`- ${theme}`));
   messages.insertBefore(li, messages.firstChild);
 };
 
