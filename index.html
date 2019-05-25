@@ -140,7 +140,7 @@
             <!-- Phone -->
             <div id="ownedPhone">
               <div class="row col-md-12 bg-info px-0 mx-0 py-2">
-                <p class="col-md-11 text-left py-0 my-0 pt-1">Phone (100$)</p>
+                <p class="col-md-11 text-left py-0 my-0 pt-1">Phone (<span id="phoneDOMpriceSell"></span>$)</p>
                 <button id="sellPhone" type="button" class="close col-md-1" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -149,7 +149,7 @@
             <!-- Car -->
             <div id="ownedCar">
               <div class="row col-md-12 bg-info px-0 mx-0 py-2">
-                <p class="col-md-11 text-left py-0 my-0 pt-1">Car (3,000$)</p>
+                <p class="col-md-11 text-left py-0 my-0 pt-1">Car (<span id="carDOMpriceSell"></span>$)</p>
                 <button id="sellCar" type="button" class="close col-md-1" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -158,7 +158,7 @@
             <!-- Plane -->
             <div id="ownedPlane">
               <div class="row col-md-12 bg-info px-0 mx-0 py-2">
-                <p class="col-md-11 text-left py-0 my-0 pt-1">Plane (50,000$)</p>
+                <p class="col-md-11 text-left py-0 my-0 pt-1">Plane (<span id="planeDOMpriceSell"></span>$)</p>
                 <button id="sellPlane" type="button" class="close col-md-1" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -195,35 +195,10 @@
         <h4 class="text-center">Instant Items</h4>
       </div>
       <!-- Alcohol -->
-      <div id="shopAlcohol" class="col-md-6 px-0">
-        <div class="row px-0 mx-0 bg-secondary py-1 border">
-          <p class="col-md-8 text-left mb-0 py-0 mt-2 border-right"> Alcohol (+Morale & -Health)</p>
-          <p class="col-md-2 mb-0 pb-0 mt-2">100$</p>
-          <button class="col-md-2 btn btn-danger" type="button" id="buyAlcohol">Buy</button>
-        </div>
-      </div>
-      <!-- Cold Treatment -->
-      <div id="shopTreatmentCold" class="col-md-6 px-0">
-        <div class="row px-0 mx-0 bg-secondary py-1 border">
-          <p class="col-md-8 text-left mb-0 py-0 mt-2 border-right"> Cold Treatment</p>
-          <p class="col-md-2 mb-0 pb-0 mt-2">50$</p>
-          <button class="col-md-2 btn btn-danger" type="button" id="buyTreatmentCold">Buy</button>
-        </div>
-      </div>
-      <!-- Diarhhea Treatment -->
-      <div id="shopTreatmentDiarrhea" class="col-md-6 px-0">
-        <div class="row px-0 mx-0 bg-secondary py-1 border">
-          <p class="col-md-8 text-left mb-0 py-0 mt-2 border-right"> Diarrhea Treatment</p>
-          <p class="col-md-2 mb-0 pb-0 mt-2">10$</p>
-          <button class="col-md-2 btn btn-danger" type="button" id="buyTreatmentDiarrhea">Buy</button>
-        </div>
-      </div>
-      <!-- Cancer Treatment -->
-      <div id="shopTreatmentCancer" class="col-md-6 px-0">
-        <div class="row px-0 mx-0 bg-secondary py-1 border">
-          <p class="col-md-8 text-left mb-0 py-0 mt-2 border-right"> Cancer Treatment</p>
-          <p class="col-md-2 mb-0 pb-0 mt-2">10,000$</p>
-          <button class="col-md-2 btn btn-danger" type="button" id="buyTreatmentCancer">Buy</button>
+      <div id="shopAlcohol" class="col-md-3 px-0">
+        <div class="row px-0 mx-0 bg-secondary py-1 border pr-2">
+          <p class="col-md-8 text-left mb-0 py-0 mt-2"> Alcohol </p>
+          <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="buyAlcohol"> <p class="mb-1 pb-0 "><span id="alcoholDOMprice"></span>$</p> </button>
         </div>
       </div>
 
@@ -232,27 +207,50 @@
         <h4 class="text-center">Permanent Items</h4>
       </div>
       <!-- Phone -->
-      <div id="shopPhone" class="col-md-6 px-0">
-        <div class="row px-0 mx-0 bg-secondary py-1 border">
-          <p class="col-md-8 text-left mb-0 py-0 mt-2 border-right"> Mobile Phone (+ Morale)</p>
-          <p class="col-md-2 mb-0 pb-0 mt-2">200$</p>
-          <button class="col-md-2 btn btn-danger" type="button" id="buyPhone">Buy</button>
+      <div id="shopPhone" class="col-md-3 px-0">
+        <div class="row px-0 mx-0 bg-secondary py-1 border pr-2">
+          <p class="col-md-8 text-left mb-0 py-0 mt-2"> Mobile Phone </p>
+          <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="buyPhone"> <p class="mb-1 pb-0 "><span id="phoneDOMprice"></span>$</p> </button>
         </div>
       </div>
       <!-- Car -->
-      <div id="shopCar" class="col-md-6 px-0">
-        <div class="row px-0 mx-0 bg-secondary py-1 border">
-          <p class="col-md-8 text-left mb-0 py-0 mt-2 border-right"> Car (+Morale)</p>
-          <p class="col-md-2 mb-0 pb-0 mt-2">5,000$</p>
-          <button class="col-md-2 btn btn-danger" type="button" id="buyCar">Buy</button>
+      <div id="shopCar" class="col-md-3 px-0">
+        <div class="row px-0 mx-0 bg-secondary py-1 border pr-2">
+          <p class="col-md-8 text-left mb-0 py-0 mt-2"> Car </p>
+          <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="buyCar"> <p class="mb-1 pb-0"><span id="carDOMprice"></span>$</p> </button>
         </div>
       </div>
       <!-- Plane -->
-      <div id="shopPlane" class="col-md-6 px-0">
-        <div class="row px-0 mx-0 bg-secondary py-1 border">
-          <p class="col-md-8 text-left mb-0 py-0 mt-2 border-right"> Plane (+Morale)</p>
-          <p class="col-md-2 mb-0 pb-0 mt-2">100,000$</p>
-          <button class="col-md-2 btn btn-danger" type="button" id="buyPlane">Buy</button>
+      <div id="shopPlane" class="col-md-3 px-0">
+        <div class="row px-0 mx-0 bg-secondary py-1 border pr-2">
+          <p class="col-md-8 text-left mb-0 py-0 mt-2"> Plane </p>
+          <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="buyPlane"> <p class="mb-1 pb-0"><span id="planeDOMprice"></span>$</p> </button>
+        </div>
+      </div>
+
+      <!-- Medicine -->
+      <div class="col-md-12">
+        <h4 class="text-center">Medicine</h4>
+      </div>
+      <!-- Cold Treatment -->
+      <div id="shopTreatmentCold" class="col-md-3 px-0">
+        <div class="row px-0 mx-0 bg-secondary py-1 border pr-2">
+          <p class="col-md-8 text-left mb-0 py-0 mt-2"> Cold Treatment </p>
+          <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="buyTreatmentCold"> <p class="mb-1 pb-0"><span id="tColdDOMprice"></span>$</p> </button>
+        </div>
+      </div>
+      <!-- Diarhhea Treatment -->
+      <div id="shopTreatmentDiarrhea" class="col-md-3 px-0">
+        <div class="row px-0 mx-0 bg-secondary py-1 border pr-2">
+          <p class="col-md-8 text-left mb-0 py-0 mt-2"> Diarrhea Treatment </p>
+          <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="buyTreatmentDiarrhea"> <p class="mb-1 pb-0"><span id="tDiarrheaDOMprice"></span>$</p> </button>
+        </div>
+      </div>
+      <!-- Cancer Treatment -->
+      <div id="shopTreatmentCancer" class="col-md-3 px-0">
+        <div class="row px-0 mx-0 bg-secondary py-1 border pr-2">
+          <p class="col-md-8 text-left mb-0 py-0 mt-2"> Cancer Treatment </p>
+          <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="buyTreatmentCancer"> <p class="mb-1 pb-0"><span id="tCancerDOMprice"></span>$</p> </button>
         </div>
       </div>
     </div>

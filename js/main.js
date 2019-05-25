@@ -70,41 +70,49 @@ function Event(name, type, DOM, money, health, morale, isHappening, probability,
   this.messageEnd = messageEnd;
 };
 // Routine Variables
-let cold = new Event('Cold', 'illness', document.querySelector("#eventCold"), 0, -1, -1, false, 0.1, 0.5, 0.5, 0, 1, 'Youve just got ill with cold', 'You are suffered enough. Cold is over');
-let diarrhea = new Event('Diarrhea', 'illness', document.querySelector("#eventDiarrhea"), 0, 0, -2, false, 0.05, 1, 0, 0, 3, 'Youve just got ill with diarhhea', 'You are suffered enough. Diarrhea is over');
-let cancer = new Event('Cancer', 'illness', document.querySelector("#eventCancer"), 0, -5, -5, false, 0.01, 0.5, 0.5, 0, 9999,'Youve just got ill with cancer', 'You are suffered enough. Cancer is over');
+let cold = new Event('cold', 'illness', document.querySelector("#eventCold"), 0, -1, -1, false, 0.1, 0.5, 0.5, 0, 1, 'Youve just got ill with cold', 'You are suffered enough. Cold is over');
+let diarrhea = new Event('diarrhea', 'illness', document.querySelector("#eventDiarrhea"), 0, 0, -2, false, 0.05, 1, 0, 0, 3, 'Youve just got ill with diarhhea', 'You are suffered enough. Diarrhea is over');
+let cancer = new Event('cancer', 'illness', document.querySelector("#eventCancer"), 0, -5, -5, false, 0.01, 0.5, 0.5, 0, 9999,'Youve just got ill with cancer', 'You are suffered enough. Cancer is over');
 // Routine Array
 eventsArray = [diarrhea, cold, cancer];
 
 // SHOP
 // Shop Item Function
-function ShopItem(name, type, buy, sell, health, morale, bought, shopDiv, shopBtn, inventoryDiv, inventoryBtn, messageBought, messageSold, usageCount) {
+function ShopItem(name, type, buy, sell, health, morale, usageCount, bought, shopDiv, shopBtn, inventoryDiv, inventoryBtn, DOMpriceBuy, DOMpriceSell) {
   this.name = name;
   this.type = type;
   this.buy = buy;
   this.sell = sell;
   this.health = health;
   this.morale = morale;
+  this.usageCount = usageCount;
   this.bought = bought;
   this.shopDiv = shopDiv;
   this.shopBtn = shopBtn;
   this.inventoryDiv = inventoryDiv;
   this.inventoryBtn = inventoryBtn;
-  this.messageBought = messageBought;
-  this.messageSold = messageSold;
-  this.usageCount = usageCount;
+  this.DOMpriceBuy = DOMpriceBuy;
+  this.DOMpriceSell = DOMpriceSell;
 };
 // Shop Items Variables - permanent items
-let phone = new ShopItem('Phone', 'permanent', 200, 100, 0, 1, false, document.querySelector('#shopPhone'), document.querySelector('#buyPhone'), document.querySelector('#ownedPhone'), document.querySelector('#sellPhone'), 'Congratulations, you bought phone!', 'Congratulations, you sold your phone!', 0, undefined);
-let car = new ShopItem('Car', 'permanent', 5000, 3000, -1, 2, false, document.querySelector('#shopCar'), document.querySelector('#buyCar'), document.querySelector('#ownedCar'), document.querySelector('#sellCar'), 'Congratulations, you bought car!', 'Congratulations, you sold your car!', 0, undefined);
-let plane = new ShopItem('Plane','permanent', 100000, 50000, 1, 5, false, document.querySelector('#shopPlane'), document.querySelector('#buyPlane'), document.querySelector('#ownedPlane'), document.querySelector('#sellPlane'), 'Congratulations, you bought plane!', 'Congratulations, you sold your plane!', 0);
+let phone = new ShopItem('phone', 'permanent', 200, 100, 0, 1, 0, false, document.querySelector('#shopPhone'), document.querySelector('#buyPhone'), document.querySelector('#ownedPhone'), document.querySelector('#sellPhone'), document.querySelector('#phoneDOMprice'), document.querySelector('#phoneDOMpriceSell'));
+let car = new ShopItem('car', 'permanent', 5000, 3000, -1, 2, 0, false, document.querySelector('#shopCar'), document.querySelector('#buyCar'), document.querySelector('#ownedCar'), document.querySelector('#sellCar'), document.querySelector('#carDOMprice'), document.querySelector('#carDOMpriceSell'));
+let plane = new ShopItem('plane','permanent', 100000, 50000, 1, 5, 0, false, document.querySelector('#shopPlane'), document.querySelector('#buyPlane'), document.querySelector('#ownedPlane'), document.querySelector('#sellPlane'), document.querySelector('#planeDOMprice'), document.querySelector('#planeDOMpriceSell'));
 // Shop Items Variables - instant
-let alcohol = new ShopItem('Alcohol', 'instant', 100, undefined, -1, 1, false, document.querySelector('#shopAlcohol'), document.querySelector('#buyAlcohol'), undefined, undefined, 'Congratulations, you bought alcohol!', undefined, 0, undefined);
-let treatmentCold = new ShopItem('Cold Treatment', 'instant', 50, undefined, 0, -1, false, document.querySelector('#shopTreatmentCold'), document.querySelector('#buyTreatmentCold'), undefined, undefined, 'Congratulations, you took medicine and no longer suffer from cold', undefined, 0);
-let treatmentDiarrhea = new ShopItem('Diarrhea Treatment', 'instant', 10, undefined, 0, -1, false, document.querySelector('#shopTreatmentDiarrhea'), document.querySelector('#buyTreatmentDiarrhea'), undefined, undefined, 'Congratulations, you took medicine and no longer suffer from diarrhea', undefined, 0);
-let treatmentCancer = new ShopItem('Cancer Treatment', 'instant', 10000, undefined, 0, -3, false, document.querySelector('#shopTreatmentCancer'), document.querySelector('#buyTreatmentCancer'), undefined, undefined, 'Congratulations, you took medicine and no longer suffer from cancer', undefined, 0);
+let alcohol = new ShopItem('alcohol', 'instant', 100, undefined, -1, 1, 0, false, document.querySelector('#shopAlcohol'), document.querySelector('#buyAlcohol'), undefined, undefined, document.querySelector('#alcoholDOMprice'), undefined);
+// Shop Items Variables - medicine
+let treatmentCold = new ShopItem('cold treatment', 'medicine', 50, undefined, 0, -1, 0, false, document.querySelector('#shopTreatmentCold'), document.querySelector('#buyTreatmentCold'), undefined, undefined, document.querySelector('#tColdDOMprice'), undefined);
+let treatmentDiarrhea = new ShopItem('diarrhea treatment', 'medicine', 10, undefined, 0, -1, 0, false, document.querySelector('#shopTreatmentDiarrhea'), document.querySelector('#buyTreatmentDiarrhea'), undefined, undefined, document.querySelector('#tDiarrheaDOMprice'), undefined);
+let treatmentCancer = new ShopItem('cancer treatment', 'medicine', 10000, undefined, 0, -3, 0, false, document.querySelector('#shopTreatmentCancer'), document.querySelector('#buyTreatmentCancer'), undefined, undefined, document.querySelector('#tCancerDOMprice'), undefined);
 // Shop Items Array (permanent & instant)
 let itemsArray = [phone, car, plane, alcohol, treatmentDiarrhea, treatmentCold, treatmentCancer];
+
+// META MESSAGES
+let msgBuy = 'Congratulations with new purchase! You bought ';
+let msgSell = 'Items are good, but money is better. You sold ';
+let msgIllnessStart = 'Unfortunately, now you got some problem with health. You got ill with '
+let msgHeal = 'Medicine worked perfectly and you are no longer suffer from '
+let msgEnd = 'You have suffered enough. Time healed you from '
 
 
 
@@ -187,6 +195,7 @@ function newGame () {
   resetMessages();
   resetEvents();
   resetUsageCount();
+  showPrices();
 };
 
 
@@ -217,7 +226,7 @@ function liveOneMonth() {
         item.isHappening = false;
         item.duration = 0;
         item.DOM.style.display = 'none'; 
-        message(item.messageEnd); 
+        message(msgEnd + item.name);
       };
     };
   });
@@ -235,7 +244,7 @@ function liveOneMonth() {
       if (risk >= 1) {
         item.isHappening = true;
         item.DOM.style.display = 'block';
-        message(item.messageBegin);
+        message(msgIllnessStart + ' ' + item.name);
       };
     };
   });
@@ -293,22 +302,29 @@ function buySpecificItem(item) {
     item.shopDiv.style.display = 'none';
     item.inventoryDiv.style.display = 'block';
     item.bought = true;
+    message(msgBuy + item.name + ' for ' + item.buy + '$');
   };
   if (item.type === 'instant') {
     morale = morale + item.morale;
     health = health + item.health;
     item.usageCount ++;
+    message(msgBuy + item.name + ' for ' + item.buy + '$');
+  };
+  if (item.type === 'medicine') {
+    morale = morale + item.morale;
+    health = health + item.health;
+    item.usageCount ++;
     item.bought = true; //Make true so item can heal
     // Special healing for different diseases
-    if (item.name === 'Cold Treatment') { coldHeal(); };
-    if (item.name === 'Diarrhea Treatment') { diarrheaHeal(); };
-    if (item.name === 'Cancer Treatment') { cancerHeal(); };
+    if (item.name === 'cold treatment') { coldHeal(); };
+    if (item.name === 'diarrhea treatment') { diarrheaHeal(); };
+    if (item.name === 'cancer treatment') { cancerHeal(); };
     item.bought = false; //Make false so item is no longer bought
     updateEvents();
   };
   money = money - item.buy;
   updateStats();
-  message(item.messageBought);
+  
 };
 
 // Healing diseases
@@ -321,6 +337,7 @@ function isHealing(item1, item2) {
   if (item2.bought === true) {
     item1.isHappening = false;
   };
+  message(msgHeal + item1.name);
 };
 
 // SELL (same structure, difference - to check if item is permanent, because instant got btn undefined)
@@ -341,10 +358,8 @@ function sellSpecificItem(item) {
   money = money + item.sell;
   item.bought = false;
   updateStats();
-  message(item.messageSold);
-  // sendMessage(item);
+  message(msgSell + item.name + ' for ' + item.sell + '$');
   item.usageCount = 0;
-  console.log(item.usageCount);
 };
 
 
@@ -429,6 +444,16 @@ function updateEvents() {
       item.DOM.style.display = 'block';
     } else if (item.isHappening === false) {
       item.DOM.style.display = 'none';
+    };
+  });
+};
+
+// Show prices
+function showPrices() {
+  itemsArray.forEach(function(item) {
+    item.DOMpriceBuy.innerHTML = item.buy.toLocaleString('en');
+    if (item.type === 'permanent') {
+      item.DOMpriceSell.innerHTML = item.sell.toLocaleString('en');
     };
   });
 };
