@@ -71,16 +71,18 @@ function Event(nameE, typeE, DOME, moneyE, healthE, moraleE, isHappeningE, proba
 let cold = new Event('cold', 'illness', document.querySelector("#eventCold"), 0, -1, -1, false, 0.1, 0.5, 0.5, 0, 1);
 let diarrhea = new Event('diarrhea', 'illness', document.querySelector("#eventDiarrhea"), 0, 0, -2, false, 0.05, 1, 0, 0, 3);
 let cancer = new Event('cancer', 'illness', document.querySelector("#eventCancer"), 0, -5, -5, false, 0.01, 0.5, 0.5, 0, 9999);
+let lostWallet = new Event ('lost your wallet', 'accident', document.querySelector("#eventLostWallet"), -100, 0, -1,	false, 0.1, 0, 1, 0, 0)
 // Routine Array
-eventsArray = [diarrhea, cold, cancer];
+eventsArray = [diarrhea, cold, cancer, lostWallet];
 
 // ITEMS FROM SHOP
 // Shop Item Function
-function ShopItem(nameI, typeI, buyI, sellI, healthI, moraleI, usageCountI, boughtI, shopDivI, shopBtnI, inventoryDivI, inventoryBtnI, DOMpriceBuyI, DOMpriceSellI) {
+function ShopItem(nameI, typeI, buyI, sellI, maintenanceI, healthI, moraleI, usageCountI, boughtI, shopDivI, shopBtnI, inventoryDivI, inventoryBtnI, DOMpriceBuyI, DOMpriceSellI, DOMmonthlyCostI) {
   this.nameI = nameI;
   this.typeI = typeI;
   this.buyI = buyI;
   this.sellI = sellI;
+  this.maintenanceI = maintenanceI;
   this.healthI = healthI;
   this.moraleI = moraleI;
   this.usageCountI = usageCountI;
@@ -91,17 +93,19 @@ function ShopItem(nameI, typeI, buyI, sellI, healthI, moraleI, usageCountI, boug
   this.inventoryBtnI = inventoryBtnI;
   this.DOMpriceBuyI = DOMpriceBuyI;
   this.DOMpriceSellI = DOMpriceSellI;
+  this.DOMmonthlyCostI = DOMmonthlyCostI;
+  this.xPrice = function() { return this.buyI/this.usageCountI; };
 };
 // Shop Items Variables - permanent items
-let phone = new ShopItem('phone', 'permanent', 200, 100, 0, 1, 0, false, document.querySelector('#shopPhone'), document.querySelector('#buyPhone'), document.querySelector('#ownedPhone'), document.querySelector('#sellPhone'), document.querySelector('#phoneDOMprice'), document.querySelector('#phoneDOMpriceSell'));
-let car = new ShopItem('car', 'permanent', 5000, 3000, -1, 2, 0, false, document.querySelector('#shopCar'), document.querySelector('#buyCar'), document.querySelector('#ownedCar'), document.querySelector('#sellCar'), document.querySelector('#carDOMprice'), document.querySelector('#carDOMpriceSell'));
-let plane = new ShopItem('plane','permanent', 100000, 50000, 1, 5, 0, false, document.querySelector('#shopPlane'), document.querySelector('#buyPlane'), document.querySelector('#ownedPlane'), document.querySelector('#sellPlane'), document.querySelector('#planeDOMprice'), document.querySelector('#planeDOMpriceSell'));
+let phone = new ShopItem('phone', 'permanent', 200, 100, -10, 0, 1, 0, false, document.querySelector('#shopPhone'), document.querySelector('#buyPhone'), document.querySelector('#ownedPhone'), document.querySelector('#sellPhone'), document.querySelector('#phoneDOMprice'), document.querySelector('#phoneDOMpriceSell'), document.querySelector('#phoneDOMmonthlyCost'));
+let car = new ShopItem('car', 'permanent', 5000, 3000, -100, -1, 2, 0, false, document.querySelector('#shopCar'), document.querySelector('#buyCar'), document.querySelector('#ownedCar'), document.querySelector('#sellCar'), document.querySelector('#carDOMprice'), document.querySelector('#carDOMpriceSell'), document.querySelector('#carDOMmonthlyCost'));
+let plane = new ShopItem('plane','permanent', 100000, 50000, -10000, 1, 5, 0, false, document.querySelector('#shopPlane'), document.querySelector('#buyPlane'), document.querySelector('#ownedPlane'), document.querySelector('#sellPlane'), document.querySelector('#planeDOMprice'), document.querySelector('#planeDOMpriceSell'), document.querySelector('#planeDOMmonthlyCost'));
 // Shop Items Variables - instant
-let alcohol = new ShopItem('alcohol', 'instant', 100, undefined, -1, 1, 0, false, document.querySelector('#shopAlcohol'), document.querySelector('#buyAlcohol'), undefined, undefined, document.querySelector('#alcoholDOMprice'), undefined);
+let alcohol = new ShopItem('alcohol', 'instant', 100, undefined, undefined, -1, 1, 0, false, document.querySelector('#shopAlcohol'), document.querySelector('#buyAlcohol'), undefined, undefined, document.querySelector('#alcoholDOMprice'), undefined);
 // Shop Items Variables - medicine
-let treatmentCold = new ShopItem('cold treatment', 'medicine', 50, undefined, 0, -1, 0, false, document.querySelector('#shopTreatmentCold'), document.querySelector('#buyTreatmentCold'), undefined, undefined, document.querySelector('#tColdDOMprice'), undefined);
-let treatmentDiarrhea = new ShopItem('diarrhea treatment', 'medicine', 10, undefined, 0, -1, 0, false, document.querySelector('#shopTreatmentDiarrhea'), document.querySelector('#buyTreatmentDiarrhea'), undefined, undefined, document.querySelector('#tDiarrheaDOMprice'), undefined);
-let treatmentCancer = new ShopItem('cancer treatment', 'medicine', 10000, undefined, 0, -3, 0, false, document.querySelector('#shopTreatmentCancer'), document.querySelector('#buyTreatmentCancer'), undefined, undefined, document.querySelector('#tCancerDOMprice'), undefined);
+let treatmentCold = new ShopItem('cold treatment', 'medicine', 50, undefined, undefined, 0, -1, 0, false, document.querySelector('#shopTreatmentCold'), document.querySelector('#buyTreatmentCold'), undefined, undefined, document.querySelector('#tColdDOMprice'), undefined);
+let treatmentDiarrhea = new ShopItem('diarrhea treatment', 'medicine', 10, undefined, undefined, 0, -1, 0, false, document.querySelector('#shopTreatmentDiarrhea'), document.querySelector('#buyTreatmentDiarrhea'), undefined, undefined, document.querySelector('#tDiarrheaDOMprice'), undefined);
+let treatmentCancer = new ShopItem('cancer treatment', 'medicine', 10000, undefined, undefined, 0, -3, 0, false, document.querySelector('#shopTreatmentCancer'), document.querySelector('#buyTreatmentCancer'), undefined, undefined, document.querySelector('#tCancerDOMprice'), undefined);
 // Shop Items Array (permanent & instant)
 let itemsArray = [phone, car, plane, alcohol, treatmentDiarrhea, treatmentCold, treatmentCancer];
 
@@ -109,9 +113,10 @@ let itemsArray = [phone, car, plane, alcohol, treatmentDiarrhea, treatmentCold, 
 let msgBuy = 'Congratulations with new purchase! You bought ';
 let msgSell = 'Items are good, but money is better. You sold ';
 let msgIllnessStart = 'Unfortunately, now you got some problem with health. You got ill with ';
-let msgHeal = 'Medicine worked perfectly and you are no longer suffer from ';
+let msgHeal = 'Medicine worked perfectly and you are no longer suffering from ';
 let msgEnd = 'You have suffered enough. Time healed you from ';
 let msgNotIll = 'It\'s great that you took medicine, but you weren\'t even suffering form ';
+let msgAccident = 'Damn! Bad luck! You ';
 
 
 
@@ -241,9 +246,16 @@ function liveOneMonth() {
       var risk = eventProbability + badLuck;
       // If risk is more than 1, then event happens and show in UI
       if (risk >= 1) {
-        someEvent.isHappeningE = true;
-        someEvent.DOME.style.display = 'block';
-        message(msgIllnessStart + ' ' + someEvent.nameE);
+        if (someEvent.typeE === 'illness') {
+          someEvent.isHappeningE = true;
+          someEvent.DOME.style.display = 'block';
+          message(msgIllnessStart + ' ' + someEvent.nameE);
+        } else if (someEvent.typeE === 'accident') {
+          money = money + someEvent.moneyE;
+          health = health + someEvent.healthE;
+          morale = morale + someEvent.moraleE;
+          message(msgAccident + someEvent.nameE);
+        };
       };
     };
   });
@@ -251,6 +263,7 @@ function liveOneMonth() {
   // Items Influence
   itemsArray.forEach(function(someItem) {
     if (someItem.boughtI === true) {
+      money = money + someItem.maintenanceI;
       health = health + someItem.healthI;
       morale = morale + someItem.moraleI;
       someItem.usageCountI ++;
@@ -404,7 +417,7 @@ function updateStats () {
 // Send Message to player
 function message(theme) {
   const li = document.createElement('li');
-  li.appendChild(document.createTextNode(`- ${theme}`));
+  li.appendChild(document.createTextNode(`Month ${month}: ${theme}`));
   messages.insertBefore(li, messages.firstChild);
 };
 
@@ -457,6 +470,7 @@ function showPrices() {
     someItem.DOMpriceBuyI.innerHTML = someItem.buyI.toLocaleString('en');
     if (someItem.typeI === 'permanent') {
       someItem.DOMpriceSellI.innerHTML = someItem.sellI.toLocaleString('en');
+      someItem.DOMmonthlyCostI.innerHTML = someItem.maintenanceI.toLocaleString('en');
     };
   });
 };
