@@ -30,14 +30,14 @@ const monthDeathDisplay = document.querySelector('#deathMonths');
 
 //ROUTINE
 // Routine Function
-function Routine(name, type, DOM, money, health, morale, disabledOption) {
-  this.name = name;
-  this.type = type;
-  this.DOM = DOM;
-  this.money = money;
-  this.health = health;
-  this.morale = morale;
-  this.disabledOption = disabledOption;
+function Routine(nameR, typeR, DOMR, moneyR, healthR, moraleR, disabledOptionR) {
+  this.nameR = nameR;
+  this.typeR = typeR;
+  this.DOMR = DOMR;
+  this.moneyR = moneyR;
+  this.healthR = healthR;
+  this.moraleR = moraleR;
+  this.disabledOptionR = disabledOptionR;
 };
 // Routine Variables
 let unemployed = new Routine('Unemployed', 'job', document.querySelector("#unemployedJob"), 0, -3, -5, false);
@@ -53,46 +53,44 @@ routineArray = [unemployed, cashier, webDeveloper, businessman, starveFood, chea
 
 // EVENTS
 // Routine Function
-function Event(name, type, DOM, money, health, morale, isHappening, probability, healthCoeff, moraleCoeff, duration, maxDuration, messageBegin, messageEnd) {
-  this.name = name;
-  this.type = type;
-  this.DOM = DOM;
-  this.money = money;
-  this.health = health;
-  this.morale = morale;
-  this.isHappening = isHappening;
-  this.probability = probability;
-  this.healthCoeff = healthCoeff; 
-  this.moraleCoeff = moraleCoeff; //Health+Morale Coeff Should not be more than 1
-  this.duration = duration;
-  this.maxDuration = maxDuration;
-  this.messageBegin = messageBegin;
-  this.messageEnd = messageEnd;
+function Event(nameE, typeE, DOME, moneyE, healthE, moraleE, isHappeningE, probabilityE, healthCoeffE, moraleCoeffE, durationE, maxDurationE) {
+  this.nameE = nameE;
+  this.typeE = typeE;
+  this.DOME= DOME;
+  this.moneyE = moneyE;
+  this.healthE = healthE;
+  this.moraleE = moraleE;
+  this.isHappeningE = isHappeningE;
+  this.probabilityE = probabilityE;
+  this.healthCoeffE = healthCoeffE; 
+  this.moraleCoeffE = moraleCoeffE; //Health+Morale Coeff Should not be more than 1
+  this.durationE = durationE;
+  this.maxDurationE = maxDurationE;
 };
 // Routine Variables
-let cold = new Event('cold', 'illness', document.querySelector("#eventCold"), 0, -1, -1, false, 0.1, 0.5, 0.5, 0, 1, 'Youve just got ill with cold', 'You are suffered enough. Cold is over');
-let diarrhea = new Event('diarrhea', 'illness', document.querySelector("#eventDiarrhea"), 0, 0, -2, false, 0.05, 1, 0, 0, 3, 'Youve just got ill with diarhhea', 'You are suffered enough. Diarrhea is over');
-let cancer = new Event('cancer', 'illness', document.querySelector("#eventCancer"), 0, -5, -5, false, 0.01, 0.5, 0.5, 0, 9999,'Youve just got ill with cancer', 'You are suffered enough. Cancer is over');
+let cold = new Event('cold', 'illness', document.querySelector("#eventCold"), 0, -1, -1, false, 0.1, 0.5, 0.5, 0, 1);
+let diarrhea = new Event('diarrhea', 'illness', document.querySelector("#eventDiarrhea"), 0, 0, -2, false, 0.05, 1, 0, 0, 3);
+let cancer = new Event('cancer', 'illness', document.querySelector("#eventCancer"), 0, -5, -5, false, 0.01, 0.5, 0.5, 0, 9999);
 // Routine Array
 eventsArray = [diarrhea, cold, cancer];
 
-// SHOP
+// ITEMS FROM SHOP
 // Shop Item Function
-function ShopItem(name, type, buy, sell, health, morale, usageCount, bought, shopDiv, shopBtn, inventoryDiv, inventoryBtn, DOMpriceBuy, DOMpriceSell) {
-  this.name = name;
-  this.type = type;
-  this.buy = buy;
-  this.sell = sell;
-  this.health = health;
-  this.morale = morale;
-  this.usageCount = usageCount;
-  this.bought = bought;
-  this.shopDiv = shopDiv;
-  this.shopBtn = shopBtn;
-  this.inventoryDiv = inventoryDiv;
-  this.inventoryBtn = inventoryBtn;
-  this.DOMpriceBuy = DOMpriceBuy;
-  this.DOMpriceSell = DOMpriceSell;
+function ShopItem(nameI, typeI, buyI, sellI, healthI, moraleI, usageCountI, boughtI, shopDivI, shopBtnI, inventoryDivI, inventoryBtnI, DOMpriceBuyI, DOMpriceSellI) {
+  this.nameI = nameI;
+  this.typeI = typeI;
+  this.buyI = buyI;
+  this.sellI = sellI;
+  this.healthI = healthI;
+  this.moraleI = moraleI;
+  this.usageCountI = usageCountI;
+  this.boughtI = boughtI;
+  this.shopDivI = shopDivI;
+  this.shopBtnI = shopBtnI;
+  this.inventoryDivI = inventoryDivI;
+  this.inventoryBtnI = inventoryBtnI;
+  this.DOMpriceBuyI = DOMpriceBuyI;
+  this.DOMpriceSellI = DOMpriceSellI;
 };
 // Shop Items Variables - permanent items
 let phone = new ShopItem('phone', 'permanent', 200, 100, 0, 1, 0, false, document.querySelector('#shopPhone'), document.querySelector('#buyPhone'), document.querySelector('#ownedPhone'), document.querySelector('#sellPhone'), document.querySelector('#phoneDOMprice'), document.querySelector('#phoneDOMpriceSell'));
@@ -110,9 +108,10 @@ let itemsArray = [phone, car, plane, alcohol, treatmentDiarrhea, treatmentCold, 
 // META MESSAGES
 let msgBuy = 'Congratulations with new purchase! You bought ';
 let msgSell = 'Items are good, but money is better. You sold ';
-let msgIllnessStart = 'Unfortunately, now you got some problem with health. You got ill with '
-let msgHeal = 'Medicine worked perfectly and you are no longer suffer from '
-let msgEnd = 'You have suffered enough. Time healed you from '
+let msgIllnessStart = 'Unfortunately, now you got some problem with health. You got ill with ';
+let msgHeal = 'Medicine worked perfectly and you are no longer suffer from ';
+let msgEnd = 'You have suffered enough. Time healed you from ';
+let msgNotIll = 'It\'s great that you took medicine, but you weren\'t even suffering form ';
 
 
 
@@ -207,54 +206,54 @@ function liveOneMonth() {
   yearsDisplay.innerHTML = Math.floor(month/12);
 
   // Routine Influence
-  routineArray.forEach(function(item) {
-    if (item.DOM.selected === true) {
-      money = money + item.money;
-      health = health + item.health;
-      morale = morale + item.morale;
+  routineArray.forEach(function(someRoutine) {
+    if (someRoutine.DOMR.selected === true) {
+      money = money + someRoutine.moneyR;
+      health = health + someRoutine.healthR;
+      morale = morale + someRoutine.moraleR;
     };
   });
 
   // Events Influence
-  eventsArray.forEach(function(item) {
-    if (item.isHappening === true) {
-      money = money + item.money;
-      health = health + item.health;
-      morale = morale + item.morale;
-      item.duration++;
-      if (item.duration >= item.maxDuration) {
-        item.isHappening = false;
-        item.duration = 0;
-        item.DOM.style.display = 'none'; 
-        message(msgEnd + item.name);
+  eventsArray.forEach(function(someEvent) {
+    if (someEvent.isHappeningE === true) {
+      money = money + someEvent.moneyE;
+      health = health + someEvent.healthE;
+      morale = morale + someEvent.moraleE;
+      someEvent.durationE++;
+      if (someEvent.durationE >= someEvent.maxDurationE) {
+        someEvent.isHappeningE = false;
+        someEvent.durationE = 0;
+        someEvent.DOME.style.display = 'none'; 
+        message(msgEnd + someEvent.nameE);
       };
     };
   });
   // Check is event happening
-  eventsArray.forEach(function(item) {
-    if (item.isHappening === false) {
+  eventsArray.forEach(function(someEvent) {
+    if (someEvent.isHappeningE === false) {
       var badLuck = Math.random();
-      // Counts coeffMulitiplier based on items coeffs and present stats
-      var coeffMultiplier = 2 - (((health * item.healthCoeff) + (morale * item.moraleCoeff)) / 100);
-      // Multiplies coeff with items probability
-      var eventProbability = item.probability * coeffMultiplier;
+      // Counts coeffMulitiplier based on someEvents coeffs and present stats
+      var coeffMultiplier = 2 - (((health * someEvent.healthCoeffE) + (morale * someEvent.moraleCoeffE)) / 100);
+      // Multiplies coeff with someEvents probability
+      var eventProbability = someEvent.probabilityE * coeffMultiplier;
       // Counts risk
       var risk = eventProbability + badLuck;
       // If risk is more than 1, then event happens and show in UI
       if (risk >= 1) {
-        item.isHappening = true;
-        item.DOM.style.display = 'block';
-        message(msgIllnessStart + ' ' + item.name);
+        someEvent.isHappeningE = true;
+        someEvent.DOME.style.display = 'block';
+        message(msgIllnessStart + ' ' + someEvent.nameE);
       };
     };
   });
 
   // Items Influence
-  itemsArray.forEach(function(item) {
-    if (item.bought === true) {
-      health = health + item.health;
-      morale = morale + item.morale;
-      item.usageCount ++;
+  itemsArray.forEach(function(someItem) {
+    if (someItem.boughtI === true) {
+      health = health + someItem.healthI;
+      morale = morale + someItem.moraleI;
+      someItem.usageCountI ++;
     };
   });
 
@@ -289,7 +288,7 @@ itemsArray.forEach(function(someItem) {
 // BUY
 // Function listens to click on one of those items and initiates function to buy someItemFromShop
 function clickToBuy(someItemFromShop) {
-  someItemFromShop.shopBtn.addEventListener('click', functionToBuy);
+  someItemFromShop.shopBtnI.addEventListener('click', functionToBuy);
   // Functions starts another function to buy specific item
   function functionToBuy() {
     buySpecificItem(someItemFromShop);
@@ -297,34 +296,33 @@ function clickToBuy(someItemFromShop) {
 };
 
 // certainItem is bought - divs manipulated, all stats changed 
-function buySpecificItem(item) {
-  if (item.type === 'permanent') {
-    item.shopDiv.style.display = 'none';
-    item.inventoryDiv.style.display = 'block';
-    item.bought = true;
-    message(msgBuy + item.name + ' for ' + item.buy + '$');
+function buySpecificItem(certaintItem) {
+  if (certaintItem.typeI === 'permanent') {
+    certaintItem.shopDivI.style.display = 'none';
+    certaintItem.inventoryDivI.style.display = 'block';
+    certaintItem.boughtI = true;
+    message(msgBuy + certaintItem.nameI + ' for ' + certaintItem.buyI + '$');
   };
-  if (item.type === 'instant') {
-    morale = morale + item.morale;
-    health = health + item.health;
-    item.usageCount ++;
-    message(msgBuy + item.name + ' for ' + item.buy + '$');
+  if (certaintItem.typeI === 'instant') {
+    morale = morale + certaintItem.moraleI;
+    health = health + certaintItem.healthI;
+    certaintItem.usageCountI ++;
+    message(msgBuy + certaintItem.nameI + ' for ' + certaintItem.buyI + '$');
   };
-  if (item.type === 'medicine') {
-    morale = morale + item.morale;
-    health = health + item.health;
-    item.usageCount ++;
-    item.bought = true; //Make true so item can heal
+  if (certaintItem.typeI === 'medicine') {
+    morale = morale + certaintItem.moraleI;
+    health = health + certaintItem.healthI;
+    certaintItem.usageCountI ++;
+    certaintItem.boughtI = true; //Make true so certaintItem can heal
     // Special healing for different diseases
-    if (item.name === 'cold treatment') { coldHeal(); };
-    if (item.name === 'diarrhea treatment') { diarrheaHeal(); };
-    if (item.name === 'cancer treatment') { cancerHeal(); };
-    item.bought = false; //Make false so item is no longer bought
+    if (certaintItem.nameI === 'cold treatment') { coldHeal(); };
+    if (certaintItem.nameI === 'diarrhea treatment') { diarrheaHeal(); };
+    if (certaintItem.nameI === 'cancer treatment') { cancerHeal(); };
+    certaintItem.boughtI = false; //Make false so certaintItem is no longer bought
     updateEvents();
   };
-  money = money - item.buy;
+  money = money - certaintItem.buyI;
   updateStats();
-  
 };
 
 // Healing diseases
@@ -333,17 +331,22 @@ function diarrheaHeal() { isHealing(diarrhea, treatmentDiarrhea); };
 function cancerHeal() { isHealing(cancer, treatmentCancer); };
 
 //Commom Healing Function 
-function isHealing(item1, item2) {
-  if (item2.bought === true) {
-    item1.isHappening = false;
+function isHealing(someEvent, someItem) {
+  // If player isn't ill - show that medicine wasn't necessary 
+  if (someEvent.isHappeningE === false) {
+    message(msgNotIll + someEvent.nameE);
+  } else if (someEvent.isHappeningE === true) {
+    if (someItem.boughtI === true) {
+      someEvent.isHappeningE = false;
+    };
+    message(msgHeal + someEvent.nameE);
   };
-  message(msgHeal + item1.name);
 };
 
 // SELL (same structure, difference - to check if item is permanent, because instant got btn undefined)
 function clickToSell(someItemFromInventory) {
-  if (someItemFromInventory.type === 'permanent') {
-    someItemFromInventory.inventoryBtn.addEventListener('click', functionToSell);
+  if (someItemFromInventory.typeI === 'permanent') {
+    someItemFromInventory.inventoryBtnI.addEventListener('click', functionToSell);
   };
   // Functions starts another function to sell specific item
   function functionToSell() {
@@ -352,14 +355,14 @@ function clickToSell(someItemFromInventory) {
 };
 
 // certainItem is sold - divs manipulated, money comes back 
-function sellSpecificItem(item) {
-  item.shopDiv.style.display = 'block';
-  item.inventoryDiv.style.display = 'none';
-  money = money + item.sell;
-  item.bought = false;
+function sellSpecificItem(someItem) {
+  someItem.shopDivI.style.display = 'block';
+  someItem.inventoryDivI.style.display = 'none';
+  money = money + someItem.sellI;
+  someItem.boughtI = false;
   updateStats();
-  message(msgSell + item.name + ' for ' + item.sell + '$');
-  item.usageCount = 0;
+  message(msgSell + someItem.nameI + ' for ' + someItem.sellI + '$');
+  someItem.usageCountI = 0;
 };
 
 
@@ -407,11 +410,11 @@ function message(theme) {
 
 // Reset Shop
 function resetShop() {
-  itemsArray.forEach(function(item) {
-    if (item.type === 'permanent') {
-      item.bought = false;
-      item.inventoryDiv.style.display = 'none';
-      item.shopDiv.style.display = 'block';
+  itemsArray.forEach(function(someItem) {
+    if (someItem.typeI === 'permanent') {
+      someItem.boughtI = false;
+      someItem.inventoryDivI.style.display = 'none';
+      someItem.shopDivI.style.display = 'block';
     };
   });
 };
@@ -424,36 +427,36 @@ function resetMessages() {
 
 // Reset Events
 function resetEvents() {
-  eventsArray.forEach(function(item) {
-    item.DOM.style.display = 'none';
-    item.isHappening = false;
+  eventsArray.forEach(function(someEvent) {
+    someEvent.DOME.style.display = 'none';
+    someEvent.isHappeningE = false;
   });
 };
 
 // Rest Usage Count
 function resetUsageCount() {
-  itemsArray.forEach(function(item) {
-    item.usageCount = 0;
+  itemsArray.forEach(function(someItem) {
+    someItem.usageCountI = 0;
   });
 };
 
 // Update Events
 function updateEvents() {
-  eventsArray.forEach(function(item) {
-    if (item.isHappening === true) {
-      item.DOM.style.display = 'block';
-    } else if (item.isHappening === false) {
-      item.DOM.style.display = 'none';
+  eventsArray.forEach(function(someEvent) {
+    if (someEvent.isHappeningE === true) {
+      someEvent.DOME.style.display = 'block';
+    } else if (someEvent.isHappeningE === false) {
+      someEvent.DOME.style.display = 'none';
     };
   });
 };
 
 // Show prices
 function showPrices() {
-  itemsArray.forEach(function(item) {
-    item.DOMpriceBuy.innerHTML = item.buy.toLocaleString('en');
-    if (item.type === 'permanent') {
-      item.DOMpriceSell.innerHTML = item.sell.toLocaleString('en');
+  itemsArray.forEach(function(someItem) {
+    someItem.DOMpriceBuyI.innerHTML = someItem.buyI.toLocaleString('en');
+    if (someItem.typeI === 'permanent') {
+      someItem.DOMpriceSellI.innerHTML = someItem.sellI.toLocaleString('en');
     };
   });
 };
