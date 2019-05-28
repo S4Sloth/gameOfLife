@@ -77,16 +77,18 @@ eventsArray = [diarrhea, cold, cancer, lostWallet];
 
 // ITEMS FROM SHOP
 // Shop Item Function
-function ShopItem(nameI, typeI, buyI, sellI, maintenanceI, healthI, moraleI, usageCountI, boughtI, shopDivI, shopBtnI, inventoryDivI, inventoryBtnI, DOMpriceBuyI, DOMpriceSellI, DOMmonthlyCostI) {
+function ShopItem(nameI, typeI, buyI, maintenanceI, healthI, moraleI, usageCountI, lifeTimeI, boughtI, shopDivI, shopBtnI, inventoryDivI, inventoryBtnI, DOMpriceBuyI, DOMpriceSellI, DOMmonthlyCostI) {
   this.nameI = nameI;
   this.typeI = typeI;
   this.buyI = buyI;
-  this.sellI = sellI;
+  this.sellI = function() { return Math.round(this.buyI - ((this.buyI / this.lifeTimeI) * this.usageCountI)); };
   this.maintenanceI = maintenanceI;
   this.healthI = healthI;
   this.moraleI = moraleI;
   this.usageCountI = usageCountI;
+  this.lifeTimeI = lifeTimeI;
   this.boughtI = boughtI;
+  // DOMS
   this.shopDivI = shopDivI;
   this.shopBtnI = shopBtnI;
   this.inventoryDivI = inventoryDivI;
@@ -94,18 +96,17 @@ function ShopItem(nameI, typeI, buyI, sellI, maintenanceI, healthI, moraleI, usa
   this.DOMpriceBuyI = DOMpriceBuyI;
   this.DOMpriceSellI = DOMpriceSellI;
   this.DOMmonthlyCostI = DOMmonthlyCostI;
-  this.xPrice = function() { return this.buyI/this.usageCountI; };
 };
 // Shop Items Variables - permanent items
-let phone = new ShopItem('phone', 'permanent', 200, 100, -10, 0, 1, 0, false, document.querySelector('#shopPhone'), document.querySelector('#buyPhone'), document.querySelector('#ownedPhone'), document.querySelector('#sellPhone'), document.querySelector('#phoneDOMprice'), document.querySelector('#phoneDOMpriceSell'), document.querySelector('#phoneDOMmonthlyCost'));
-let car = new ShopItem('car', 'permanent', 5000, 3000, -100, -1, 2, 0, false, document.querySelector('#shopCar'), document.querySelector('#buyCar'), document.querySelector('#ownedCar'), document.querySelector('#sellCar'), document.querySelector('#carDOMprice'), document.querySelector('#carDOMpriceSell'), document.querySelector('#carDOMmonthlyCost'));
-let plane = new ShopItem('plane','permanent', 100000, 50000, -10000, 1, 5, 0, false, document.querySelector('#shopPlane'), document.querySelector('#buyPlane'), document.querySelector('#ownedPlane'), document.querySelector('#sellPlane'), document.querySelector('#planeDOMprice'), document.querySelector('#planeDOMpriceSell'), document.querySelector('#planeDOMmonthlyCost'));
+let phone = new ShopItem('phone', 'permanent', 200, -10, 0, 1, 0, 24, false, document.querySelector('#shopPhone'), document.querySelector('#buyPhone'), document.querySelector('#ownedPhone'), document.querySelector('#sellPhone'), document.querySelector('#phoneDOMprice'), document.querySelector('#phoneDOMpriceSell'), document.querySelector('#phoneDOMmonthlyCost'));
+let car = new ShopItem('car', 'permanent', 5000, -100, -1, 2, 0, 120, false, document.querySelector('#shopCar'), document.querySelector('#buyCar'), document.querySelector('#ownedCar'), document.querySelector('#sellCar'), document.querySelector('#carDOMprice'), document.querySelector('#carDOMpriceSell'), document.querySelector('#carDOMmonthlyCost'));
+let plane = new ShopItem('plane','permanent', 100000, -10000, 1, 5, 0, 240, false, document.querySelector('#shopPlane'), document.querySelector('#buyPlane'), document.querySelector('#ownedPlane'), document.querySelector('#sellPlane'), document.querySelector('#planeDOMprice'), document.querySelector('#planeDOMpriceSell'), document.querySelector('#planeDOMmonthlyCost'));
 // Shop Items Variables - instant
-let alcohol = new ShopItem('alcohol', 'instant', 100, undefined, undefined, -1, 1, 0, false, document.querySelector('#shopAlcohol'), document.querySelector('#buyAlcohol'), undefined, undefined, document.querySelector('#alcoholDOMprice'), undefined);
+let alcohol = new ShopItem('alcohol', 'instant', 100, undefined, -1, 1, 0, undefined, false, document.querySelector('#shopAlcohol'), document.querySelector('#buyAlcohol'), undefined, undefined, document.querySelector('#alcoholDOMprice'), undefined);
 // Shop Items Variables - medicine
-let treatmentCold = new ShopItem('cold treatment', 'medicine', 50, undefined, undefined, 0, -1, 0, false, document.querySelector('#shopTreatmentCold'), document.querySelector('#buyTreatmentCold'), undefined, undefined, document.querySelector('#tColdDOMprice'), undefined);
-let treatmentDiarrhea = new ShopItem('diarrhea treatment', 'medicine', 10, undefined, undefined, 0, -1, 0, false, document.querySelector('#shopTreatmentDiarrhea'), document.querySelector('#buyTreatmentDiarrhea'), undefined, undefined, document.querySelector('#tDiarrheaDOMprice'), undefined);
-let treatmentCancer = new ShopItem('cancer treatment', 'medicine', 10000, undefined, undefined, 0, -3, 0, false, document.querySelector('#shopTreatmentCancer'), document.querySelector('#buyTreatmentCancer'), undefined, undefined, document.querySelector('#tCancerDOMprice'), undefined);
+let treatmentCold = new ShopItem('cold treatment', 'medicine', 50, undefined, 0, -1, 0, undefined, false, document.querySelector('#shopTreatmentCold'), document.querySelector('#buyTreatmentCold'), undefined, undefined, document.querySelector('#tColdDOMprice'), undefined);
+let treatmentDiarrhea = new ShopItem('diarrhea treatment', 'medicine', 10, undefined, 0, -1, 0, undefined, false, document.querySelector('#shopTreatmentDiarrhea'), document.querySelector('#buyTreatmentDiarrhea'), undefined, undefined, document.querySelector('#tDiarrheaDOMprice'), undefined);
+let treatmentCancer = new ShopItem('cancer treatment', 'medicine', 10000, undefined, 0, -3, 0, undefined, false, document.querySelector('#shopTreatmentCancer'), document.querySelector('#buyTreatmentCancer'), undefined, undefined, document.querySelector('#tCancerDOMprice'), undefined);
 // Shop Items Array (permanent & instant)
 let itemsArray = [phone, car, plane, alcohol, treatmentDiarrhea, treatmentCold, treatmentCancer];
 
@@ -267,6 +268,7 @@ function liveOneMonth() {
       health = health + someItem.healthI;
       morale = morale + someItem.moraleI;
       someItem.usageCountI ++;
+      showPrices();
     };
   });
 
@@ -315,6 +317,7 @@ function buySpecificItem(certaintItem) {
     certaintItem.inventoryDivI.style.display = 'block';
     certaintItem.boughtI = true;
     message(msgBuy + certaintItem.nameI + ' for ' + certaintItem.buyI + '$');
+    showPrices();
   };
   if (certaintItem.typeI === 'instant') {
     morale = morale + certaintItem.moraleI;
@@ -371,10 +374,10 @@ function clickToSell(someItemFromInventory) {
 function sellSpecificItem(someItem) {
   someItem.shopDivI.style.display = 'block';
   someItem.inventoryDivI.style.display = 'none';
-  money = money + someItem.sellI;
+  money = money + someItem.sellI();
   someItem.boughtI = false;
   updateStats();
-  message(msgSell + someItem.nameI + ' for ' + someItem.sellI + '$');
+  message(msgSell + someItem.nameI + ' for ' + someItem.sellI() + '$');
   someItem.usageCountI = 0;
 };
 
@@ -469,7 +472,7 @@ function showPrices() {
   itemsArray.forEach(function(someItem) {
     someItem.DOMpriceBuyI.innerHTML = someItem.buyI.toLocaleString('en');
     if (someItem.typeI === 'permanent') {
-      someItem.DOMpriceSellI.innerHTML = someItem.sellI.toLocaleString('en');
+      someItem.DOMpriceSellI.innerHTML = someItem.sellI().toLocaleString('en');
       someItem.DOMmonthlyCostI.innerHTML = someItem.maintenanceI.toLocaleString('en');
     };
   });
