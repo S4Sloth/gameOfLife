@@ -30,24 +30,25 @@ const monthDeathDisplay = document.querySelector('#deathMonths');
 
 //ROUTINE
 // Routine Function
-function Routine(nameR, typeR, DOMR, moneyR, healthR, moraleR, disabledOptionR) {
+function Routine(nameR, typeR, moneyR, healthR, moraleR, availableR, DOMR, parentDOMR) {
   this.nameR = nameR;
   this.typeR = typeR;
-  this.DOMR = DOMR;
   this.moneyR = moneyR;
   this.healthR = healthR;
   this.moraleR = moraleR;
-  this.disabledOptionR = disabledOptionR;
+  this.availableR = availableR;
+  this.DOMR = DOMR;
+  this.parentDOMR = parentDOMR;
 };
 // Routine Variables
-let unemployed = new Routine('Unemployed', 'job', document.querySelector("#unemployedJob"), 0, -3, -5, false);
-let cashier = new Routine('Cashier', 'job', document.querySelector("#cheapJob"), 500, 0, -2, false);
-let webDeveloper = new Routine('Web-Dev', 'job', document.querySelector("#midJob"), 2000, 0, 0, false);
-let businessman = new Routine('Businessman', 'job', document.querySelector("#luxJob"), 5000, -1, -2, true);
-let starveFood = new Routine('Starve', 'diet', document.querySelector("#starveFood"), 0, -20, -20, false);
-let cheapFood = new Routine('Cheap Food', 'diet', document.querySelector("#cheapFood"), -100, -1, -1, false);
-let mediumFood = new Routine('Medium Food', 'diet', document.querySelector("#midFood"), -500, 0, 0, false);
-let expensiveFood = new Routine('Expensive Food', 'diet', document.querySelector("#luxFood"), -1000, 1, 2, false);
+let unemployed = new Routine('Unemployed', 'job', 0, -3, -5, true, document.querySelector("#unemployedJob"), document.querySelector("#job"));
+let cashier = new Routine('Cashier', 'job', 500, 0, -2, true, document.querySelector("#cheapJob"), document.querySelector("#job"));
+let webDeveloper = new Routine('Web-Dev', 'job', 2000, 0, 0, false, document.querySelector("#midJob"), document.querySelector("#job"));
+let businessman = new Routine('Businessman', 'job', 5000, -1, -2, true, document.querySelector("#luxJob"), document.querySelector("#job"));
+let starveFood = new Routine('Starve', 'diet', 0, -20, -20, true, document.querySelector("#starveFood"), document.querySelector("#food"));
+let cheapFood = new Routine('Cheap Food', 'diet', -100, -1, -1, true, document.querySelector("#cheapFood"), document.querySelector("#food"));
+let mediumFood = new Routine('Medium Food', 'diet', -500, 0, 0, true, document.querySelector("#midFood"), document.querySelector("#food"));
+let expensiveFood = new Routine('Expensive Food', 'diet', -1000, 1, 2, true, document.querySelector("#luxFood"), document.querySelector("#food"));
 // Routine Array
 routineArray = [unemployed, cashier, webDeveloper, businessman, starveFood, cheapFood, mediumFood, expensiveFood];
 
@@ -68,10 +69,10 @@ function Event(nameE, typeE, DOME, moneyE, healthE, moraleE, isHappeningE, proba
   this.maxDurationE = maxDurationE;
 };
 // Routine Variables
-let cold = new Event('cold', 'illness', document.querySelector("#eventCold"), 0, -1, -1, false, 0.1, 0.5, 0.5, 0, 1);
-let diarrhea = new Event('diarrhea', 'illness', document.querySelector("#eventDiarrhea"), 0, 0, -2, false, 0.05, 1, 0, 0, 3);
-let cancer = new Event('cancer', 'illness', document.querySelector("#eventCancer"), 0, -5, -5, false, 0.01, 0.5, 0.5, 0, 9999);
-let lostWallet = new Event ('lost your wallet', 'accident', document.querySelector("#eventLostWallet"), -100, 0, -1,	false, 0.1, 0, 1, 0, 0)
+let cold = new Event('cold', 'illness', document.querySelector("#eventCold"), 0, -1, -1, false, 0.0001, 0.5, 0.5, 0, 1);
+let diarrhea = new Event('diarrhea', 'illness', document.querySelector("#eventDiarrhea"), 0, 0, -2, false, 0.0005, 1, 0, 0, 3);
+let cancer = new Event('cancer', 'illness', document.querySelector("#eventCancer"), 0, -5, -5, false, 0.3, 0.5, 0.5, 0, 9999);
+let lostWallet = new Event ('lost your wallet', 'accident', document.querySelector("#eventLostWallet"), -100, 0, -1,	false, 0.0001, 0, 1, 0, 0)
 // Routine Array
 eventsArray = [diarrhea, cold, cancer, lostWallet];
 
@@ -118,6 +119,8 @@ let msgHeal = 'Medicine worked perfectly and you are no longer suffering from ';
 let msgEnd = 'You have suffered enough. Time healed you from ';
 let msgNotIll = 'It\'s great that you took medicine, but you weren\'t even suffering form ';
 let msgAccident = 'Damn! Bad luck! You ';
+let msgFired = 'Your company decided that you are no longer fit for the job and fired you. You no longer work as ';
+let msgItemBroke = ' worked you well for quite a time. Unfortunately, it broke.';
 
 
 
@@ -201,6 +204,8 @@ function newGame () {
   resetEvents();
   resetUsageCount();
   showPrices();
+  checkForDisabled();
+  resetSelected();
 };
 
 
@@ -264,11 +269,21 @@ function liveOneMonth() {
   // Items Influence
   itemsArray.forEach(function(someItem) {
     if (someItem.boughtI === true) {
-      money = money + someItem.maintenanceI;
-      health = health + someItem.healthI;
-      morale = morale + someItem.moraleI;
-      someItem.usageCountI ++;
-      showPrices();
+      //Check if item is broken
+      if (someItem.sellI() <= 0) {
+        someItem.boughtI = false;
+        someItem.usageCountI = 0;
+        someItem.shopDivI.style.display = 'block';
+        someItem.inventoryDivI.style.display = 'none';
+        message(someItem.nameI + msgItemBroke);
+        showPrices();
+      } else {
+        money = money + someItem.maintenanceI;
+        health = health + someItem.healthI;
+        morale = morale + someItem.moraleI;
+        someItem.usageCountI ++;
+        showPrices();
+      };
     };
   });
 
@@ -283,6 +298,9 @@ function liveOneMonth() {
     health = health - 5;
   }; 
   
+  // Check for disabled options
+  checkForDisabled();
+
   // Show Updated Correct Stats (can't be negative)
   updateStats();
 
@@ -477,3 +495,45 @@ function showPrices() {
     };
   });
 };
+
+// Check for disabled options
+function checkForDisabled() {
+  routineArray.forEach(function(someRoutine) {
+    if (someRoutine.availableR === false) {
+      someRoutine.DOMR.disabled = true; 
+      if (someRoutine.DOMR.selected) {
+        someRoutine.parentDOMR.value = 0;
+        message(msgFired + someRoutine.nameR);
+      };
+    } else if (someRoutine.availableR === true) {
+      someRoutine.DOMR.disabled = false; 
+    };
+  });
+};
+
+// Reset Selected
+function resetSelected() {
+  document.querySelector("#job").value = 0;
+  document.querySelector("#food").value = 0;
+};
+
+
+////////////////////////////////////////// Ideas for features
+// // EventListener to show salary 
+// document.querySelector("#job").addEventListener('change', showSalary);
+// function showSalary() {
+//   console.log('salary');
+// };
+
+// // Disable option in certain cases
+// if (morale === 100) {
+//   webDeveloper.availableR = true;
+// };
+
+// if (health < 30) {
+//   cashier.availableR = false;
+// };
+
+// if (cancer.isHappeningE === true) {
+//   cheapFood.availableR = false;
+// };

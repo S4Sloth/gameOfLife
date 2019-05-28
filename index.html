@@ -90,9 +90,9 @@
             
             <!-- Job DIV -->
             <div class="column text-left px-1">
-              <h4 class="mt-1">Choose Your Job</h4>
+              <h4 class="mt-1">Choose Your Job <small class="text-white">(salary: <span id="jobMonthly"></span>$)</small></h4>
               <select id="job" class="form-control">
-                <option id="unemployedJob">Unemployed</option> 
+                <option value="0" id="unemployedJob">Unemployed</option> 
                 <option id="cheapJob">Cashier</option>
                 <option id="midJob">Web-Developer</option>
                 <option id="luxJob">Businessman</option>
@@ -101,7 +101,7 @@
               <!-- Diet DIV -->
               <h4 class="mt-1">Choose Your Diet</h4>
               <select id="food" class="form-control">
-                <option id="starveFood">Starve</option>
+                <option value="0" id="starveFood">Starve</option>
                 <option id="cheapFood">Cheap</option>
                 <option id="midFood">Middle</option>
                 <option id="luxFood">Luxury</option>
