@@ -30,25 +30,37 @@ const monthDeathDisplay = document.querySelector('#deathMonths');
 
 //ROUTINE
 // Routine Function
-function Routine(nameR, typeR, moneyR, healthR, moraleR, availableR, DOMR, parentDOMR) {
+function Routine(nameR, typeR, moneyR, healthR, moraleR, availableR, durationR, DOMR, parentDOMR, indicatorDOMR, lvl2R, money2R, lvl3R, money3R, lvl4R, money4R, lvl5R, money5R) {
   this.nameR = nameR;
   this.typeR = typeR;
   this.moneyR = moneyR;
   this.healthR = healthR;
   this.moraleR = moraleR;
   this.availableR = availableR;
+  this.durationR = durationR;
   this.DOMR = DOMR;
   this.parentDOMR = parentDOMR;
+  this.indicatorDOMR = indicatorDOMR;
+  // Lvls
+  this.money1R = this.moneyR; //Save initial money stat for reset
+  this.lvl2R = lvl2R;
+  this.money2R = money2R;
+  this.lvl3R = lvl3R;
+  this.money3R = money3R;
+  this.lvl4R = lvl4R;
+  this.money4R = money4R;
+  this.lvl5R = lvl5R;
+  this.money5R = money5R;
 };
 // Routine Variables
-let unemployed = new Routine('Unemployed', 'job', 0, -3, -5, true, document.querySelector("#unemployedJob"), document.querySelector("#job"));
-let cashier = new Routine('Cashier', 'job', 500, 0, -2, true, document.querySelector("#cheapJob"), document.querySelector("#job"));
-let webDeveloper = new Routine('Web-Dev', 'job', 2000, 0, 0, false, document.querySelector("#midJob"), document.querySelector("#job"));
-let businessman = new Routine('Businessman', 'job', 5000, -1, -2, true, document.querySelector("#luxJob"), document.querySelector("#job"));
-let starveFood = new Routine('Starve', 'diet', 0, -20, -20, true, document.querySelector("#starveFood"), document.querySelector("#food"));
-let cheapFood = new Routine('Cheap Food', 'diet', -100, -1, -1, true, document.querySelector("#cheapFood"), document.querySelector("#food"));
-let mediumFood = new Routine('Medium Food', 'diet', -500, 0, 0, true, document.querySelector("#midFood"), document.querySelector("#food"));
-let expensiveFood = new Routine('Expensive Food', 'diet', -1000, 1, 2, true, document.querySelector("#luxFood"), document.querySelector("#food"));
+let unemployed = new Routine('Unemployed', 'job', 0, -3, -5, true, 0, document.querySelector("#unemployedJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 0, 0, 0, 0, 0, 0, 0, 0);
+let cashier = new Routine('Cashier', 'job', 500, 0, -2, true, 0, document.querySelector("#cheapJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 6, 600, 12, 700, 24, 900, 60, 1500);
+let webDeveloper = new Routine('Web-Dev', 'job', 2000, 0, 0, 0, false, document.querySelector("#midJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 12, 2500, 24, 3000, 36, 5000, 60, 8000);
+let businessman = new Routine('Businessman', 'job', 0, -1, -2, 0, true, document.querySelector("#luxJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 12, 1000, 24, 1000, 36, 1000, 48, 1000, 60, 1000);
+let starveFood = new Routine('Starve', 'diet', 0, -20, -20, 0, true, document.querySelector("#starveFood"), document.querySelector("#food"), document.querySelector("#foodMonthly"));
+let cheapFood = new Routine('Cheap Food', 'diet', -100, -1, -1, 0, true, document.querySelector("#cheapFood"), document.querySelector("#food"), document.querySelector("#foodMonthly"));
+let mediumFood = new Routine('Medium Food', 'diet', -500, 0, 0, 0, true, document.querySelector("#midFood"), document.querySelector("#food"), document.querySelector("#foodMonthly"));
+let expensiveFood = new Routine('Expensive Food', 'diet', -1000, 1, 2, 0, true, document.querySelector("#luxFood"), document.querySelector("#food"), document.querySelector("#foodMonthly"));
 // Routine Array
 routineArray = [unemployed, cashier, webDeveloper, businessman, starveFood, cheapFood, mediumFood, expensiveFood];
 
@@ -70,15 +82,15 @@ function Event(nameE, typeE, DOME, moneyE, healthE, moraleE, isHappeningE, proba
 };
 // Routine Variables
 let cold = new Event('cold', 'illness', document.querySelector("#eventCold"), 0, -1, -1, false, 0.0001, 0.5, 0.5, 0, 1);
-let diarrhea = new Event('diarrhea', 'illness', document.querySelector("#eventDiarrhea"), 0, 0, -2, false, 0.0005, 1, 0, 0, 3);
-let cancer = new Event('cancer', 'illness', document.querySelector("#eventCancer"), 0, -5, -5, false, 0.3, 0.5, 0.5, 0, 9999);
+let diarrhea = new Event('diarrhea', 'illness', document.querySelector("#eventDiarrhea"), 0, 0, -2, false, 0.0001, 1, 0, 0, 3);
+let cancer = new Event('cancer', 'illness', document.querySelector("#eventCancer"), 0, -5, -5, false, 0.0001, 0.5, 0.5, 0, 9999);
 let lostWallet = new Event ('lost your wallet', 'accident', document.querySelector("#eventLostWallet"), -100, 0, -1,	false, 0.0001, 0, 1, 0, 0)
 // Routine Array
 eventsArray = [diarrhea, cold, cancer, lostWallet];
 
 // ITEMS FROM SHOP
 // Shop Item Function
-function ShopItem(nameI, typeI, buyI, maintenanceI, healthI, moraleI, usageCountI, lifeTimeI, boughtI, shopDivI, shopBtnI, inventoryDivI, inventoryBtnI, DOMpriceBuyI, DOMpriceSellI, DOMmonthlyCostI) {
+function ShopItem(nameI, typeI, buyI, maintenanceI, healthI, moraleI, usageCountI, lifeTimeI, effectivenessI, boughtI, shopDivI, shopBtnI, inventoryDivI, inventoryBtnI, DOMpriceBuyI, DOMpriceSellI, DOMmonthlyCostI) {
   this.nameI = nameI;
   this.typeI = typeI;
   this.buyI = buyI;
@@ -88,6 +100,7 @@ function ShopItem(nameI, typeI, buyI, maintenanceI, healthI, moraleI, usageCount
   this.moraleI = moraleI;
   this.usageCountI = usageCountI;
   this.lifeTimeI = lifeTimeI;
+  this.effectivenessI = effectivenessI;
   this.boughtI = boughtI;
   // DOMS
   this.shopDivI = shopDivI;
@@ -99,28 +112,17 @@ function ShopItem(nameI, typeI, buyI, maintenanceI, healthI, moraleI, usageCount
   this.DOMmonthlyCostI = DOMmonthlyCostI;
 };
 // Shop Items Variables - permanent items
-let phone = new ShopItem('phone', 'permanent', 200, -10, 0, 1, 0, 24, false, document.querySelector('#shopPhone'), document.querySelector('#buyPhone'), document.querySelector('#ownedPhone'), document.querySelector('#sellPhone'), document.querySelector('#phoneDOMprice'), document.querySelector('#phoneDOMpriceSell'), document.querySelector('#phoneDOMmonthlyCost'));
-let car = new ShopItem('car', 'permanent', 5000, -100, -1, 2, 0, 120, false, document.querySelector('#shopCar'), document.querySelector('#buyCar'), document.querySelector('#ownedCar'), document.querySelector('#sellCar'), document.querySelector('#carDOMprice'), document.querySelector('#carDOMpriceSell'), document.querySelector('#carDOMmonthlyCost'));
-let plane = new ShopItem('plane','permanent', 100000, -10000, 1, 5, 0, 240, false, document.querySelector('#shopPlane'), document.querySelector('#buyPlane'), document.querySelector('#ownedPlane'), document.querySelector('#sellPlane'), document.querySelector('#planeDOMprice'), document.querySelector('#planeDOMpriceSell'), document.querySelector('#planeDOMmonthlyCost'));
+let phone = new ShopItem('phone', 'permanent', 200, -10, 0, 1, 0, 24, undefined, false, document.querySelector('#shopPhone'), document.querySelector('#buyPhone'), document.querySelector('#ownedPhone'), document.querySelector('#sellPhone'), document.querySelector('#phoneDOMprice'), document.querySelector('#phoneDOMpriceSell'), document.querySelector('#phoneDOMmonthlyCost'));
+let car = new ShopItem('car', 'permanent', 5000, -100, -1, 2, 0, 120, undefined, false, document.querySelector('#shopCar'), document.querySelector('#buyCar'), document.querySelector('#ownedCar'), document.querySelector('#sellCar'), document.querySelector('#carDOMprice'), document.querySelector('#carDOMpriceSell'), document.querySelector('#carDOMmonthlyCost'));
+let plane = new ShopItem('plane','permanent', 100000, -10000, 1, 5, 0, 240, undefined, false, document.querySelector('#shopPlane'), document.querySelector('#buyPlane'), document.querySelector('#ownedPlane'), document.querySelector('#sellPlane'), document.querySelector('#planeDOMprice'), document.querySelector('#planeDOMpriceSell'), document.querySelector('#planeDOMmonthlyCost'));
 // Shop Items Variables - instant
-let alcohol = new ShopItem('alcohol', 'instant', 100, undefined, -1, 1, 0, undefined, false, document.querySelector('#shopAlcohol'), document.querySelector('#buyAlcohol'), undefined, undefined, document.querySelector('#alcoholDOMprice'), undefined);
+let alcohol = new ShopItem('alcohol', 'instant', 100, undefined, -1, 1, 0, undefined, undefined, false, document.querySelector('#shopAlcohol'), document.querySelector('#buyAlcohol'), undefined, undefined, document.querySelector('#alcoholDOMprice'), undefined);
 // Shop Items Variables - medicine
-let treatmentCold = new ShopItem('cold treatment', 'medicine', 50, undefined, 0, -1, 0, undefined, false, document.querySelector('#shopTreatmentCold'), document.querySelector('#buyTreatmentCold'), undefined, undefined, document.querySelector('#tColdDOMprice'), undefined);
-let treatmentDiarrhea = new ShopItem('diarrhea treatment', 'medicine', 10, undefined, 0, -1, 0, undefined, false, document.querySelector('#shopTreatmentDiarrhea'), document.querySelector('#buyTreatmentDiarrhea'), undefined, undefined, document.querySelector('#tDiarrheaDOMprice'), undefined);
-let treatmentCancer = new ShopItem('cancer treatment', 'medicine', 10000, undefined, 0, -3, 0, undefined, false, document.querySelector('#shopTreatmentCancer'), document.querySelector('#buyTreatmentCancer'), undefined, undefined, document.querySelector('#tCancerDOMprice'), undefined);
+let treatmentCold = new ShopItem('cold treatment', 'medicine', 50, undefined, 0, -1, 0, undefined, 0.5, false, document.querySelector('#shopTreatmentCold'), document.querySelector('#buyTreatmentCold'), undefined, undefined, document.querySelector('#tColdDOMprice'), undefined);
+let treatmentDiarrhea = new ShopItem('diarrhea treatment', 'medicine', 10, undefined, 0, -1, 0, undefined, 0.4, false, document.querySelector('#shopTreatmentDiarrhea'), document.querySelector('#buyTreatmentDiarrhea'), undefined, undefined, document.querySelector('#tDiarrheaDOMprice'), undefined);
+let treatmentCancer = new ShopItem('cancer treatment', 'medicine', 10000, undefined, 0, -3, 0, undefined, 0.1, false, document.querySelector('#shopTreatmentCancer'), document.querySelector('#buyTreatmentCancer'), undefined, undefined, document.querySelector('#tCancerDOMprice'), undefined);
 // Shop Items Array (permanent & instant)
 let itemsArray = [phone, car, plane, alcohol, treatmentDiarrhea, treatmentCold, treatmentCancer];
-
-// META MESSAGES
-let msgBuy = 'Congratulations with new purchase! You bought ';
-let msgSell = 'Items are good, but money is better. You sold ';
-let msgIllnessStart = 'Unfortunately, now you got some problem with health. You got ill with ';
-let msgHeal = 'Medicine worked perfectly and you are no longer suffering from ';
-let msgEnd = 'You have suffered enough. Time healed you from ';
-let msgNotIll = 'It\'s great that you took medicine, but you weren\'t even suffering form ';
-let msgAccident = 'Damn! Bad luck! You ';
-let msgFired = 'Your company decided that you are no longer fit for the job and fired you. You no longer work as ';
-let msgItemBroke = ' worked you well for quite a time. Unfortunately, it broke.';
 
 
 
@@ -206,6 +208,7 @@ function newGame () {
   showPrices();
   checkForDisabled();
   resetSelected();
+  resetRoutine();
 };
 
 
@@ -219,9 +222,23 @@ function liveOneMonth() {
   // Routine Influence
   routineArray.forEach(function(someRoutine) {
     if (someRoutine.DOMR.selected === true) {
+      // Change income from job depending on experience
+      if (someRoutine.typeR === 'job') {
+        if (someRoutine.durationR === someRoutine.lvl2R) {
+          someRoutine.moneyR = someRoutine.money2R;
+        } else if (someRoutine.durationR === someRoutine.lvl3R) {
+          someRoutine.moneyR = someRoutine.money3R;
+        } else if (someRoutine.durationR === someRoutine.lvl4R) {
+          someRoutine.moneyR = someRoutine.money4R;
+        } else if (someRoutine.durationR === someRoutine.lvl5R) {
+          someRoutine.moneyR = someRoutine.money5R;
+        };
+      };
+      someRoutine.indicatorDOMR.innerHTML = someRoutine.moneyR;
       money = money + someRoutine.moneyR;
       health = health + someRoutine.healthR;
       morale = morale + someRoutine.moraleR;
+      someRoutine.durationR++;
     };
   });
 
@@ -371,9 +388,15 @@ function isHealing(someEvent, someItem) {
     message(msgNotIll + someEvent.nameE);
   } else if (someEvent.isHappeningE === true) {
     if (someItem.boughtI === true) {
-      someEvent.isHappeningE = false;
+      var goodLuck = Math.random();
+      if (goodLuck < someItem.effectivenessI) {
+        someEvent.isHappeningE = false;
+        message(msgHeal + someEvent.nameE);
+      } else if (goodLuck > someItem.effectivenessI) {
+        message(msgMedicineNotWorked + someEvent.nameE);
+      };
     };
-    message(msgHeal + someEvent.nameE);
+    
   };
 };
 
@@ -415,6 +438,8 @@ restartButton.addEventListener('click', birth);
 
 
 /////////////////////// UTILITY FUNCTIONS \\\\\\\\\\\\\\\\\\\\\\\\\\\
+////Functions called at certain moments of the app\\\\
+
 // Function To Update Stats in UI and forbid going negative
 function updateStats () {
   // Morale Limit to 0
@@ -453,17 +478,20 @@ function resetShop() {
   });
 };
 
-// Reset Messages
-function resetMessages() {
-  const messages = document.querySelector('#messages');
-  messages.innerHTML = '';
-};
-
 // Reset Events
 function resetEvents() {
   eventsArray.forEach(function(someEvent) {
     someEvent.DOME.style.display = 'none';
     someEvent.isHappeningE = false;
+  });
+};
+
+// Reset Routine
+function resetRoutine() {
+  routineArray.forEach(function(someRoutine) {
+    someRoutine.durationR = 0;
+    someRoutine.moneyR = someRoutine.money1R;
+    someRoutine.indicatorDOMR.innerHTML = 0;
   });
 };
 
@@ -517,13 +545,52 @@ function resetSelected() {
   document.querySelector("#food").value = 0;
 };
 
+// Reset Messages
+function resetMessages() {
+  const messages = document.querySelector('#messages');
+  messages.innerHTML = '';
+};
+// Messages
+let msgBuy = 'Congratulations with new purchase! You bought ';
+let msgSell = 'Items are good, but money is better. You sold ';
+let msgIllnessStart = 'Unfortunately, now you got some problem with health. You got ill with ';
+let msgHeal = 'Medicine worked perfectly and you are no longer suffering from ';
+let msgEnd = 'You have suffered enough. Time healed you from ';
+let msgMedicineNotWorked = 'Treatment that you took wasn\'t effective. You still ill with ';
+let msgNotIll = 'It\'s great that you took medicine, but you weren\'t even suffering form ';
+let msgAccident = 'Damn! Bad luck! You ';
+let msgFired = 'Your company decided that you are no longer fit for the job and fired you. You no longer work as ';
+let msgItemBroke = ' worked you well for quite a time. Unfortunately, it broke.';
+
+
+
+/////////////////////// BACKGROUND FUNCTIONS \\\\\\\\\\\\\\\\\\\\\\\\\\\
+////Functions catching events to execute action\\\\
+
+// ROUTINE COSTS AND SALARY SHOWING IN UI
+// Apply function to all items in routine array
+routineArray.forEach(function(someRoutine) {
+  changeNumbers(someRoutine);
+});
+
+// Function listens to change in any routine DOM to execute function to show new numbers
+function changeNumbers(anotherRoutine2) {
+  anotherRoutine2.parentDOMR.addEventListener('change', functionToChange);
+  function functionToChange() {
+    showNewNumbers(anotherRoutine2);
+  };
+};
+
+// Function showing new numbers in DOM
+function showNewNumbers(certainRoutine) {
+  if (certainRoutine.DOMR.selected) {
+    certainRoutine.indicatorDOMR.innerHTML = certainRoutine.moneyR;
+  };
+};
+
+
 
 ////////////////////////////////////////// Ideas for features
-// // EventListener to show salary 
-// document.querySelector("#job").addEventListener('change', showSalary);
-// function showSalary() {
-//   console.log('salary');
-// };
 
 // // Disable option in certain cases
 // if (morale === 100) {
