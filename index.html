@@ -22,8 +22,10 @@
       <h4 class="mt-3" id="message">Welcome to The Game Of Life!</h4>
         <p class="lead mb-5">If you are somehow new to the concept of living - your main goal is to survive!</p>
         <p> - Manage your <span class="text-success">money</span> wisely - so you always could pay for food, home and other necessities.</p>
-        <p> - Take care of your <span class="text-warning">health</span> - if your health will reach 0, you will die.</p>
-        <p> - And keep an eye on your <span class="text-primary">morale</span> - cause good morale will give you bonuses, bad - can make you unhealthy.</p>
+        <p> - Take care of your <span class="text-primary">health</span> - if your health will reach 0, you will die.</p>
+        <p> - Keep an eye on your <span class="text-warning">morale</span> - cause good morale will give you bonuses, bad - can make you unhealthy.</p>
+        <p> - Work on your <span class="text-info">intelligence</span> - it will give you more opportunities.</p>
+        <p> - And more money you spend on trendy items, the more you will get <span class="text-danger">prestige</span></p>
         <p class="lead mt-5">To get your stats for the next life click button below.</p>
         <div class="row mt-5 justify-content-center">
           <button type="button" id="birthBTN" class="btn btn-danger p-4">Get stats for new life!</button>
@@ -36,8 +38,10 @@
     <div class="col-md-10 mx-auto text-center">
       <h1 class="mb-5" id="message">You were born with these stats</h1>
         <p class="lead"><span class="text-success mr-3">Money</span><span id="statMoney"></span>$</p>
-        <p class="lead"><span class="text-warning mr-3">Health</span><span id="statHealth"></span> / 100</p>
-        <p class="lead"><span class="text-primary mr-3">Morale</span><span id="statMorale"></span> / 100</p>
+        <p class="lead"><span class="text-primary mr-3">Health</span><span id="statHealth"></span> / 100</p>
+        <p class="lead"><span class="text-warning mr-3">Morale</span><span id="statMorale"></span> / 100</p>
+        <p class="lead"><span class="text-info mr-3">Intelligence</span><span id="statIntelligence"></span> / 100</p>
+        <p class="lead"><span class="text-danger mr-3">Prestige</span><span id="statPrestige"></span> / 100</p>
         <p class="mt-5">All of this didn't depend on you.</p>
         <p>Now you are a grown up and you choose everything by yourself. Almost.</p>
         <p>Make thoughtful decisions, but don't forget - human life is full of random and wild sh#t.</p>
@@ -68,13 +72,24 @@
         <!-- Main indicators -->
         <div class="row">
           <div class="col-md-4 bg-success text-dark">
-            <h4>Money: <span id="money"></span>$</h4>
+            <h4>Money</h4>
+            <h3><span id="money"></span>$</h3>
           </div>
-          <div class="col-md-4 bg-warning text-dark">
-            <h4>Health: <span id="health"></span></h4>
+          <div class="col-md-2 bg-primary text-dark">
+            <h4>Health</h4>
+            <h3><span id="health"></span></h3>
           </div>
-          <div class="col-md-4 bg-primary text-dark">
-            <h4>Morale: <span id="morale"></span></h4>
+          <div class="col-md-2 bg-warning text-dark">
+            <h4>Morale</h4>
+            <h3><span id="morale"></span></h3>
+          </div>
+          <div class="col-md-2 bg-info text-dark">
+            <h4>Intelligence</h4>
+            <h3><span id="intelligence"></span></h3>
+          </div>
+          <div class="col-md-2 bg-danger text-dark">
+            <h4>Prestige</h4>
+            <h3><span id="prestige"></span></h3>
           </div>
         </div>
         

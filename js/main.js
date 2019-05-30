@@ -3,6 +3,8 @@ let month;
 let money;
 let health; 
 let morale;
+let intelligence;
+let prestige;
 
 // DOMS
 // Stages DOM
@@ -19,23 +21,29 @@ const restartButton = document.querySelector('#restartBTN');
 const moneyStatDisplay = document.querySelector('#statMoney');
 const healthStatDisplay = document.querySelector('#statHealth');
 const moraleStatDisplay = document.querySelector('#statMorale');
+const intelligenceStatDisplay = document.querySelector('#statIntelligence');
+const prestigeStatDisplay = document.querySelector('#statPrestige');
 // Main Game DOM Variable
 const monthDisplay = document.querySelector('#months');
 const yearsDisplay = document.querySelector('#years');
 const moneyDisplay = document.querySelector('#money');
 const healthDisplay = document.querySelector('#health');
 const moraleDisplay = document.querySelector('#morale');
+const intelligenceDisplay = document.querySelector('#intelligence');
+const prestigeDisplay = document.querySelector('#prestige');
 // Death DOM Variable
 const monthDeathDisplay = document.querySelector('#deathMonths');
 
 //ROUTINE
 // Routine Function
-function Routine(nameR, typeR, moneyR, healthR, moraleR, availableR, durationR, DOMR, parentDOMR, indicatorDOMR, lvl2R, money2R, lvl3R, money3R, lvl4R, money4R, lvl5R, money5R) {
+function Routine(nameR, typeR, moneyR, healthR, moraleR, intelligenceR, prestigeR, availableR, durationR, DOMR, parentDOMR, indicatorDOMR, lvl2R, money2R, lvl3R, money3R, lvl4R, money4R, lvl5R, money5R) {
   this.nameR = nameR;
   this.typeR = typeR;
   this.moneyR = moneyR;
   this.healthR = healthR;
   this.moraleR = moraleR;
+  this.intelligenceR = intelligenceR;
+  this.prestigeR = prestigeR;
   this.availableR = availableR;
   this.durationR = durationR;
   this.DOMR = DOMR;
@@ -53,14 +61,14 @@ function Routine(nameR, typeR, moneyR, healthR, moraleR, availableR, durationR, 
   this.money5R = money5R;
 };
 // Routine Variables
-let unemployed = new Routine('Unemployed', 'job', 0, -3, -5, true, 0, document.querySelector("#unemployedJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 0, 0, 0, 0, 0, 0, 0, 0);
-let cashier = new Routine('Cashier', 'job', 500, 0, -2, true, 0, document.querySelector("#cheapJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 6, 600, 12, 700, 24, 900, 60, 1500);
-let webDeveloper = new Routine('Web-Dev', 'job', 2000, 0, 0, 0, false, document.querySelector("#midJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 12, 2500, 24, 3000, 36, 5000, 60, 8000);
-let businessman = new Routine('Businessman', 'job', 0, -1, -2, 0, true, document.querySelector("#luxJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 12, 1000, 24, 1000, 36, 1000, 48, 1000, 60, 1000);
-let starveFood = new Routine('Starve', 'diet', 0, -20, -20, 0, true, document.querySelector("#starveFood"), document.querySelector("#food"), document.querySelector("#foodMonthly"));
-let cheapFood = new Routine('Cheap Food', 'diet', -100, -1, -1, 0, true, document.querySelector("#cheapFood"), document.querySelector("#food"), document.querySelector("#foodMonthly"));
-let mediumFood = new Routine('Medium Food', 'diet', -500, 0, 0, 0, true, document.querySelector("#midFood"), document.querySelector("#food"), document.querySelector("#foodMonthly"));
-let expensiveFood = new Routine('Expensive Food', 'diet', -1000, 1, 2, 0, true, document.querySelector("#luxFood"), document.querySelector("#food"), document.querySelector("#foodMonthly"));
+let unemployed = new Routine('Unemployed', 'job', 0, -1, -3, -1, -5, true, 0, document.querySelector("#unemployedJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 0, 0, 0, 0, 0, 0, 0, 0);
+let cashier = new Routine('Cashier', 'job', 500, 0, -2, -1, -2,  true, 0, document.querySelector("#cheapJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 6, 600, 12, 700, 24, 900, 60, 1500);
+let webDeveloper = new Routine('Web-Dev', 'job', 2000, 0, 0, 2, 1, false, 0, document.querySelector("#midJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 12, 2500, 24, 3000, 36, 5000, 60, 8000);
+let businessman = new Routine('Businessman', 'job', 0, -1, -2, 1, 2, true, 0, document.querySelector("#luxJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 12, 1000, 24, 1000, 36, 1000, 48, 1000, 60, 1000);
+let starveFood = new Routine('Starve', 'diet', 0, -20, -20, 0, -3, true, 0, document.querySelector("#starveFood"), document.querySelector("#food"), document.querySelector("#foodMonthly"));
+let cheapFood = new Routine('Cheap Food', 'diet', -100, -1, -1, 0, -1, true, 0, document.querySelector("#cheapFood"), document.querySelector("#food"), document.querySelector("#foodMonthly"));
+let mediumFood = new Routine('Medium Food', 'diet', -500, 0, 0, 0, 0, true, 0, document.querySelector("#midFood"), document.querySelector("#food"), document.querySelector("#foodMonthly"));
+let expensiveFood = new Routine('Expensive Food', 'diet', -1000, 1, 2, 0, 2, true, 0, document.querySelector("#luxFood"), document.querySelector("#food"), document.querySelector("#foodMonthly"));
 // Routine Array
 routineArray = [unemployed, cashier, webDeveloper, businessman, starveFood, cheapFood, mediumFood, expensiveFood];
 
@@ -138,6 +146,8 @@ function birth() {
   money = 0;
   health = 0;
   morale = 0;
+  intelligence = 0;
+  prestige = 0;
 };
 
 
@@ -154,12 +164,16 @@ function startNewLife() {
     var num = Math.random();
     if (num < 0.6) {
       money = 10000;
+      prestige = 10;
     } else if (num < 0.9) {
-      money = 100000
+      money = 100000;
+      prestige = 30;
     } else if (num < 0.99) {
       money = 1000000;
+      prestige = 50;
     } else {
       money = 10000000;
+      prestige = 70;
     };
   };
 
@@ -176,16 +190,25 @@ function startNewLife() {
       health = 90;
     };
   };
-
+  
+  // Function to get random intelligence
+  function getRandomIntelligence(){
+    var num = Math.random();
+    intelligence = Math.round(num * 100);
+  };
+  
   // Init functions to get stats for new game
   getRandomMoney();
   getRandomHealth();
   morale = 50;
+  getRandomIntelligence();
 
   // Show results in the stat stage
   moneyStatDisplay.innerHTML = money.toLocaleString('en');
   healthStatDisplay.innerHTML = health;
   moraleStatDisplay.innerHTML = morale;
+  intelligenceStatDisplay.innerHTML = intelligence;
+  prestigeStatDisplay.innerHTML = prestige;
 };
 
 
@@ -224,7 +247,9 @@ function liveOneMonth() {
     if (someRoutine.DOMR.selected === true) {
       // Change income from job depending on experience
       if (someRoutine.typeR === 'job') {
-        if (someRoutine.durationR === someRoutine.lvl2R) {
+        if (someRoutine.nameR === 'Businessman') {
+          businessManSalary();
+        } else if (someRoutine.durationR === someRoutine.lvl2R) {
           someRoutine.moneyR = someRoutine.money2R;
         } else if (someRoutine.durationR === someRoutine.lvl3R) {
           someRoutine.moneyR = someRoutine.money3R;
@@ -238,6 +263,8 @@ function liveOneMonth() {
       money = money + someRoutine.moneyR;
       health = health + someRoutine.healthR;
       morale = morale + someRoutine.moraleR;
+      intelligence = intelligence + someRoutine.intelligenceR;
+      prestige = prestige + someRoutine.prestigeR;
       someRoutine.durationR++;
     };
   });
@@ -454,10 +481,28 @@ function updateStats () {
   if (health > 100) {
     health = 100;
   }
+  // Intelligence Limit to 0
+  if (intelligence < 0) {
+    intelligence = 0;
+  };
+  // Intelligence Limit to 100
+  if (intelligence > 100) {
+    intelligence = 100;
+  }
+  // Prestige Limit to 0
+  if (prestige < 0) {
+    prestige = 0;
+  };
+  // Pretige Limit to 100
+  if (prestige > 100) {
+    prestige = 100;
+  }
   // Show Stats In UI
   moneyDisplay.innerHTML = money.toLocaleString('en');
   healthDisplay.innerHTML = health;
   moraleDisplay.innerHTML = morale;
+  intelligenceDisplay.innerHTML = intelligence;
+  prestigeDisplay.innerHTML = prestige;
 };
 
 // Send Message to player
@@ -537,6 +582,18 @@ function checkForDisabled() {
       someRoutine.DOMR.disabled = false; 
     };
   });
+};
+
+// Businessman salary function
+function businessManSalary (){
+  var luck = Math.round(Math.random());
+  if (morale <= 10) {
+    businessman.moneyR = 100 + (luck * businessman.durationR);
+  } else if (morale <= 50) {
+    businessman.moneyR = 500 + (luck * businessman.durationR);
+  } else if (morale <= 100) {
+    businessman.moneyR = 1000 + (luck * businessman.durationR);
+  };
 };
 
 // Reset Selected
