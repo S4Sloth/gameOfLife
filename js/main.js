@@ -36,7 +36,7 @@ const monthDeathDisplay = document.querySelector('#deathMonths');
 
 //ROUTINE
 // Routine Function
-function Routine(nameR, typeR, moneyR, healthR, moraleR, intelligenceR, prestigeR, availableR, durationR, DOMR, parentDOMR, indicatorDOMR, lvl2R, money2R, lvl3R, money3R, lvl4R, money4R, lvl5R, money5R) {
+function Routine(nameR, typeR, moneyR, healthR, moraleR, intelligenceR, prestigeR, availableR, durationR, DOMR, parentDOMR, indicatorDOMR, lvl2R, money2R, lvl3R, money3R, lvl4R, money4R, lvl5R, money5R, healthReqR, moraleReqR, intelReqR, prestigeReqR) {
   this.nameR = nameR;
   this.typeR = typeR;
   this.moneyR = moneyR;
@@ -59,57 +59,98 @@ function Routine(nameR, typeR, moneyR, healthR, moraleR, intelligenceR, prestige
   this.money4R = money4R;
   this.lvl5R = lvl5R;
   this.money5R = money5R;
+  // Req
+  this.healthReqR = healthReqR;
+  this.moraleReqR = moraleReqR;
+  this.intelReqR = intelReqR;
+  this.prestigeReqR = prestigeReqR;
 };
 // Routine Variables
-let unemployed = new Routine('Unemployed', 'job', 0, -1, -3, -1, -5, true, 0, document.querySelector("#unemployedJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 0, 0, 0, 0, 0, 0, 0, 0);
-let cashier = new Routine('Cashier', 'job', 500, 0, -2, -1, -2,  true, 0, document.querySelector("#cheapJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 6, 600, 12, 700, 24, 900, 60, 1500);
-let webDeveloper = new Routine('Web-Dev', 'job', 2000, 0, 0, 2, 1, false, 0, document.querySelector("#midJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 12, 2500, 24, 3000, 36, 5000, 60, 8000);
-let businessman = new Routine('Businessman', 'job', 0, -1, -2, 1, 2, true, 0, document.querySelector("#luxJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 12, 1000, 24, 1000, 36, 1000, 48, 1000, 60, 1000);
+// Job
+let unemployed = new Routine('Unemployed', 'job', 0, -5, -5, -3, -5, true, 0, document.querySelector("#unemployedJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+let courier = new Routine('Courier', 'job', 500, -3, -3, -2, -2, true, 0, document.querySelector("#courierJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 6, 600, 12, 800, 24, 900, 36, 1200, 0, 0, 0, 0)
+let retailWorker = new Routine('Retail worker', 'job', 600, -4, -3, -2, -2, true, 0, document.querySelector("#retailJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 6, 800, 12, 1000, 24, 1200, 48, 2000, 0, 0, 0, 0);
+let waiter = new Routine('Waiter', 'job', 800, -3, -4, -2, -2, true, 0, document.querySelector("#waiterJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 6, 1000, 12, 1200, 24, 1400, 36, 1800, 0, 0, 0, 0);
+let constructionWorker = new Routine('Construction worker', 'job', 800, -4, -3, -2, -1, false, 0, document.querySelector("#constructionWorkerJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 12, 1000, 24, 2000, 60, 4000, 120, 5000, 30, 0, 0, 0);
+let hrManager = new Routine('HR manager', 'job', 1000, -3, -3, -2, -1, false, 0, document.querySelector("#hrManagerJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 12, 1200, 24, 1600, 48, 2000, 60, 2500, 0, 30, 0, 0);
+let manager = new Routine('Manager', 'job', 1000, -3, -3, -2, -1, false, 0, document.querySelector("#managerJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 12, 1400, 24, 1800, 48, 2200, 72, 3500, 0, 0, 30, 0);
+let hairStylist = new Routine('Hair stylist', 'job', 900, -3, -3, -2, -1, false, 0, document.querySelector("#hairStylistJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 6, 1000, 18, 1400, 36, 2000, 60, 2800, 0, 0, 0, 30);
+let fitnessCoach = new Routine('Fitness Coach', 'job', 600, -3, -3, -2, 0, false, 0, document.querySelector("#fitnessCoachJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 6, 800, 12, 1200, 36, 2000, 60, 3500, 50, 0, 0, 0);
+let salesman = new Routine('Salesman', 'job', 1000, -3, -3, -2, 0, false, 0, document.querySelector("#salesmanJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 12, 1300,	24,	1800,	48,	2500,	84,	4500,	0, 50, 0, 0);
+let journalist = new Routine('Jouranlist', 'job', 1200, -3, -4,	-2,	0, false,	0, document.querySelector("#journalistJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 12,	1500,	24,	2000,	48,	2500,	72,	3300,	0, 0, 50,	0);
+let model	= new Routine('Model', 'job', 500, -3, -3, -2, 0, false, 0, document.querySelector("#modelJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 6, 800, 12, 1200, 36, 2000, 60, 3000, 0, 0,	0, 50);
+let engineer = new Routine('Engineer', 'job', 2000, -3, -3, -2, 1, false, 0, document.querySelector("#engineerJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 24, 3000, 48, 4000, 96, 7000, 120,	13000, 0, 0, 80, 0);
+let lawyer = new Routine('Lawyer', 'job', 1500, -3, -2, -2, 1, false, 0, document.querySelector("#lawyerJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 24, 2500, 48, 3500, 96, 5500, 120, 10000, 0, 0, 60, 60);
+let teacher = new Routine('Teacher', 'job', 1000, -2, -2, -1, 1, false, 0, document.querySelector("#teacherJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 12, 1500, 24, 2000, 48, 2500, 72, 3300, 0, 40, 60, 0);
+let marketingManager = new Routine('Marketing Manager', 'job', 1500, -3, -4, -3, 1, false, 0, document.querySelector("#marketingManagerJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 12, 2000, 24, 3500, 36, 5500, 72, 10000, 0, 0, 0, 0);
+let doctor = new Routine('Doctor','job', 1200, -3, -3, -1, 2, false, 0, document.querySelector("#doctorJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 24, 2000, 48, 3500, 96, 10000, 240, 20000, 0, 50, 80, 0);
+let composer = new Routine('Composer', 'job', 3000, -3, -3, -2, 2, false, 0, document.querySelector("#composerJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 60, 5000, 120, 8000, 240, 20000, 360, 40000, 0, 70, 70, 70);
+let professor = new Routine('Professor', 'job', 1600, -3, -2, -1, 2, false, 0, document.querySelector("#professorJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 24, 2000, 60, 3000, 120, 4000, 240, 7000, 0, 50, 70, 70);
+let scientist = new Routine('Scientist','job', 2000, -3, -1, 0, 2, false, 0, document.querySelector("#scientistJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 12, 3000, 60, 3500, 120, 4500, 360, 8000, 0, 0, 90, 0);
+
+// Diet
 let starveFood = new Routine('Starve', 'diet', 0, -20, -20, 0, -3, true, 0, document.querySelector("#starveFood"), document.querySelector("#food"), document.querySelector("#foodMonthly"));
-let cheapFood = new Routine('Cheap Food', 'diet', -100, -1, -1, 0, -1, true, 0, document.querySelector("#cheapFood"), document.querySelector("#food"), document.querySelector("#foodMonthly"));
-let mediumFood = new Routine('Medium Food', 'diet', -500, 0, 0, 0, 0, true, 0, document.querySelector("#midFood"), document.querySelector("#food"), document.querySelector("#foodMonthly"));
-let expensiveFood = new Routine('Expensive Food', 'diet', -1000, 1, 2, 0, 2, true, 0, document.querySelector("#luxFood"), document.querySelector("#food"), document.querySelector("#foodMonthly"));
+let junkFood = new Routine('Junk Food', 'diet', -100, -1, -1, 0, -1, true, 0, document.querySelector("#junkFood"), document.querySelector("#food"), document.querySelector("#foodMonthly"));
+let balancedFood = new Routine('Balanced Diet', 'diet', -500, 0, 0, 0, 0, true, 0, document.querySelector("#balancedFood"), document.querySelector("#food"), document.querySelector("#foodMonthly"));
+let delicFood = new Routine('Delicacies', 'diet', -1000, 1, 2, 0, 2, true, 0, document.querySelector("#delicFood"), document.querySelector("#food"), document.querySelector("#foodMonthly"));
+// Hobby
+let noHobby = new Routine('No Hobby', 'hobby', 0, 0, 1, 0, 0, true, 0, document.querySelector("#noHobby"), document.querySelector("#hobby"), document.querySelector("#hobbyMonthly"));
+let runHobby = new Routine('Running', 'hobby', -10, 1, 1, 0, 0, true, 0, document.querySelector("#runHobby"), document.querySelector("#hobby"), document.querySelector("#hobbyMonthly"));  
+let readHobby = new Routine('Reading', 'hobby', -50, 0, 1, 1, 0, true, 0, document.querySelector("#readHobby"), document.querySelector("#hobby"), document.querySelector("#hobbyMonthly"));  
+let socialEventsHobby = new Routine('Social Events', 'hobby', -1000, 0, 0, 1, 0, true, 0, document.querySelector("#socialEventsHobby"), document.querySelector("#hobby"), document.querySelector("#hobbyMonthly"));
+// Rent
+let noRent = new Routine('Homeless', 'rent', 0, -1, -5, 0, -5, true, 0, document.querySelector("#noRent"), document.querySelector("#rent"), document.querySelector("#rentMonthly"));
+let roomRent = new Routine('Rent a room', 'rent', -200, 1, 1, 0, -1, true, 0, document.querySelector("#roomRent"), document.querySelector("#rent"), document.querySelector("#rentMonthly"));
+let flatRent = new Routine('Rent apartment', 'rent', -800, 1, 2, 0, 0, true, 0, document.querySelector("#flatRent"), document.querySelector("#rent"), document.querySelector("#rentMonthly"));
+let houseRent = new Routine('Rent house', 'rent', -1500, 1, 3, 0, 1, true, 0, document.querySelector("#houseRent"), document.querySelector("#rent"), document.querySelector("#rentMonthly"));
 // Routine Array
-routineArray = [unemployed, cashier, webDeveloper, businessman, starveFood, cheapFood, mediumFood, expensiveFood];
+routineArray = [unemployed, courier, retailWorker, waiter, constructionWorker, hrManager, manager, hairStylist, fitnessCoach, salesman, journalist, model, engineer, lawyer, teacher, marketingManager, doctor, composer, professor, scientist, starveFood, junkFood, balancedFood, delicFood, noHobby, runHobby, readHobby, socialEventsHobby, noRent, roomRent, flatRent, houseRent];
 
 // EVENTS
 // Routine Function
-function Event(nameE, typeE, DOME, moneyE, healthE, moraleE, isHappeningE, probabilityE, healthCoeffE, moraleCoeffE, durationE, maxDurationE) {
+function Event(nameE, typeE, moneyE, healthE, moraleE, intelligenceE, prestigeE, isHappeningE, probabilityE, durationE, maxDurationE, DOME, healthCoeffE, moraleCoeffE, intelligenceCoeffE, prestigeCoeffE) {
   this.nameE = nameE;
   this.typeE = typeE;
-  this.DOME= DOME;
   this.moneyE = moneyE;
   this.healthE = healthE;
   this.moraleE = moraleE;
+  this.intelligenceE = intelligenceE;
+  this.prestigeE = prestigeE;
   this.isHappeningE = isHappeningE;
   this.probabilityE = probabilityE;
-  this.healthCoeffE = healthCoeffE; 
-  this.moraleCoeffE = moraleCoeffE; //Health+Morale Coeff Should not be more than 1
   this.durationE = durationE;
   this.maxDurationE = maxDurationE;
+  this.DOME= DOME;
+  this.healthCoeffE = healthCoeffE; 
+  this.moraleCoeffE = moraleCoeffE; 
+  this.intelligenceCoeffE = intelligenceCoeffE;
+  this.prestigeCoeffE = prestigeCoeffE; //Health+Morale+Intelligence+Prestige Coeffs Should not be more than 1
 };
 // Routine Variables
-let cold = new Event('cold', 'illness', document.querySelector("#eventCold"), 0, -1, -1, false, 0.0001, 0.5, 0.5, 0, 1);
-let diarrhea = new Event('diarrhea', 'illness', document.querySelector("#eventDiarrhea"), 0, 0, -2, false, 0.0001, 1, 0, 0, 3);
-let cancer = new Event('cancer', 'illness', document.querySelector("#eventCancer"), 0, -5, -5, false, 0.0001, 0.5, 0.5, 0, 9999);
-let lostWallet = new Event ('lost your wallet', 'accident', document.querySelector("#eventLostWallet"), -100, 0, -1,	false, 0.0001, 0, 1, 0, 0)
+let cold = new Event('cold', 'illness', 0, -1, -1, 0, 0, false,	0.086, 0, 1, document.querySelector("#eventCold"), 0.5, 0.5, 0, 0);
+let diarrhea = new Event('diarrhea', 'illness', 0, 0, -2, 0, 0, false, 0.086, 0, 3, document.querySelector("#eventDiarrhea"), 1, 0, 0, 0);
+let cancer = new Event('cancer', 'illness', 0, -5, -5, 0, -1, false, 0.0001, 0, 9999,	document.querySelector("#eventCancer"),	1, 0, 0, 0);
+let lostWallet = new Event('lost your wallet', 'accident', -100, 0, -1, 0, 0, false, 0.0001, 0, 0, document.querySelector("#eventLostWallet"), 0, 0.3, 0.7, 0);
 // Routine Array
 eventsArray = [diarrhea, cold, cancer, lostWallet];
 
 // ITEMS FROM SHOP
 // Shop Item Function
-function ShopItem(nameI, typeI, buyI, maintenanceI, healthI, moraleI, usageCountI, lifeTimeI, effectivenessI, boughtI, shopDivI, shopBtnI, inventoryDivI, inventoryBtnI, DOMpriceBuyI, DOMpriceSellI, DOMmonthlyCostI) {
+function ShopItem(nameI, typeI, buyI, healthI, moraleI, intelligenceI, prestigeI, usageCountI, boughtI, maintenanceI, lifeTimeI, effectivenessI, owningI, shopDivI, shopBtnI, inventoryDivI, inventoryBtnI, DOMpriceBuyI, DOMpriceSellI, DOMmonthlyCostI) {
   this.nameI = nameI;
   this.typeI = typeI;
   this.buyI = buyI;
   this.sellI = function() { return Math.round(this.buyI - ((this.buyI / this.lifeTimeI) * this.usageCountI)); };
-  this.maintenanceI = maintenanceI;
   this.healthI = healthI;
   this.moraleI = moraleI;
+  this.intelligenceI = intelligenceI;
+  this.prestigeI = prestigeI;
   this.usageCountI = usageCountI;
+  this.boughtI = boughtI;
+  this.maintenanceI = maintenanceI;
   this.lifeTimeI = lifeTimeI;
   this.effectivenessI = effectivenessI;
-  this.boughtI = boughtI;
+  this.owningI = owningI;
   // DOMS
   this.shopDivI = shopDivI;
   this.shopBtnI = shopBtnI;
@@ -120,15 +161,15 @@ function ShopItem(nameI, typeI, buyI, maintenanceI, healthI, moraleI, usageCount
   this.DOMmonthlyCostI = DOMmonthlyCostI;
 };
 // Shop Items Variables - permanent items
-let phone = new ShopItem('phone', 'permanent', 200, -10, 0, 1, 0, 24, undefined, false, document.querySelector('#shopPhone'), document.querySelector('#buyPhone'), document.querySelector('#ownedPhone'), document.querySelector('#sellPhone'), document.querySelector('#phoneDOMprice'), document.querySelector('#phoneDOMpriceSell'), document.querySelector('#phoneDOMmonthlyCost'));
-let car = new ShopItem('car', 'permanent', 5000, -100, -1, 2, 0, 120, undefined, false, document.querySelector('#shopCar'), document.querySelector('#buyCar'), document.querySelector('#ownedCar'), document.querySelector('#sellCar'), document.querySelector('#carDOMprice'), document.querySelector('#carDOMpriceSell'), document.querySelector('#carDOMmonthlyCost'));
-let plane = new ShopItem('plane','permanent', 100000, -10000, 1, 5, 0, 240, undefined, false, document.querySelector('#shopPlane'), document.querySelector('#buyPlane'), document.querySelector('#ownedPlane'), document.querySelector('#sellPlane'), document.querySelector('#planeDOMprice'), document.querySelector('#planeDOMpriceSell'), document.querySelector('#planeDOMmonthlyCost'));
+let phone = new ShopItem('phone', 'permanent', 200, 0, 1, 0, 0, 0, false, -10, 24, undefined, 0, document.querySelector('#shopPhone'), document.querySelector('#buyPhone'), document.querySelector('#ownedPhone'), document.querySelector('#sellPhone'), document.querySelector('#phoneDOMprice'), document.querySelector('#phoneDOMpriceSell'), document.querySelector('#phoneDOMmonthlyCost'));
+let car = new ShopItem('car', 'permanent', 5000, -1, 2, 0, 1, 0, false, -100, 120, undefined, 1, document.querySelector('#shopCar'), document.querySelector('#buyCar'), document.querySelector('#ownedCar'), document.querySelector('#sellCar'), document.querySelector('#carDOMprice'), document.querySelector('#carDOMpriceSell'),	document.querySelector('#carDOMmonthlyCost'));
+let plane = new ShopItem('plane', 'permanent', 100000, 1, 5, 0, 5, 0, false, -10000, 240, undefined, 20, document.querySelector('#shopPlane'), document.querySelector('#buyPlane'), document.querySelector('#ownedPlane'), document.querySelector('#sellPlane'), document.querySelector('#planeDOMprice'), document.querySelector('#planeDOMpriceSell'), document.querySelector('#planeDOMmonthlyCost'));
 // Shop Items Variables - instant
-let alcohol = new ShopItem('alcohol', 'instant', 100, undefined, -1, 1, 0, undefined, undefined, false, document.querySelector('#shopAlcohol'), document.querySelector('#buyAlcohol'), undefined, undefined, document.querySelector('#alcoholDOMprice'), undefined);
+let alcohol = new ShopItem('alcohol', 'instant', 100, -1, 1, 0, 0, 0, false, undefined, undefined, undefined, undefined, document.querySelector('#shopAlcohol'), document.querySelector('#buyAlcohol'), undefined, undefined, document.querySelector('#alcoholDOMprice'), undefined, undefined);
 // Shop Items Variables - medicine
-let treatmentCold = new ShopItem('cold treatment', 'medicine', 50, undefined, 0, -1, 0, undefined, 0.5, false, document.querySelector('#shopTreatmentCold'), document.querySelector('#buyTreatmentCold'), undefined, undefined, document.querySelector('#tColdDOMprice'), undefined);
-let treatmentDiarrhea = new ShopItem('diarrhea treatment', 'medicine', 10, undefined, 0, -1, 0, undefined, 0.4, false, document.querySelector('#shopTreatmentDiarrhea'), document.querySelector('#buyTreatmentDiarrhea'), undefined, undefined, document.querySelector('#tDiarrheaDOMprice'), undefined);
-let treatmentCancer = new ShopItem('cancer treatment', 'medicine', 10000, undefined, 0, -3, 0, undefined, 0.1, false, document.querySelector('#shopTreatmentCancer'), document.querySelector('#buyTreatmentCancer'), undefined, undefined, document.querySelector('#tCancerDOMprice'), undefined);
+let treatmentCold = new ShopItem('cold treatment', 'medicine', 50, 0, -1, 0, 0, 0, false, undefined, undefined, 0.5, undefined, document.querySelector('#shopTreatmentCold'), document.querySelector('#buyTreatmentCold'), undefined, undefined, document.querySelector('#tColdDOMprice'), undefined, undefined);
+let treatmentDiarrhea = new ShopItem('diarrhea treatment', 'medicine', 10, 0, -1, 0, 0, 0, false, undefined, undefined, 0.9, undefined, document.querySelector('#shopTreatmentDiarrhea'), document.querySelector('#buyTreatmentDiarrhea'), undefined, undefined, document.querySelector('#tDiarrheaDOMprice'), undefined, undefined);
+let treatmentCancer = new ShopItem('cancer treatment', 'medicine', 10000, 0, -3, 0, 0, 0, false, undefined, undefined, 0.1, undefined, document.querySelector('#shopTreatmentCancer'), document.querySelector('#buyTreatmentCancer'), undefined, undefined, document.querySelector('#tCancerDOMprice'), undefined, undefined);
 // Shop Items Array (permanent & instant)
 let itemsArray = [phone, car, plane, alcohol, treatmentDiarrhea, treatmentCold, treatmentCancer];
 
@@ -229,6 +270,7 @@ function newGame () {
   resetEvents();
   resetUsageCount();
   showPrices();
+  disableOptions();
   checkForDisabled();
   resetSelected();
   resetRoutine();
@@ -275,6 +317,8 @@ function liveOneMonth() {
       money = money + someEvent.moneyE;
       health = health + someEvent.healthE;
       morale = morale + someEvent.moraleE;
+      intelligence = intelligence + someEvent.intelligenceE;
+      prestige = prestige + someEvent.prestigeE;
       someEvent.durationE++;
       if (someEvent.durationE >= someEvent.maxDurationE) {
         someEvent.isHappeningE = false;
@@ -289,7 +333,7 @@ function liveOneMonth() {
     if (someEvent.isHappeningE === false) {
       var badLuck = Math.random();
       // Counts coeffMulitiplier based on someEvents coeffs and present stats
-      var coeffMultiplier = 2 - (((health * someEvent.healthCoeffE) + (morale * someEvent.moraleCoeffE)) / 100);
+      var coeffMultiplier = 2 - (((health * someEvent.healthCoeffE) + (morale * someEvent.moraleCoeffE) + (intelligence * someEvent.intelligenceCoeffE) + (prestige * someEvent.prestigeCoeffE)) / 100);
       // Multiplies coeff with someEvents probability
       var eventProbability = someEvent.probabilityE * coeffMultiplier;
       // Counts risk
@@ -304,6 +348,8 @@ function liveOneMonth() {
           money = money + someEvent.moneyE;
           health = health + someEvent.healthE;
           morale = morale + someEvent.moraleE;
+          intelligence = intelligence + someEvent.intelligenceE;
+          prestige = prestige + someEvent.prestigeE;
           message(msgAccident + someEvent.nameE);
         };
       };
@@ -325,6 +371,8 @@ function liveOneMonth() {
         money = money + someItem.maintenanceI;
         health = health + someItem.healthI;
         morale = morale + someItem.moraleI;
+        intelligence = intelligence + someItem.intelligenceI;
+        prestige = prestige + someItem.prestigeI;
         someItem.usageCountI ++;
         showPrices();
       };
@@ -336,13 +384,27 @@ function liveOneMonth() {
   if (money <= 0) {
     morale = morale - 3;
     health = health - 1;
+    prestige = prestige - 1;
+  };
+  // Money increases prestige
+  if (money <= 1000000) {
+    prestige = prestige + 1;
   };
   // Morale decrease health 
   if (morale <= 0) {
     health = health - 5;
   }; 
+  // Prestige decreases morale 
+  if (prestige <= 10) {
+    morale = morale - 1;
+  }; 
+  // Low intelligence increases morale 
+  if (intelligence <= 20) {
+    morale = morale + 2;
+  }; 
   
   // Check for disabled options
+  disableOptions();
   checkForDisabled();
 
   // Show Updated Correct Stats (can't be negative)
@@ -378,18 +440,23 @@ function buySpecificItem(certaintItem) {
     certaintItem.shopDivI.style.display = 'none';
     certaintItem.inventoryDivI.style.display = 'block';
     certaintItem.boughtI = true;
+    prestige = prestige + certaintItem.owningI;
     message(msgBuy + certaintItem.nameI + ' for ' + certaintItem.buyI + '$');
     showPrices();
   };
   if (certaintItem.typeI === 'instant') {
-    morale = morale + certaintItem.moraleI;
     health = health + certaintItem.healthI;
+    morale = morale + certaintItem.moraleI;
+    intelligence = intelligence + certaintItem.intelligenceI;
+    prestige = prestige + certaintItem.prestigeI;
     certaintItem.usageCountI ++;
     message(msgBuy + certaintItem.nameI + ' for ' + certaintItem.buyI + '$');
   };
   if (certaintItem.typeI === 'medicine') {
-    morale = morale + certaintItem.moraleI;
     health = health + certaintItem.healthI;
+    morale = morale + certaintItem.moraleI;
+    intelligence = intelligence + certaintItem.intelligenceI;
+    prestige = prestige + certaintItem.prestigeI;
     certaintItem.usageCountI ++;
     certaintItem.boughtI = true; //Make true so certaintItem can heal
     // Special healing for different diseases
@@ -443,6 +510,7 @@ function sellSpecificItem(someItem) {
   someItem.shopDivI.style.display = 'block';
   someItem.inventoryDivI.style.display = 'none';
   money = money + someItem.sellI();
+  prestige = prestige - someItem.owningI;
   someItem.boughtI = false;
   updateStats();
   message(msgSell + someItem.nameI + ' for ' + someItem.sellI() + '$');
@@ -584,6 +652,16 @@ function checkForDisabled() {
   });
 };
 
+function disableOptions() {
+  routineArray.forEach(function(someRoutine) {
+    if (health < someRoutine.healthReqR || morale < someRoutine.moraleReqR || intelligence < someRoutine.intelReqR || prestige < someRoutine.prestigeReqR) {
+      someRoutine.availableR = false; 
+    } else if (health >= someRoutine.healthReqR && morale >= someRoutine.moraleReqR && intelligence >= someRoutine.intelReqR && prestige >= someRoutine.prestigeReqR) {
+      someRoutine.availableR = true;
+    };
+  }); 
+};
+
 // Businessman salary function
 function businessManSalary (){
   var luck = Math.round(Math.random());
@@ -644,20 +722,3 @@ function showNewNumbers(certainRoutine) {
     certainRoutine.indicatorDOMR.innerHTML = certainRoutine.moneyR;
   };
 };
-
-
-
-////////////////////////////////////////// Ideas for features
-
-// // Disable option in certain cases
-// if (morale === 100) {
-//   webDeveloper.availableR = true;
-// };
-
-// if (health < 30) {
-//   cashier.availableR = false;
-// };
-
-// if (cancer.isHappeningE === true) {
-//   cheapFood.availableR = false;
-// };
