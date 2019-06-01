@@ -87,24 +87,36 @@ let doctor = new Routine('Doctor','job', 1200, -3, -3, -1, 2, false, 0, document
 let composer = new Routine('Composer', 'job', 3000, -3, -3, -2, 2, false, 0, document.querySelector("#composerJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 60, 5000, 120, 8000, 240, 20000, 360, 40000, 0, 70, 70, 70);
 let professor = new Routine('Professor', 'job', 1600, -3, -2, -1, 2, false, 0, document.querySelector("#professorJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 24, 2000, 60, 3000, 120, 4000, 240, 7000, 0, 50, 70, 70);
 let scientist = new Routine('Scientist','job', 2000, -3, -1, 0, 2, false, 0, document.querySelector("#scientistJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 12, 3000, 60, 3500, 120, 4500, 360, 8000, 0, 0, 90, 0);
-
-// Diet
-let starveFood = new Routine('Starve', 'diet', 0, -20, -20, 0, -3, true, 0, document.querySelector("#starveFood"), document.querySelector("#food"), document.querySelector("#foodMonthly"));
-let junkFood = new Routine('Junk Food', 'diet', -100, -1, -1, 0, -1, true, 0, document.querySelector("#junkFood"), document.querySelector("#food"), document.querySelector("#foodMonthly"));
-let balancedFood = new Routine('Balanced Diet', 'diet', -500, 0, 0, 0, 0, true, 0, document.querySelector("#balancedFood"), document.querySelector("#food"), document.querySelector("#foodMonthly"));
-let delicFood = new Routine('Delicacies', 'diet', -1000, 1, 2, 0, 2, true, 0, document.querySelector("#delicFood"), document.querySelector("#food"), document.querySelector("#foodMonthly"));
-// Hobby
-let noHobby = new Routine('No Hobby', 'hobby', 0, 0, 1, 0, 0, true, 0, document.querySelector("#noHobby"), document.querySelector("#hobby"), document.querySelector("#hobbyMonthly"));
-let runHobby = new Routine('Running', 'hobby', -10, 1, 1, 0, 0, true, 0, document.querySelector("#runHobby"), document.querySelector("#hobby"), document.querySelector("#hobbyMonthly"));  
-let readHobby = new Routine('Reading', 'hobby', -50, 0, 1, 1, 0, true, 0, document.querySelector("#readHobby"), document.querySelector("#hobby"), document.querySelector("#hobbyMonthly"));  
-let socialEventsHobby = new Routine('Social Events', 'hobby', -1000, 0, 0, 1, 0, true, 0, document.querySelector("#socialEventsHobby"), document.querySelector("#hobby"), document.querySelector("#hobbyMonthly"));
 // Rent
 let noRent = new Routine('Homeless', 'rent', 0, -1, -5, 0, -5, true, 0, document.querySelector("#noRent"), document.querySelector("#rent"), document.querySelector("#rentMonthly"));
 let roomRent = new Routine('Rent a room', 'rent', -200, 1, 1, 0, -1, true, 0, document.querySelector("#roomRent"), document.querySelector("#rent"), document.querySelector("#rentMonthly"));
 let flatRent = new Routine('Rent apartment', 'rent', -800, 1, 2, 0, 0, true, 0, document.querySelector("#flatRent"), document.querySelector("#rent"), document.querySelector("#rentMonthly"));
 let houseRent = new Routine('Rent house', 'rent', -1500, 1, 3, 0, 1, true, 0, document.querySelector("#houseRent"), document.querySelector("#rent"), document.querySelector("#rentMonthly"));
+// Diet
+let starveFood = new Routine('Starve', 'diet', 0, -20, -20, 0, -3, true, 0, document.querySelector("#starveFood"), document.querySelector("#food"), document.querySelector("#foodMonthly"));
+let junkFood = new Routine('Junk Food', 'diet', -100, -1, 0, 0, 0, true, 0, document.querySelector("#junkFood"), document.querySelector("#food"), document.querySelector("#foodMonthly"));
+let cheapFood= new Routine('Cheap Food', 'diet', -300, 1, 1, 0, 0, true, 0, document.querySelector("#cheapFood"), document.querySelector("#food"), document.querySelector("#foodMonthly"));
+let balancedFood = new Routine('Balanced Diet', 'diet', -500, 2, 2, 0, 0, true, 0, document.querySelector("#balancedFood"), document.querySelector("#food"), document.querySelector("#foodMonthly"));
+let delicFood = new Routine('Delicacies', 'diet', -1000, 2, 3, 0, 2, true, 0, document.querySelector("#delicFood"), document.querySelector("#food"), document.querySelector("#foodMonthly"));
+// Hobby
+let noHobby = new Routine('No Hobby', 'hobby', 0, 0, 0, 0, 0, true, 0, document.querySelector("#noHobby"), document.querySelector("#hobby"), document.querySelector("#hobbyMonthly"));
+let hiking = new Routine('Hiking', 'hobby', -100, 1, 0, 0, 0, true, 0, document.querySelector("#hikingHobby"), document.querySelector("#hobby"), document.querySelector("#hobbyMonthly"));
+let sports = new Routine('Sports', 'hobby', -200, 2, 0, 0, 0, true, 0, document.querySelector("#sportsHobby"), document.querySelector("#hobby"), document.querySelector("#hobbyMonthly"));
+let sing = new Routine('Singing', 'hobby', 0, 0, 1, 0, 0, true, 0, document.querySelector("#singHobby"), document.querySelector("#hobby"), document.querySelector("#hobbyMonthly"));
+let paint = new Routine('Painting', 'hobby', -100, 0, 2, 0, 0, true, 0, document.querySelector("#paintHobby"), document.querySelector("#hobby"), document.querySelector("#hobbyMonthly"));
+let write = new Routine('Writing', 'hobby', 0, 0, 0, 1, 0, true, 0, document.querySelector("#writeHobby"), document.querySelector("#hobby"), document.querySelector("#hobbyMonthly"));
+let learn = new Routine('Learning courses', 'hobby', -600, 0, 0, 2, 0, true, 0, document.querySelector("#learningHobby"), document.querySelector("#hobby"), document.querySelector("#hobbyMonthly"));
+let shopping = new Routine('Shopping', 'hobby', -1000, 0, 0, 0, 1, true, 0, document.querySelector("#shopHobby"), document.querySelector("#hobby"), document.querySelector("#hobbyMonthly"));
+let jewellery = new Routine('Jewelry collecting', 'hobby', -5000, 0, 0, 0, 2, true, 0, document.querySelector("#jewelHobby"), document.querySelector("#hobby"), document.querySelector("#hobbyMonthly"));
+let dance = new Routine('Dancing', 'hobby', -200, 1, 1, 0, 0, true, 0, document.querySelector("#danceHobby"), document.querySelector("#hobby"), document.querySelector("#hobbyMonthly"));
+let read = new Routine('Reading', 'hobby', -100, 0, 1, 1, 0, true, 0, document.querySelector("#readHobby"), document.querySelector("#hobby"), document.querySelector("#hobbyMonthly"));
+let conferences = new Routine('Visiting conferences', 'hobby', -1000, 0, 0, 1, 1, true, 0, document.querySelector("#conferencesHobby"), document.querySelector("#hobby"), document.querySelector("#hobbyMonthly"));
+let travel = new Routine('Travelling', 'hobby', -2000, 0, 2, 0, 1, true, 0, document.querySelector("#travellingHobby"), document.querySelector("#hobby"), document.querySelector("#hobbyMonthly"));
+let yacht = new Routine('Yachting', 'hobby', -10000, 1, 0, 0, 2, true, 0, document.querySelector("#yachtingHobby"), document.querySelector("#hobby"), document.querySelector("#hobbyMonthly"));
+let partying = new Routine('Partying', 'hobby', -800, -1, 0, -1, 3, true, 0, document.querySelector("#partyingHobby"), document.querySelector("#hobby"), document.querySelector("#hobbyMonthly"));
+let extremeSports = new Routine('Extreme Sports', 'hobby', -500, -1, 3, 0, 0, true, 0, document.querySelector("#extremeSportsHobby"), document.querySelector("#hobby"), document.querySelector("#hobbyMonthly"));
 // Routine Array
-routineArray = [unemployed, courier, retailWorker, waiter, constructionWorker, hrManager, manager, hairStylist, fitnessCoach, salesman, journalist, model, engineer, lawyer, teacher, marketingManager, doctor, composer, professor, scientist, starveFood, junkFood, balancedFood, delicFood, noHobby, runHobby, readHobby, socialEventsHobby, noRent, roomRent, flatRent, houseRent];
+routineArray = [unemployed, courier, retailWorker, waiter, constructionWorker, hrManager, manager, hairStylist, fitnessCoach, salesman, journalist, model, engineer, lawyer, teacher, marketingManager, doctor, composer, professor, scientist, noRent, roomRent, flatRent, houseRent, starveFood, junkFood, balancedFood, delicFood, noHobby, hiking, sports, sing, paint, write, learn, shopping, jewellery, dance, read, conferences, travel, yacht, partying, extremeSports];
 
 // EVENTS
 // Routine Function
@@ -403,12 +415,13 @@ function liveOneMonth() {
     morale = morale + 2;
   }; 
   
+  // Show Updated Correct Stats (can't be negative)
+  updateStats();
+  
   // Check for disabled options
   disableOptions();
   checkForDisabled();
 
-  // Show Updated Correct Stats (can't be negative)
-  updateStats();
 
   // End game if health ended
   if (health <= 0 ) {
@@ -654,11 +667,13 @@ function checkForDisabled() {
 
 function disableOptions() {
   routineArray.forEach(function(someRoutine) {
-    if (health < someRoutine.healthReqR || morale < someRoutine.moraleReqR || intelligence < someRoutine.intelReqR || prestige < someRoutine.prestigeReqR) {
-      someRoutine.availableR = false; 
-    } else if (health >= someRoutine.healthReqR && morale >= someRoutine.moraleReqR && intelligence >= someRoutine.intelReqR && prestige >= someRoutine.prestigeReqR) {
-      someRoutine.availableR = true;
-    };
+    if (someRoutine.typeR === 'job') {
+      if (health >= someRoutine.healthReqR && morale >= someRoutine.moraleReqR && intelligence >= someRoutine.intelReqR && prestige >= someRoutine.prestigeReqR) {
+        someRoutine.availableR = true; 
+      } else {
+        someRoutine.availableR = false;
+      };
+    }
   }); 
 };
 
