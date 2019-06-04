@@ -173,6 +173,13 @@
           <!-- EVENTS DIV -->
           <div class="col-md-4 bg-light text-secondary px-0">
             <h3 class="bg-secondary text-light py-2">Events</h3>
+            <!-- Illnesses -->
+            <!-- Cold -->
+            <div id="eventMigraine">
+              <div class="row col-md-12 bg-info px-0 mx-0 py-2">
+                <p class="col-md-11 text-left py-0 my-0 pt-1">Migraine</p>
+              </div>
+            </div>
             <!-- Cold -->
             <div id="eventCold">
               <div class="row col-md-12 bg-info px-0 mx-0 py-2">
@@ -191,11 +198,78 @@
                 <p class="col-md-11 text-left py-0 my-0 pt-1">Cancer</p>
               </div>
             </div>
-            
+            <!-- Depression -->
+            <div id="eventDepression">
+              <div class="row col-md-12 bg-info px-0 mx-0 py-2">
+                <p class="col-md-11 text-left py-0 my-0 pt-1">Depression</p>
+              </div>
+            </div>
+
+            <!-- Accidents -->
             <!-- Lost Wallet -->
             <div id="eventLostWallet">
               <div class="row col-md-12 bg-info px-0 mx-0 py-2">
                 <p class="col-md-11 text-left py-0 my-0 pt-1">Lost Wallet</p>
+              </div>
+            </div>
+            <!-- Theft -->
+            <div id="eventTheft">
+              <div class="row col-md-12 bg-info px-0 mx-0 py-2">
+                <p class="col-md-11 text-left py-0 my-0 pt-1">Theft</p>
+              </div>
+            </div>
+            <!-- Robery -->
+            <div id="eventRobery">
+              <div class="row col-md-12 bg-info px-0 mx-0 py-2">
+                <p class="col-md-11 text-left py-0 my-0 pt-1">Robery</p>
+              </div>
+            </div>
+            <!-- Scam -->
+            <div id="eventScam">
+              <div class="row col-md-12 bg-info px-0 mx-0 py-2">
+                <p class="col-md-11 text-left py-0 my-0 pt-1">Scam</p>
+              </div>
+            </div>
+            <!-- Extortion -->
+            <div id="eventExtortion">
+              <div class="row col-md-12 bg-info px-0 mx-0 py-2">
+                <p class="col-md-11 text-left py-0 my-0 pt-1">Extortion</p>
+              </div>
+            </div>
+            <!-- Blackmail -->
+            <div id="eventBlackmail">
+              <div class="row col-md-12 bg-info px-0 mx-0 py-2">
+                <p class="col-md-11 text-left py-0 my-0 pt-1">Blackmail</p>
+              </div>
+            </div>
+            <!-- Fire -->
+            <div id="eventFire">
+              <div class="row col-md-12 bg-info px-0 mx-0 py-2">
+                <p class="col-md-11 text-left py-0 my-0 pt-1">Fire</p>
+              </div>
+            </div>
+            <!-- BrokeArm -->
+            <div id="eventBrokeArm">
+              <div class="row col-md-12 bg-info px-0 mx-0 py-2">
+                <p class="col-md-11 text-left py-0 my-0 pt-1">Broke Arm</p>
+              </div>
+            </div>
+            <!-- BrokeLeg -->
+            <div id="eventBrokeLeg">
+              <div class="row col-md-12 bg-info px-0 mx-0 py-2">
+                <p class="col-md-11 text-left py-0 my-0 pt-1">Broke Leg</p>
+              </div>
+            </div>
+            <!-- BrokeBack -->
+            <div id="eventBrokeBack">
+              <div class="row col-md-12 bg-info px-0 mx-0 py-2">
+                <p class="col-md-11 text-left py-0 my-0 pt-1">Broke Back</p>
+              </div>
+            </div>
+            <!-- BrokeNeck -->
+            <div id="eventBrokeNeck">
+              <div class="row col-md-12 bg-info px-0 mx-0 py-2">
+                <p class="col-md-11 text-left py-0 my-0 pt-1">Broke Neck</p>
               </div>
             </div>
           </div>
@@ -204,6 +278,13 @@
           <div class="col-md-4 bg-secondary text-light px-0">
             <h3 class="bg-light text-dark py-2">Your Stuff</h3>
 
+            <!-- Cheap Phone -->
+            <div id="ownedCheapPhone">
+              <div class="row col-md-12 bg-info px-0 mx-0 py-2">
+                <p class="col-md-8 text-left py-0 my-0 pt-1">Cheap Phone <small class="text-muted">(monthly<span id="cheapPhoneDOMmonthlyCost"></span>$)</small></p>
+                <button class="col-md-4 bg-warning" type="button" id="sellCheapPhone"> <p class="mb-1 pb-0 "><span id="cheapPhoneDOMpriceSell"></span>$</p> </button>
+              </div>
+            </div>
             <!-- Phone -->
             <div id="ownedPhone">
               <div class="row col-md-12 bg-info px-0 mx-0 py-2">
@@ -211,11 +292,46 @@
                 <button class="col-md-4 bg-warning" type="button" id="sellPhone"> <p class="mb-1 pb-0 "><span id="phoneDOMpriceSell"></span>$</p> </button>
               </div>
             </div>
-            <!-- Car -->
-            <div id="ownedCar">
+            <!-- Lux Phone -->
+            <div id="ownedLuxPhone">
               <div class="row col-md-12 bg-info px-0 mx-0 py-2">
-                <p class="col-md-8 text-left py-0 my-0 pt-1">Car <small class="text-muted">(monthly<span id="carDOMmonthlyCost"></span>$)</small></p>
-                <button class="col-md-4 bg-warning" type="button" id="sellCar"> <p class="mb-1 pb-0 "><span id="carDOMpriceSell"></span>$</p> </button>
+                <p class="col-md-8 text-left py-0 my-0 pt-1">Latest Phone <small class="text-muted">(monthly<span id="luxPhoneDOMmonthlyCost"></span>$)</small></p>
+                <button class="col-md-4 bg-warning" type="button" id="sellLuxPhone"> <p class="mb-1 pb-0 "><span id="luxPhoneDOMpriceSell"></span>$</p> </button>
+              </div>
+            </div>
+            <!-- Rusty Car -->
+            <div id="ownedRustyCar">
+              <div class="row col-md-12 bg-info px-0 mx-0 py-2">
+                <p class="col-md-8 text-left py-0 my-0 pt-1">Rusty Car <small class="text-muted">(monthly<span id="rustyCarDOMmonthlyCost"></span>$)</small></p>
+                <button class="col-md-4 bg-warning" type="button" id="sellRustyCar"> <p class="mb-1 pb-0 "><span id="rustyCarDOMpriceSell"></span>$</p> </button>
+              </div>
+            </div>
+            <!-- Owned Car -->
+            <div id="ownedOwnedCar">
+              <div class="row col-md-12 bg-info px-0 mx-0 py-2">
+                <p class="col-md-8 text-left py-0 my-0 pt-1">Owned Car <small class="text-muted">(monthly<span id="ownedCarDOMmonthlyCost"></span>$)</small></p>
+                <button class="col-md-4 bg-warning" type="button" id="sellOwnedCar"> <p class="mb-1 pb-0 "><span id="ownedCarDOMpriceSell"></span>$</p> </button>
+              </div>
+            </div>
+            <!-- New Car -->
+            <div id="ownedNewCar">
+              <div class="row col-md-12 bg-info px-0 mx-0 py-2">
+                <p class="col-md-8 text-left py-0 my-0 pt-1">New Car <small class="text-muted">(monthly<span id="newCarDOMmonthlyCost"></span>$)</small></p>
+                <button class="col-md-4 bg-warning" type="button" id="sellNewCar"> <p class="mb-1 pb-0 "><span id="newCarDOMpriceSell"></span>$</p> </button>
+              </div>
+            </div>
+            <!-- Lux Car -->
+            <div id="ownedLuxCar">
+              <div class="row col-md-12 bg-info px-0 mx-0 py-2">
+                <p class="col-md-8 text-left py-0 my-0 pt-1">Luxury Car <small class="text-muted">(monthly<span id="luxCarDOMmonthlyCost"></span>$)</small></p>
+                <button class="col-md-4 bg-warning" type="button" id="sellLuxCar"> <p class="mb-1 pb-0 "><span id="luxCarDOMpriceSell"></span>$</p> </button>
+              </div>
+            </div>
+            <!-- Sports Car -->
+            <div id="ownedSportsCar">
+              <div class="row col-md-12 bg-info px-0 mx-0 py-2">
+                <p class="col-md-8 text-left py-0 my-0 pt-1">Sports Car <small class="text-muted">(monthly<span id="sportsCarDOMmonthlyCost"></span>$)</small></p>
+                <button class="col-md-4 bg-warning" type="button" id="sellSportsCar"> <p class="mb-1 pb-0 "><span id="sportsCarDOMpriceSell"></span>$</p> </button>
               </div>
             </div>
             <!-- Plane -->
@@ -225,6 +341,14 @@
                 <button class="col-md-4 bg-warning" type="button" id="sellPlane"> <p class="mb-1 pb-0 "><span id="planeDOMpriceSell"></span>$</p> </button>
               </div>
             </div>
+            <!-- Lux Watch -->
+            <div id="ownedLuxWatch">
+              <div class="row col-md-12 bg-info px-0 mx-0 py-2">
+                <p class="col-md-8 text-left py-0 my-0 pt-1">Luxury Watch <small class="text-muted">(monthly<span id="luxWatchDOMmonthlyCost"></span>$)</small></p>
+                <button class="col-md-4 bg-warning" type="button" id="sellLuxWatch"> <p class="mb-1 pb-0 "><span id="luxWatchDOMpriceSell"></span>$</p> </button>
+              </div>
+            </div>
+            
           </div>
         </div>        
 
@@ -262,9 +386,89 @@
         </div>
       </div>
 
+
+      <!-- Drugs -->
+      <div id="shopDrugs" class="col-md-3 px-0">
+        <div class="row px-0 mx-0 bg-secondary py-1 border pr-2">
+          <p class="col-md-8 text-left mb-0 py-0 mt-2"> Drugs </p>
+          <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="buyDrugs"> <p class="mb-1 pb-0 "><span id="drugsDOMprice"></span>$</p> </button>
+        </div>
+      </div>
+      <!-- Trendy Clothes -->
+      <div id="shopTrendyClothes" class="col-md-3 px-0">
+        <div class="row px-0 mx-0 bg-secondary py-1 border pr-2">
+          <p class="col-md-8 text-left mb-0 py-0 mt-2"> Trendy Clothes </p>
+          <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="buyTrendyClothes"> <p class="mb-1 pb-0 "><span id="trendyClothesDOMprice"></span>$</p> </button>
+        </div>
+      </div>
+      <!-- Online course -->
+      <div id="shopOnlineCourse" class="col-md-3 px-0">
+        <div class="row px-0 mx-0 bg-secondary py-1 border pr-2">
+          <p class="col-md-8 text-left mb-0 py-0 mt-2"> Online course </p>
+          <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="buyOnlineCourse"> <p class="mb-1 pb-0 "><span id="onlineCourseDOMprice"></span>$</p> </button>
+        </div>
+      </div>
+      <!-- Offline course -->
+      <div id="shopOfflineCourse" class="col-md-3 px-0">
+        <div class="row px-0 mx-0 bg-secondary py-1 border pr-2">
+          <p class="col-md-8 text-left mb-0 py-0 mt-2"> Offline course  </p>
+          <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="buyOfflineCourse"> <p class="mb-1 pb-0 "><span id="offlineCourseDOMprice"></span>$</p> </button>
+        </div>
+      </div>
+      <!-- Training -->
+      <div id="shopTraining" class="col-md-3 px-0">
+        <div class="row px-0 mx-0 bg-secondary py-1 border pr-2">
+          <p class="col-md-8 text-left mb-0 py-0 mt-2"> Training  </p>
+          <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="buyTraining"> <p class="mb-1 pb-0 "><span id="trainingDOMprice"></span>$</p> </button>
+        </div>
+      </div>
+      <!-- Self Help Book -->
+      <div id="shopSelfHelpBook" class="col-md-3 px-0">
+        <div class="row px-0 mx-0 bg-secondary py-1 border pr-2">
+          <p class="col-md-8 text-left mb-0 py-0 mt-2"> Self-Help Book  </p>
+          <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="buySelfHelpBook"> <p class="mb-1 pb-0 "><span id="selfHelpBookDOMprice"></span>$</p> </button>
+        </div>
+      </div>
+      <!-- Fiction Book -->
+      <div id="shopFictionBook" class="col-md-3 px-0">
+        <div class="row px-0 mx-0 bg-secondary py-1 border pr-2">
+          <p class="col-md-8 text-left mb-0 py-0 mt-2"> Fiction Book  </p>
+          <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="buyFictionBook"> <p class="mb-1 pb-0 "><span id="fictionBookDOMprice"></span>$</p> </button>
+        </div>
+      </div>
+      <!-- Professional Literature -->
+      <div id="shopProfLiterature" class="col-md-3 px-0">
+        <div class="row px-0 mx-0 bg-secondary py-1 border pr-2">
+          <p class="col-md-8 text-left mb-0 py-0 mt-2"> Professional Literature </p>
+          <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="buyProfLiterature"> <p class="mb-1 pb-0 "><span id="profLiteratureDOMprice"></span>$</p> </button>
+        </div>
+      </div>
+      <!-- Medical Test -->
+      <div id="shopMedicalTest" class="col-md-3 px-0">
+        <div class="row px-0 mx-0 bg-secondary py-1 border pr-2">
+          <p class="col-md-8 text-left mb-0 py-0 mt-2"> Fiction Book  </p>
+          <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="buyMedicalTest"> <p class="mb-1 pb-0 "><span id="medicalTestDOMprice"></span>$</p> </button>
+        </div>
+      </div>
+      <!-- Short Vacation -->
+      <div id="shopShortVacation" class="col-md-3 px-0">
+        <div class="row px-0 mx-0 bg-secondary py-1 border pr-2">
+          <p class="col-md-8 text-left mb-0 py-0 mt-2"> Fiction Book  </p>
+          <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="buyShortVacation"> <p class="mb-1 pb-0 "><span id="shortVacationDOMprice"></span>$</p> </button>
+        </div>
+      </div>
+      
+
       <!-- Permanent -->
       <div class="col-md-12">
         <h4 class="text-center">Permanent Items</h4>
+      </div>
+      <!-- Cheap Phone -->
+      <div id="shopCheapPhone" class="col-md-3 px-0">
+        <div class="row px-0 mx-0 bg-secondary py-1 border pr-2">
+          <p class="col-md-8 text-left mb-0 py-0 mt-2"> Cheap Mobile Phone </p>
+          <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="buyCheapPhone"> <p class="mb-1 pb-0 "><span id="cheapPhoneDOMprice"></span>$</p> </button>
+        </div>
       </div>
       <!-- Phone -->
       <div id="shopPhone" class="col-md-3 px-0">
@@ -273,11 +477,46 @@
           <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="buyPhone"> <p class="mb-1 pb-0 "><span id="phoneDOMprice"></span>$</p> </button>
         </div>
       </div>
-      <!-- Car -->
-      <div id="shopCar" class="col-md-3 px-0">
+      <!-- Lux Phone -->
+      <div id="shopLuxPhone" class="col-md-3 px-0">
+        <div class="row px-0 mx-0 bg-secondary py-1 border pr-2">
+          <p class="col-md-8 text-left mb-0 py-0 mt-2"> Luxury Phone </p>
+          <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="buyLuxPhone"> <p class="mb-1 pb-0 "><span id="luxPhoneDOMprice"></span>$</p> </button>
+        </div>
+      </div>
+      <!-- Rusty Car -->
+      <div id="shopRustyCar" class="col-md-3 px-0">
         <div class="row px-0 mx-0 bg-secondary py-1 border pr-2">
           <p class="col-md-8 text-left mb-0 py-0 mt-2"> Car </p>
-          <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="buyCar"> <p class="mb-1 pb-0"><span id="carDOMprice"></span>$</p> </button>
+          <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="buyRustyCar"> <p class="mb-1 pb-0"><span id="rustyCarDOMprice"></span>$</p> </button>
+        </div>
+      </div>
+      <!-- Owned Car -->
+      <div id="shopOwnedCar" class="col-md-3 px-0">
+        <div class="row px-0 mx-0 bg-secondary py-1 border pr-2">
+          <p class="col-md-8 text-left mb-0 py-0 mt-2"> Owned Car </p>
+          <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="buyOwnedCar"> <p class="mb-1 pb-0"><span id="ownedCarDOMprice"></span>$</p> </button>
+        </div>
+      </div>
+      <!-- New Car -->
+      <div id="shopNewCar" class="col-md-3 px-0">
+        <div class="row px-0 mx-0 bg-secondary py-1 border pr-2">
+          <p class="col-md-8 text-left mb-0 py-0 mt-2"> New Car </p>
+          <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="buyNewCar"> <p class="mb-1 pb-0"><span id="newCarDOMprice"></span>$</p> </button>
+        </div>
+      </div>
+      <!-- Luxury Car -->
+      <div id="shopLuxCar" class="col-md-3 px-0">
+        <div class="row px-0 mx-0 bg-secondary py-1 border pr-2">
+          <p class="col-md-8 text-left mb-0 py-0 mt-2"> Luxury Car </p>
+          <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="buyLuxCar"> <p class="mb-1 pb-0"><span id="luxCarDOMprice"></span>$</p> </button>
+        </div>
+      </div>
+      <!-- Sports Car -->
+      <div id="shopSportsCar" class="col-md-3 px-0">
+        <div class="row px-0 mx-0 bg-secondary py-1 border pr-2">
+          <p class="col-md-8 text-left mb-0 py-0 mt-2"> Sports Car </p>
+          <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="buySportsCar"> <p class="mb-1 pb-0"><span id="sportsCarDOMprice"></span>$</p> </button>
         </div>
       </div>
       <!-- Plane -->
@@ -285,6 +524,13 @@
         <div class="row px-0 mx-0 bg-secondary py-1 border pr-2">
           <p class="col-md-8 text-left mb-0 py-0 mt-2"> Plane </p>
           <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="buyPlane"> <p class="mb-1 pb-0"><span id="planeDOMprice"></span>$</p> </button>
+        </div>
+      </div>
+      <!-- Luxury Watch -->
+      <div id="shopLuxWatch" class="col-md-3 px-0">
+        <div class="row px-0 mx-0 bg-secondary py-1 border pr-2">
+          <p class="col-md-8 text-left mb-0 py-0 mt-2"> Luxury Watch </p>
+          <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="buyLuxWatch"> <p class="mb-1 pb-0"><span id="luxWatchDOMprice"></span>$</p> </button>
         </div>
       </div>
 

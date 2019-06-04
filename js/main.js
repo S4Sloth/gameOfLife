@@ -139,12 +139,24 @@ function Event(nameE, typeE, moneyE, healthE, moraleE, intelligenceE, prestigeE,
   this.prestigeCoeffE = prestigeCoeffE; //Health+Morale+Intelligence+Prestige Coeffs Should not be more than 1
 };
 // Routine Variables
-let cold = new Event('cold', 'illness', 0, -1, -1, 0, 0, false,	0.086, 0, 1, document.querySelector("#eventCold"), 0.5, 0.5, 0, 0);
+let migraine = new Event('migraine', 'illness', 0, 0, -1, 0, 0, false, 0.085, 0, 1, document.querySelector("#eventMigraine"), 1, 0, 0, 0);
+let cold = new Event('cold',' illness', 0, -1, -1, 0, 0, false, 0.086, 0, 1, document.querySelector("#eventCold"), 0.5, 0.5, 0, 0);
 let diarrhea = new Event('diarrhea', 'illness', 0, 0, -2, 0, 0, false, 0.086, 0, 3, document.querySelector("#eventDiarrhea"), 1, 0, 0, 0);
-let cancer = new Event('cancer', 'illness', 0, -5, -5, 0, -1, false, 0.0001, 0, 9999,	document.querySelector("#eventCancer"),	1, 0, 0, 0);
+let cancer = new Event('cancer', 'illness', 0, -5, -5, 0, 0, false, 0.0001, 0, 9999, document.querySelector("#eventCancer"), 1, 0, 0, 0);
+let depression = new Event('depression', 'illness', 0, 0, -3, 0, 0, false, 0.004, 0, 9999, document.querySelector("#eventDepression"), 0.3, 0.3, 0.4, 0);
 let lostWallet = new Event('lost your wallet', 'accident', -100, 0, -1, 0, 0, false, 0.0001, 0, 0, document.querySelector("#eventLostWallet"), 0, 0.3, 0.7, 0);
+let theft = new Event('theft', 'accident', -1000, 0, -2, 0, 0, false, 0.0013, 0, 0, document.querySelector("#eventTheft"), 0, 0, 0, 1);
+let robery = new Event('robery', 'accident', -10000, 0, -5, 0, 0, false, 0.0007, 0, 0, document.querySelector("#eventRobery"), 0, 0, 0, 1);
+let scam = new Event('scam', 'accident', -5000, 0, 0, 0, 0, false, 0.0002, 0, 0, document.querySelector("#eventScam"), 0, 0, 1, 0);
+let extortion = new Event('extortion', 'accident', -100000, 0, 0, 0, 0, false, 0.00001, 0, 0, document.querySelector("#eventExtortion"), 0, 0, 0, 1);
+let blackmail = new Event('blackmail', 'accident', -20000, 0, 0, 0, 0, false, 0.00002, 0, 0, document.querySelector("#eventBlackmail"), 0, 0, 0, 1);
+let fire = new Event('fire', 'accident', -10000, 0, -5, 0, 0, false, 0.0008, 0, 0, document.querySelector("#eventFire"), 0, 0, 1, 0);
+let brokeArm = new Event('broke arm', 'accident', 0, -2, -2, 0, 0, false, 0.01, 0, 0, document.querySelector("#eventBrokeArm"), 0.7, 0, 0.3, 0);
+let brokeLeg = new Event('broke leg', 'accident', 0, -3, -2, 0, 0, false, 0.005, 0, 0, document.querySelector("#eventBrokeLeg"), 0.7, 0, 0.3, 0);
+let brokeBack = new Event('broke back', 'accident', 0, -10, -5, 0, 0, false, 0.0025, 0, 0, document.querySelector("#eventBrokeBack"), 0.8, 0, 0.2, 0);
+let brokeNeck	= new Event('broke neck', 'accident', 0, -20, -10, 0, 0, false, 0.001, 0, 0, document.querySelector("#eventBrokeNeck"), 0.9, 0, 0.1, 0);
 // Routine Array
-eventsArray = [diarrhea, cold, cancer, lostWallet];
+eventsArray = [migraine, cold, diarrhea, cancer, depression, lostWallet, theft, robery, scam, extortion, blackmail, fire, brokeArm, brokeLeg, brokeBack, brokeNeck];
 
 // ITEMS FROM SHOP
 // Shop Item Function
@@ -173,17 +185,35 @@ function ShopItem(nameI, typeI, buyI, healthI, moraleI, intelligenceI, prestigeI
   this.DOMmonthlyCostI = DOMmonthlyCostI;
 };
 // Shop Items Variables - permanent items
-let phone = new ShopItem('phone', 'permanent', 200, 0, 1, 0, 0, 0, false, -10, 24, undefined, 0, document.querySelector('#shopPhone'), document.querySelector('#buyPhone'), document.querySelector('#ownedPhone'), document.querySelector('#sellPhone'), document.querySelector('#phoneDOMprice'), document.querySelector('#phoneDOMpriceSell'), document.querySelector('#phoneDOMmonthlyCost'));
-let car = new ShopItem('car', 'permanent', 5000, -1, 2, 0, 1, 0, false, -100, 120, undefined, 1, document.querySelector('#shopCar'), document.querySelector('#buyCar'), document.querySelector('#ownedCar'), document.querySelector('#sellCar'), document.querySelector('#carDOMprice'), document.querySelector('#carDOMpriceSell'),	document.querySelector('#carDOMmonthlyCost'));
-let plane = new ShopItem('plane', 'permanent', 100000, 1, 5, 0, 5, 0, false, -10000, 240, undefined, 20, document.querySelector('#shopPlane'), document.querySelector('#buyPlane'), document.querySelector('#ownedPlane'), document.querySelector('#sellPlane'), document.querySelector('#planeDOMprice'), document.querySelector('#planeDOMpriceSell'), document.querySelector('#planeDOMmonthlyCost'));
+let cheapPhone = new ShopItem('heap phone', 'permanent', 100, 0, 1, 0, -1, 0, false, -10, 24, undefined, 0, document.querySelector('#shopCheapPhone'), document.querySelector('#buyCheapPhone'), document.querySelector('#ownedCheapPhone'), document.querySelector('#sellCheapPhone'), document.querySelector('#cheapPhoneDOMprice'), document.querySelector('#cheapPhoneDOMpriceSell'), document.querySelector('#cheapPhoneDOMmonthlyCost'));
+let phone = new ShopItem('phone', 'permanent', 200, 0, 1, 0, 0, 0, false, -10, 36, undefined, 0, document.querySelector('#shopPhone'), document.querySelector('#buyPhone'), document.querySelector('#ownedPhone'), document.querySelector('#sellPhone'), document.querySelector('#phoneDOMprice'), document.querySelector('#phoneDOMpriceSell'), document.querySelector('#phoneDOMmonthlyCost'));
+let luxPhone = new ShopItem('latest phone', 'permanent', 1000, 0, 1, 0, 1, 0, false, -10, 12, undefined, 1, document.querySelector('#shopLuxPhone'), document.querySelector('#buyLuxPhone'), document.querySelector('#ownedLuxPhone'), document.querySelector('#sellLuxPhone'), document.querySelector('#luxPhoneDOMprice'), document.querySelector('#luxPhoneDOMpriceSell'), document.querySelector('#luxPhoneDOMmonthlyCost'));
+let rustyCar = new ShopItem('rusty car', 'permanent', 2000, -1, 1, 0, -1, 0, false, -300, 12, undefined, -1, document.querySelector('#shopRustyCar'), document.querySelector('#buyRustyCar'), document.querySelector('#ownedRustyCar'), document.querySelector('#sellRustyCar'), document.querySelector('#rustyCarDOMprice'), document.querySelector('#rustyCarDOMpriceSell'), document.querySelector('#rustyCarDOMmonthlyCost'));
+let ownedCar = new ShopItem('owned car', 'permanent', 5000, -1, 1, 0, 0, 0, false, -250, 60, undefined, 0, document.querySelector('#shopOwnedCar'), document.querySelector('#buyOwnedCar'), document.querySelector('#ownedOwnedCar'), document.querySelector('#sellOwnedCar'), document.querySelector('#ownedCarDOMprice'), document.querySelector('#ownedCarDOMpriceSell'), document.querySelector('#ownedCarDOMmonthlyCost'));
+let newCar = new ShopItem('new car', 'permanent', 15000, -1, 1, 0, 1, 0, false, -200, 120, undefined, 0, document.querySelector('#shopNewCar'), document.querySelector('#buyNewCar'), document.querySelector('#ownedNewCar'), document.querySelector('#sellNewCar'), document.querySelector('#newCarDOMprice'), document.querySelector('#newCarDOMpriceSell'), document.querySelector('#newCarDOMmonthlyCost'));
+let luxCar = new ShopItem('luxury car', 'permanent', 50000, -1, 1, 0, 2, 0, false, -1000, 120, undefined, 1, document.querySelector('#shopLuxCar'), document.querySelector('#buyLuxCar'), document.querySelector('#ownedLuxCar'), document.querySelector('#sellLuxCar'), document.querySelector('#luxCarDOMprice'), document.querySelector('#luxCarDOMpriceSell'), document.querySelector('#luxCarDOMmonthlyCost'));
+let sportsCar = new ShopItem('sports car', 'permanent', 100000, -1, 1, 0, 3, 0, false, -3000, 240, undefined, 3, document.querySelector('#shopSportsCar'), document.querySelector('#buySportsCar'), document.querySelector('#ownedSportsCar'), document.querySelector('#sellSportsCar'), document.querySelector('#sportsCarDOMprice'), document.querySelector('#sportsCarDOMpriceSell'), document.querySelector('#sportsCarDOMmonthlyCost'));
+let plane = new ShopItem('plane', 'permanent', 1000000, 1, 2, 0, 5, 0, false, -20000, 240, undefined, 20, document.querySelector('#shopPlane'), document.querySelector('#buyPlane'), document.querySelector('#ownedPlane'), document.querySelector('#sellPlane'), document.querySelector('#planeDOMprice'), document.querySelector('#planeDOMpriceSell'), document.querySelector('#planeDOMmonthlyCost'));
+let luxWatch = new ShopItem('luxury watch', 'permanent', 10000, 0, 0, 0, 1, 0, false, 0, 600, undefined, 1, document.querySelector('#shopLuxWatch'), document.querySelector('#buyLuxWatch'), document.querySelector('#ownedLuxWatch'), document.querySelector('#sellLuxWatch'), document.querySelector('#luxWatchDOMprice'), document.querySelector('#luxWatchDOMpriceSell'), document.querySelector('#luxWatchDOMmonthlyCost'));
 // Shop Items Variables - instant
 let alcohol = new ShopItem('alcohol', 'instant', 100, -1, 1, 0, 0, 0, false, undefined, undefined, undefined, undefined, document.querySelector('#shopAlcohol'), document.querySelector('#buyAlcohol'), undefined, undefined, document.querySelector('#alcoholDOMprice'), undefined, undefined);
+
+let drugs = new ShopItem('drugs', 'instant', 200, -3, 5, 0, 0, 0, false, undefined, undefined, undefined, undefined, document.querySelector('#shopDrugs'), document.querySelector('#buyDrugs'), undefined, undefined, document.querySelector('#drugsDOMprice'), undefined, undefined);
+let trendyClothes = new ShopItem('some trendy clothes', 'instant', 500, 0, 1, 0, 1, 0, false, undefined, undefined, undefined, undefined, document.querySelector('#shopTrendyClothes'), document.querySelector('#buyTrendyClothes'), undefined, undefined, document.querySelector('#trendyClothesDOMprice'), undefined, undefined);
+let onlineCourse = new ShopItem('online course', 'instant', 50, 0, 0, 1, 0, 0, false, undefined, undefined, undefined, undefined, document.querySelector('#shopOnlineCourse'), document.querySelector('#buyOnlineCourse'), undefined, undefined, document.querySelector('#onlineCourseDOMprice'), undefined, undefined);
+let offlineCourse = new ShopItem('offline course', 'instant', 200, 0, 0, 1, 0, 0, false, undefined, undefined, undefined, undefined, document.querySelector('#shopOfflineCourse'), document.querySelector('#buyOfflineCourse'), undefined, undefined, document.querySelector('#offlineCourseDOMprice'), undefined, undefined);
+let training = new ShopItem('personal development training', 'instant', 200, 0, 1, 0, 0, 0, false, undefined, undefined, undefined, undefined, document.querySelector('#shopTraining'), document.querySelector('#buyTraining'), undefined, undefined, document.querySelector('#trainingDOMprice'), undefined, undefined);
+let selfHelpBook = new ShopItem('self-help book', 'instant', 20, 0, 1, 0, 0, 0, false, undefined, undefined, undefined, undefined, document.querySelector('#shopSelfHelpBook'), document.querySelector('#buySelfHelpBook'), undefined, undefined, document.querySelector('#selfHelpBookDOMprice'), undefined, undefined);
+let fictionBook = new ShopItem('fiction book', 'instant', 10, 0, 0, 1, 0, 0, false, undefined, undefined, undefined, undefined, document.querySelector('#shopFictionBook'), document.querySelector('#buyFictionBook'), undefined, undefined, document.querySelector('#fictionBookDOMprice'), undefined, undefined);
+let profLiterature = new ShopItem('professional literature', 'instant', 100, 0, -1, 2, 0, 0, false, undefined, undefined, undefined, undefined, document.querySelector('#shopProfLiterature'), document.querySelector('#buyProfLiterature'), undefined, undefined, document.querySelector('#profLiteratureDOMprice'), undefined, undefined);
+let medicalTest = new ShopItem('medical check-up', 'instant', 500, 2, -2, 0, 0, 0, false, undefined, undefined, undefined, undefined, document.querySelector('#shopMedicalTest'), document.querySelector('#buyMedicalTest'), undefined, undefined, document.querySelector('#medicalTestDOMprice'), undefined, undefined);
+let shortVacation = new ShopItem('short vacation', 'instant', 800, 1, 1, 0, 0, 0, false, undefined, undefined, undefined, undefined, document.querySelector('#shopShortVacation'), document.querySelector('#buyShortVacation'), undefined, undefined, document.querySelector('#shortVacationDOMprice'), undefined, undefined);
 // Shop Items Variables - medicine
 let treatmentCold = new ShopItem('cold treatment', 'medicine', 50, 0, -1, 0, 0, 0, false, undefined, undefined, 0.5, undefined, document.querySelector('#shopTreatmentCold'), document.querySelector('#buyTreatmentCold'), undefined, undefined, document.querySelector('#tColdDOMprice'), undefined, undefined);
 let treatmentDiarrhea = new ShopItem('diarrhea treatment', 'medicine', 10, 0, -1, 0, 0, 0, false, undefined, undefined, 0.9, undefined, document.querySelector('#shopTreatmentDiarrhea'), document.querySelector('#buyTreatmentDiarrhea'), undefined, undefined, document.querySelector('#tDiarrheaDOMprice'), undefined, undefined);
 let treatmentCancer = new ShopItem('cancer treatment', 'medicine', 10000, 0, -3, 0, 0, 0, false, undefined, undefined, 0.1, undefined, document.querySelector('#shopTreatmentCancer'), document.querySelector('#buyTreatmentCancer'), undefined, undefined, document.querySelector('#tCancerDOMprice'), undefined, undefined);
 // Shop Items Array (permanent & instant)
-let itemsArray = [phone, car, plane, alcohol, treatmentDiarrhea, treatmentCold, treatmentCancer];
+let itemsArray = [cheapPhone, phone, luxPhone, rustyCar, ownedCar, newCar, luxCar, sportsCar, plane, luxWatch, alcohol, treatmentDiarrhea, treatmentCold, treatmentCancer, drugs, trendyClothes, onlineCourse, offlineCourse, training, selfHelpBook, fictionBook, profLiterature, medicalTest, shortVacation];
 
 
 
