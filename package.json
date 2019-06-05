@@ -1,0 +1,24 @@
+{
+  "name": "game_of_life",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile:sass": "node-sass --watch scss/main --o css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/S4Sloth/gameOfLife.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/S4Sloth/gameOfLife/issues"
+  },
+  "homepage": "https://github.com/S4Sloth/gameOfLife#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "node-sass": "^4.12.0"
+  }
+}
