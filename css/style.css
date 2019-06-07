@@ -3,8 +3,34 @@
   overflow-y: scroll;
   border: none; }
 
+#body-game {
+  background-image: url(../../img/bg2.jpg);
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; }
+
+.border-sides-3 {
+  border-left: 3px solid #f3bcc8;
+  border-right: 3px solid #f3bcc8; }
+
+.border-b-3 {
+  border-bottom: 3px solid #f3bcc8; }
+
+.font-carter {
+  font-family: 'Carter One', cursive; }
+
+.font-regular {
+  font-family: 'Scada', sans-serif; }
+
+.shadow-red {
+  text-shadow: 2px 2px 2px #f2526e; }
+
+.shadow-pink {
+  text-shadow: 2px 2px 2px #f17a97; }
+
 #sideDiv {
-  border: 5px solid black;
+  border: 5px solid #f3bcc8;
   width: 350px;
   height: 500px;
   position: fixed;
@@ -14,14 +40,14 @@
   overflow-x: hidden;
   overflow-y: hidden; }
 
-@keyframes example {
+@keyframes msgRecieved {
   50% {
-    background-color: red; }
+    background-color: #f2526e; }
   100% {
     background-color: none; } }
 
 .msgAppear {
-  animation-name: example;
+  animation-name: msgRecieved;
   animation-duration: 3s; }
 
 @media (max-width: 1200px) {
@@ -32,3 +58,7 @@
     overflow-y: hidden; }
   #messages {
     height: 200px; } }
+
+@media (max-width: 768px) {
+  .border-sides-3 {
+    border: none; } }

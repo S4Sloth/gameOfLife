@@ -6,48 +6,83 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Game Of Life</title>
+  <link href="https://fonts.googleapis.com/css?family=Carter+One|Scada&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/bootstrap.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body class="bg-dark text-white">
-  <header class="bg-secondary text-center p-3 mb-3">
-    <h1>The Game of Life</h1>
+<body id="body-game" class="text-dark">
+  <header class="bg-primary text-center p-3 mb-3">
+    <h1 class="text-white font-carter shadow-pink">The Game of Life</h1>
   </header>
 
   <!-- BIRTH STAGE -->
-  <div clas="container text-center" id="birthDIV">
-    <div class="col-md-12 mx-auto text-center">
-      <h4 class="mt-3" id="message">Welcome to The Game Of Life!</h4>
-        <p class="lead mb-5">If you are somehow new to the concept of living - your main goal is to survive!</p>
-        <p> - Manage your <span class="text-success">money</span> wisely - so you always could pay for food, home and other necessities.</p>
-        <p> - Take care of your <span class="text-primary">health</span> - if your health will reach 0, you will die.</p>
-        <p> - Keep an eye on your <span class="text-warning">morale</span> - cause good morale will give you bonuses, bad - can make you unhealthy.</p>
-        <p> - Work on your <span class="text-info">intelligence</span> - it will give you more opportunities.</p>
-        <p> - And more money you spend on trendy items, the more you will get <span class="text-danger">prestige</span></p>
-        <p class="lead mt-5">To get your stats for the next life click button below.</p>
-        <div class="row mt-5 justify-content-center">
-          <button type="button" id="birthBTN" class="btn btn-danger p-4">Get stats for new life!</button>
-        </div>
+  <div class="container text-center text-white" id="birthDIV">
+    <div class="col-md-12 mx-auto">
+      <h2 class="mt-3" id="message">Welcome to The Game Of Life!</h4>
+      <p class="lead mb-3 mx-auto col-md-8">If you are somehow new to the concept of living - your main goal is to survive! To survive you need to wisely manage this stats:</p>
+      <div class="row col-md-12 mx-auto text-white">
+        <h3 class="col-md-3 bg-success pt-2 font-carter shadow-red">Money</h3>
+        <h5 class="col-md-9 bg-white text-dark py-2 text-left">You earn money by working and can spend it on necessary and not so necessary things.</h5>
+      </div>
+      <div class="row col-md-12 mx-auto text-white">
+        <h3 class="col-md-3 bg-primary pt-2 font-carter shadow-red">Health</h3>
+        <h5 class="col-md-9 bg-white text-dark py-2 text-left">Tip: this should be your main focus, this points is very easy to lose and hard to get. If you reach 0, you will die.</h5>
+      </div>
+      <div class="row col-md-12 mx-auto text-white">
+        <h3 class="col-md-3 bg-info pt-2 font-carter shadow-red">Morale</h3>
+        <h5 class="col-md-9 bg-white text-dark py-2 text-left">Shows joy in your life. Stressful jobs and illnesses decreases morale, interesting hobbies and nice items - increases it.</h5>
+      </div>
+      <div class="row col-md-12 mx-auto text-white">
+        <h3 class="col-md-3 bg-warning pt-2 font-carter shadow-red">Intelligence</h3>
+        <h5 class="col-md-9 bg-white text-dark py-2 text-left">The closer you are to 100, the cooler job opportunites will open to you. Be careful - being smart has disadvantages.</h5>
+      </div>
+      <div class="row col-md-12 mx-auto text-white">
+        <h3 class="col-md-3 bg-light pt-2 font-carter shadow-red">Prestige</h3>
+        <h5 class="col-md-9 bg-white text-dark py-2 text-left">The higher the stat, the more you are trendy, fashionable and hip. Only stat that is NOT limited, you can increases it as high as you want.</h5>
+      </div>
+      <div class="row col-md-12 mx-auto text-white">
+        <h3 class="col-md-3 bg-danger pt-2 font-carter shadow-red">Energy</h3>
+        <h5 class="col-md-9 bg-white text-dark py-2 text-left">Your energy for doing additional activities besides job and hobby. It resets every month.</h5>
+      </div>
+      <div class="row mt-3 justify-content-center">
+        <button type="button" id="birthBTN" class="btn btn-danger p-4 font-carter">Get stats for new life!</button>
+      </div>
     </div>
   </div>
 
   <!-- STATS STAGE -->
-  <div clas="container text-center" id="statsDIV">
-    <div class="col-md-10 mx-auto text-center">
-      <h1 class="mb-5" id="message">You were born with these stats</h1>
-        <p class="lead"><span class="text-success mr-3">Money</span><span id="statMoney"></span>$</p>
-        <p class="lead"><span class="text-primary mr-3">Health</span><span id="statHealth"></span> / 100</p>
-        <p class="lead"><span class="text-warning mr-3">Morale</span><span id="statMorale"></span> / 100</p>
-        <p class="lead"><span class="text-info mr-3">Intelligence</span><span id="statIntelligence"></span> / 100</p>
-        <p class="lead"><span class="text-danger mr-3">Prestige</span><span id="statPrestige"></span> / 100</p>
-        <p class="lead"><span class="text-danger mr-3">Prestige</span><span id="statEnergy"></span> / 100</p>
-        <p class="mt-5">All of this didn't depend on you.</p>
-        <p>Now you are a grown up and you choose everything by yourself. Almost.</p>
-        <p>Make thoughtful decisions, but don't forget - human life is full of random and wild sh#t.</p>
-        <div class="row mt-5 justify-content-center">
-          <button type="button" id="statsBTN" class="btn btn-danger p-4">Start game!</button>
-        </div>
+  <div clas="container" id="statsDIV">
+    <div class="col-md-10 mx-auto text-center text-white">
+      <h1 id="message">You were born with these stats</h1>
+      <div class="row col-md-4 mx-auto">
+        <h3 class="col-md-6 bg-success font-carter shadow-red">Money</h3>
+        <h4 class="col-md-6 bg-white text-dark py-2"><span id="statMoney"></span>$</h4>
+      </div>
+      <div class="row col-md-4 mx-auto">
+        <h3 class="col-md-6 bg-primary pt-2 font-carter shadow-red">Health</h3>
+        <h4 class="col-md-6 bg-white text-dark py-2"><span id="statHealth"></span> / 100</h4>
+      </div>
+      <div class="row col-md-4 mx-auto">
+        <h3 class="col-md-6 bg-info pt-2 font-carter shadow-red">Morale</h3>
+        <h4 class="col-md-6 bg-white text-dark py-2"><span id="statMorale"></span> / 100</h4>
+      </div>
+      <div class="row col-md-4 mx-auto">
+        <h3 class="col-md-6 bg-warning pt-2 font-carter shadow-red">Intelligence</h3>
+        <h4 class="col-md-6 bg-white text-dark py-2"><span id="statIntelligence"></span> / 100</h4>
+      </div>
+      <div class="row col-md-4 mx-auto">
+        <h3 class="col-md-6 bg-light pt-2 font-carter shadow-red">Prestige</h3>
+        <h4 class="col-md-6 bg-white text-dark py-2"><span id="statPrestige"></span></h4>
+      </div>
+      <div class="row col-md-4 mx-auto">
+        <h3 class="col-md-6 bg-danger pt-2 font-carter shadow-red">Energy</h3>
+        <h4 class="col-md-6 bg-white text-dark py-2"><span id="statEnergy"></span></h4>
+      </div>
+      <p class="row col-md-4 mx-auto mt-3 text-white">All of this didn't depend on you. Now you are a grown up and you choose everything by yourself. Almost. Make thoughtful decisions, but don't forget - human life is full of random and wild sh#t.</p>
+      <div class="row justify-content-center">
+        <button type="button" id="statsBTN" class="btn btn-danger font-carter p-4">Start game!</button>
+      </div>
     </div>
   </div>
 
@@ -57,310 +92,315 @@
     <!-- MAIN STATS AND MENU -->
     <div class="row">
       <div class="col-md-12">
-
-        <!-- Age -->
-        <div class="row justify-content-center">
-          <div class="col-md-12 bg-white text-dark">
-            <h3>Months Old:
-              <span id="months">0</span>
-              (Full Years:
-              <span id="years"></span>)
-            </h3>
+  
+        <!-- MAIN INDICATORS -->
+        <h2 class="col-md-6 bg-primary text-white mx-auto mb-0 font-carter border-b-3">Your Stats</h2>
+        <div class="container">
+          <!-- Months -->
+          <div class="row justify-content-center">
+            <div class="col-md-12 bg-secondary text-white">
+              <h3>
+                <span class="shadow-red font-carter"> Months Old:</span>
+                <span class="shadow-pink" id="months">0</span>
+                <br>
+                <span class="shadow-red font-carter"> Full Years:</span>
+                <span class="shadow-pink" id="years"></span>
+              </h3>
+            </div>
+          </div>
+          <!-- Stats -->
+          <div class="row">
+            <div class="col-md-2 bg-success text-white p-2">
+              <h4 class="font-carter shadow-red">Money</h4>
+              <h3 class="shadow-pink"><span id="money"></span>$</h3>
+            </div>
+            <div class="col-md-2 bg-primary text-white p-2">
+              <h4 class="font-carter shadow-red">Health</h4>
+              <h3 class="shadow-pink"><span id="health"></span></h3>
+            </div>
+            <div class="col-md-2 bg-info text-white p-2">
+              <h4 class="font-carter shadow-red">Morale</h4>
+              <h3 class="shadow-pink"><span id="morale"></span></h3>
+            </div>
+            <div class="col-md-2 bg-warning text-white p-2">
+              <h4 class="font-carter shadow-red">Intelligence</h4>
+              <h3 class="shadow-pink"><span id="intelligence"></span></h3>
+            </div>
+            <div class="col-md-2 bg-light text-white p-2">
+              <h4 class="font-carter shadow-red">Prestige</h4>
+              <h3 class="shadow-pink"><span id="prestige"></span></h3>
+            </div>
+            <div class="col-md-2 bg-danger text-white p-2">
+              <h4 class="font-carter shadow-red">Energy</h4>
+              <h3 class="shadow-pink"><span id="energy"></span></h3>
+            </div>
           </div>
         </div>
-        
-        <!-- Main indicators -->
-        <div class="row">
-          <div class="col-md-2 bg-success text-dark">
-            <h4>Money</h4>
-            <h3><span id="money"></span>$</h3>
-          </div>
-          <div class="col-md-2 bg-primary text-dark">
-            <h4>Health</h4>
-            <h3><span id="health"></span></h3>
-          </div>
-          <div class="col-md-2 bg-warning text-dark">
-            <h4>Morale</h4>
-            <h3><span id="morale"></span></h3>
-          </div>
-          <div class="col-md-2 bg-info text-dark">
-            <h4>Intelligence</h4>
-            <h3><span id="intelligence"></span></h3>
-          </div>
-          <div class="col-md-2 bg-danger text-dark">
-            <h4>Prestige</h4>
-            <h3><span id="prestige"></span></h3>
-          </div>
-          <div class="col-md-2 bg-secondary text-dark">
-            <h4>Energy</h4>
-            <h3><span id="energy"></span></h3>
-          </div>
-        </div>
-        
-        <!-- Slogan -->
-        <h2 class="mt-5">Plan Your Life!</h2>
-
+ 
         <!-- ROUTINE, EVENTS, STUFF -->
-        <div class="row mt-3">
-
-          <!--ROUTINE DIV -->
-          <div class="col-md-4 bg-secondary text-light px-0">
-            <h3 class="bg-light text-dark py-2">Routine</h3>
-            
-            <!-- Job DIV -->
-            <div class="column text-left px-1">
-              <h4 class="mt-1">Job <small class="text-white">(salary: <span id="jobMonthly"></span>$)</small></h4>
-              <select id="job" class="form-control">
-                <option value="0" id="unemployedJob">Unemployed</option> 
-                <option id="courierJob">Courier</option>
-                <option id="retailJob">Retail</option>
-                <option id="waiterJob">Waiter</option>
-                <option id="constructionWorkerJob">Construction Worker</option>
-                <option id="hrManagerJob">HR Manager</option>
-                <option id="managerJob">Manager</option>
-                <option id="hairStylistJob">Hair Stylist</option>
-                <option id="fitnessCoachJob">Fitness Coach</option>
-                <option id="salesmanJob">Salesman</option>
-                <option id="journalistJob">Journalist</option>
-                <option id="modelJob">Model</option>
-                <option id="engineerJob">Engineer</option>
-                <option id="lawyerJob">Lawyer</option>
-                <option id="teacherJob">Teacher</option>
-                <option id="marketingManagerJob">Marketing Manager</option>
-                <option id="doctorJob">Doctor</option>
-                <option id="composerJob">Composer</option>
-                <option id="professorJob">Professor</option>
-                <option id="scientistJob">Scientist</option>
-              </select>
+        <h2 class="col-md-6 bg-primary text-white mx-auto mb-0 mt-4 font-carter border-b-3">Plan Your Life!</h2>
+        <div class="container">
+          <div class="row">
+  
+            <!--ROUTINE DIV -->
+            <div class="col-md-4 bg-secondary text-black px-0">
+              <h3 class="bg-primary text-dark py-2 font-carter">Routine</h3>
               
-              <!-- Home DIV -->
-              <h4 class="mt-1">Home <small class="text-white">(cost: <span id="rentMonthly"></span>$)</small></h4>
-              <select id="rent" class="form-control">
-                <option value="0" id="noRent">Live on street</option>
-                <option id="roomRent">Room</option>
-                <option id="flatRent">Small apartment</option>
-                <option id="houseRent">House</option>
-              </select>
-
-              <!-- Diet DIV -->
-              <h4 class="mt-1">Diet <small class="text-white">(cost: <span id="foodMonthly"></span>$)</small></h4>
-              <select id="food" class="form-control">
-                <option value="0" id="starveFood">Starve</option>
-                <option id="junkFood">Junk Food</option>
-                <option id="cheapFood">Cheap Food</option>
-                <option id="balancedFood">Balanced Diet</option>
-                <option id="delicFood">Delicacies</option>
-              </select>
-              
-              <!-- Hooby DIV -->
-              <h4 class="mt-1">Hobby <small class="text-white">(cost: <span id="hobbyMonthly"></span>$)</small></h4>
-              <select id="hobby" class="form-control">
-                <option value="0" id="noHobby">No Hobby</option>
-                <option id="hikingHobby">Hiking</option>
-                <option id="sportsHobby">Sports</option>
-                <option id="singHobby">Singing</option>
-                <option id="paintHobby">Painting</option>
-                <option id="writeHobby">Writing</option>
-                <option id="learningHobby">Learning courses</option>
-                <option id="shopHobby">Shopping</option>
-                <option id="jewelHobby">Jewelry collecting</option>
-                <option id="danceHobby">Dancing</option>
-                <option id="readHobby">Reading</option>
-                <option id="conferencesHobby">Visiting conferences</option>
-                <option id="travellingHobby">Travelling</option>
-                <option id="yachtingHobby">Yachting</option>
-                <option id="partyingHobby">Partying</option>
-                <option id="extremeSportsHobby">Extreme Sports</option>
-              </select>
-            </div>
-          </div>
-          
-          <!-- EVENTS DIV -->
-          <div class="col-md-4 bg-light text-secondary px-0">
-            <h3 class="bg-secondary text-light py-2">Events</h3>
-            <!-- Illnesses -->
-            <!-- Cold -->
-            <div id="eventMigraine">
-              <div class="row col-md-12 bg-info px-0 mx-0 py-2">
-                <p class="col-md-11 text-left py-0 my-0 pt-1">Migraine</p>
-              </div>
-            </div>
-            <!-- Cold -->
-            <div id="eventCold">
-              <div class="row col-md-12 bg-info px-0 mx-0 py-2">
-                <p class="col-md-11 text-left py-0 my-0 pt-1">Cold</p>
-              </div>
-            </div>
-            <!-- Diarrhea -->
-            <div id="eventDiarrhea">
-              <div class="row col-md-12 bg-info px-0 mx-0 py-2">
-                <p class="col-md-11 text-left py-0 my-0 pt-1">Diarrhea</p>
-              </div>
-            </div>
-            <!-- Cancer -->
-            <div id="eventCancer">
-              <div class="row col-md-12 bg-info px-0 mx-0 py-2">
-                <p class="col-md-11 text-left py-0 my-0 pt-1">Cancer</p>
-              </div>
-            </div>
-            <!-- Depression -->
-            <div id="eventDepression">
-              <div class="row col-md-12 bg-info px-0 mx-0 py-2">
-                <p class="col-md-11 text-left py-0 my-0 pt-1">Depression</p>
-              </div>
-            </div>
-
-            <!-- Accidents -->
-            <!-- Lost Wallet -->
-            <div id="eventLostWallet">
-              <div class="row col-md-12 bg-info px-0 mx-0 py-2">
-                <p class="col-md-11 text-left py-0 my-0 pt-1">Lost Wallet</p>
-              </div>
-            </div>
-            <!-- Theft -->
-            <div id="eventTheft">
-              <div class="row col-md-12 bg-info px-0 mx-0 py-2">
-                <p class="col-md-11 text-left py-0 my-0 pt-1">Theft</p>
-              </div>
-            </div>
-            <!-- Robery -->
-            <div id="eventRobery">
-              <div class="row col-md-12 bg-info px-0 mx-0 py-2">
-                <p class="col-md-11 text-left py-0 my-0 pt-1">Robery</p>
-              </div>
-            </div>
-            <!-- Scam -->
-            <div id="eventScam">
-              <div class="row col-md-12 bg-info px-0 mx-0 py-2">
-                <p class="col-md-11 text-left py-0 my-0 pt-1">Scam</p>
-              </div>
-            </div>
-            <!-- Extortion -->
-            <div id="eventExtortion">
-              <div class="row col-md-12 bg-info px-0 mx-0 py-2">
-                <p class="col-md-11 text-left py-0 my-0 pt-1">Extortion</p>
-              </div>
-            </div>
-            <!-- Blackmail -->
-            <div id="eventBlackmail">
-              <div class="row col-md-12 bg-info px-0 mx-0 py-2">
-                <p class="col-md-11 text-left py-0 my-0 pt-1">Blackmail</p>
-              </div>
-            </div>
-            <!-- Fire -->
-            <div id="eventFire">
-              <div class="row col-md-12 bg-info px-0 mx-0 py-2">
-                <p class="col-md-11 text-left py-0 my-0 pt-1">Fire</p>
-              </div>
-            </div>
-            <!-- BrokeArm -->
-            <div id="eventBrokeArm">
-              <div class="row col-md-12 bg-info px-0 mx-0 py-2">
-                <p class="col-md-11 text-left py-0 my-0 pt-1">Broke Arm</p>
-              </div>
-            </div>
-            <!-- BrokeLeg -->
-            <div id="eventBrokeLeg">
-              <div class="row col-md-12 bg-info px-0 mx-0 py-2">
-                <p class="col-md-11 text-left py-0 my-0 pt-1">Broke Leg</p>
-              </div>
-            </div>
-            <!-- BrokeBack -->
-            <div id="eventBrokeBack">
-              <div class="row col-md-12 bg-info px-0 mx-0 py-2">
-                <p class="col-md-11 text-left py-0 my-0 pt-1">Broke Back</p>
-              </div>
-            </div>
-            <!-- BrokeNeck -->
-            <div id="eventBrokeNeck">
-              <div class="row col-md-12 bg-info px-0 mx-0 py-2">
-                <p class="col-md-11 text-left py-0 my-0 pt-1">Broke Neck</p>
-              </div>
-            </div>
-          </div>
-          
-          <!-- STUFF DIV -->
-          <div class="col-md-4 bg-secondary text-light px-0">
-            <h3 class="bg-light text-dark py-2">Your Stuff</h3>
-
-            <!-- Cheap Phone -->
-            <div id="ownedCheapPhone">
-              <div class="row col-md-12 bg-info px-0 mx-0 py-2">
-                <p class="col-md-8 text-left py-0 my-0 pt-1">Cheap Phone <small class="text-muted">(monthly<span id="cheapPhoneDOMmonthlyCost"></span>$)</small></p>
-                <button class="col-md-4 bg-warning" type="button" id="sellCheapPhone"> <p class="mb-1 pb-0 "><span id="cheapPhoneDOMpriceSell"></span>$</p> </button>
-              </div>
-            </div>
-            <!-- Phone -->
-            <div id="ownedPhone">
-              <div class="row col-md-12 bg-info px-0 mx-0 py-2">
-                <p class="col-md-8 text-left py-0 my-0 pt-1">Phone <small class="text-muted">(monthly<span id="phoneDOMmonthlyCost"></span>$)</small></p>
-                <button class="col-md-4 bg-warning" type="button" id="sellPhone"> <p class="mb-1 pb-0 "><span id="phoneDOMpriceSell"></span>$</p> </button>
-              </div>
-            </div>
-            <!-- Lux Phone -->
-            <div id="ownedLuxPhone">
-              <div class="row col-md-12 bg-info px-0 mx-0 py-2">
-                <p class="col-md-8 text-left py-0 my-0 pt-1">Latest Phone <small class="text-muted">(monthly<span id="luxPhoneDOMmonthlyCost"></span>$)</small></p>
-                <button class="col-md-4 bg-warning" type="button" id="sellLuxPhone"> <p class="mb-1 pb-0 "><span id="luxPhoneDOMpriceSell"></span>$</p> </button>
-              </div>
-            </div>
-            <!-- Rusty Car -->
-            <div id="ownedRustyCar">
-              <div class="row col-md-12 bg-info px-0 mx-0 py-2">
-                <p class="col-md-8 text-left py-0 my-0 pt-1">Rusty Car <small class="text-muted">(monthly<span id="rustyCarDOMmonthlyCost"></span>$)</small></p>
-                <button class="col-md-4 bg-warning" type="button" id="sellRustyCar"> <p class="mb-1 pb-0 "><span id="rustyCarDOMpriceSell"></span>$</p> </button>
-              </div>
-            </div>
-            <!-- Owned Car -->
-            <div id="ownedOwnedCar">
-              <div class="row col-md-12 bg-info px-0 mx-0 py-2">
-                <p class="col-md-8 text-left py-0 my-0 pt-1">Owned Car <small class="text-muted">(monthly<span id="ownedCarDOMmonthlyCost"></span>$)</small></p>
-                <button class="col-md-4 bg-warning" type="button" id="sellOwnedCar"> <p class="mb-1 pb-0 "><span id="ownedCarDOMpriceSell"></span>$</p> </button>
-              </div>
-            </div>
-            <!-- New Car -->
-            <div id="ownedNewCar">
-              <div class="row col-md-12 bg-info px-0 mx-0 py-2">
-                <p class="col-md-8 text-left py-0 my-0 pt-1">New Car <small class="text-muted">(monthly<span id="newCarDOMmonthlyCost"></span>$)</small></p>
-                <button class="col-md-4 bg-warning" type="button" id="sellNewCar"> <p class="mb-1 pb-0 "><span id="newCarDOMpriceSell"></span>$</p> </button>
-              </div>
-            </div>
-            <!-- Lux Car -->
-            <div id="ownedLuxCar">
-              <div class="row col-md-12 bg-info px-0 mx-0 py-2">
-                <p class="col-md-8 text-left py-0 my-0 pt-1">Luxury Car <small class="text-muted">(monthly<span id="luxCarDOMmonthlyCost"></span>$)</small></p>
-                <button class="col-md-4 bg-warning" type="button" id="sellLuxCar"> <p class="mb-1 pb-0 "><span id="luxCarDOMpriceSell"></span>$</p> </button>
-              </div>
-            </div>
-            <!-- Sports Car -->
-            <div id="ownedSportsCar">
-              <div class="row col-md-12 bg-info px-0 mx-0 py-2">
-                <p class="col-md-8 text-left py-0 my-0 pt-1">Sports Car <small class="text-muted">(monthly<span id="sportsCarDOMmonthlyCost"></span>$)</small></p>
-                <button class="col-md-4 bg-warning" type="button" id="sellSportsCar"> <p class="mb-1 pb-0 "><span id="sportsCarDOMpriceSell"></span>$</p> </button>
-              </div>
-            </div>
-            <!-- Plane -->
-            <div id="ownedPlane">
-              <div class="row col-md-12 bg-info px-0 mx-0 py-2">
-                <p class="col-md-8 text-left py-0 my-0 pt-1">Plane <small class="text-muted">(monthly<span id="planeDOMmonthlyCost"></span>$)</small></p>
-                <button class="col-md-4 bg-warning" type="button" id="sellPlane"> <p class="mb-1 pb-0 "><span id="planeDOMpriceSell"></span>$</p> </button>
-              </div>
-            </div>
-            <!-- Lux Watch -->
-            <div id="ownedLuxWatch">
-              <div class="row col-md-12 bg-info px-0 mx-0 py-2">
-                <p class="col-md-8 text-left py-0 my-0 pt-1">Luxury Watch <small class="text-muted">(monthly<span id="luxWatchDOMmonthlyCost"></span>$)</small></p>
-                <button class="col-md-4 bg-warning" type="button" id="sellLuxWatch"> <p class="mb-1 pb-0 "><span id="luxWatchDOMpriceSell"></span>$</p> </button>
+              <!-- Job DIV -->
+              <div class="column text-dark text-left px-1">
+                <h4 class="mt-2 mb-0 pl-2 font-carter"> Job <small class="text-dark font-regular">(salary: <span id="jobMonthly"></span>$)</small></h4>
+                <select id="job" class="form-control">
+                  <option value="0" id="unemployedJob">Unemployed</option> 
+                  <option id="courierJob">Courier</option>
+                  <option id="retailJob">Retail</option>
+                  <option id="waiterJob">Waiter</option>
+                  <option id="constructionWorkerJob">Construction Worker</option>
+                  <option id="hrManagerJob">HR Manager</option>
+                  <option id="managerJob">Manager</option>
+                  <option id="hairStylistJob">Hair Stylist</option>
+                  <option id="fitnessCoachJob">Fitness Coach</option>
+                  <option id="salesmanJob">Salesman</option>
+                  <option id="journalistJob">Journalist</option>
+                  <option id="modelJob">Model</option>
+                  <option id="engineerJob">Engineer</option>
+                  <option id="lawyerJob">Lawyer</option>
+                  <option id="teacherJob">Teacher</option>
+                  <option id="marketingManagerJob">Marketing Manager</option>
+                  <option id="doctorJob">Doctor</option>
+                  <option id="composerJob">Composer</option>
+                  <option id="professorJob">Professor</option>
+                  <option id="scientistJob">Scientist</option>
+                </select>
+                
+                <!-- Home DIV -->
+                <h4 class="mt-2 mb-0 pl-2 font-carter">Home <small class="text-dark font-regular">(cost: <span id="rentMonthly"></span>$)</small></h4>
+                <select id="rent" class="form-control">
+                  <option value="0" id="noRent">Live on street</option>
+                  <option id="roomRent">Room</option>
+                  <option id="flatRent">Small apartment</option>
+                  <option id="houseRent">House</option>
+                </select>
+  
+                <!-- Diet DIV -->
+                <h4 class="mt-2 mb-0 pl-2 font-carter">Diet <small class="text-dark font-regular">(cost: <span id="foodMonthly"></span>$)</small></h4>
+                <select id="food" class="form-control">
+                  <option value="0" id="starveFood">Starve</option>
+                  <option id="junkFood">Junk Food</option>
+                  <option id="cheapFood">Cheap Food</option>
+                  <option id="balancedFood">Balanced Diet</option>
+                  <option id="delicFood">Delicacies</option>
+                </select>
+                
+                <!-- Hooby DIV -->
+                <h4 class="mt-2 mb-0 pl-2 font-carter">Hobby <small class="text-dark font-regular">(cost: <span id="hobbyMonthly"></span>$)</small></h4>
+                <select id="hobby" class="form-control mb-1">
+                  <option value="0" id="noHobby">No Hobby</option>
+                  <option id="hikingHobby">Hiking</option>
+                  <option id="sportsHobby">Sports</option>
+                  <option id="singHobby">Singing</option>
+                  <option id="paintHobby">Painting</option>
+                  <option id="writeHobby">Writing</option>
+                  <option id="learningHobby">Learning courses</option>
+                  <option id="shopHobby">Shopping</option>
+                  <option id="jewelHobby">Jewelry collecting</option>
+                  <option id="danceHobby">Dancing</option>
+                  <option id="readHobby">Reading</option>
+                  <option id="conferencesHobby">Visiting conferences</option>
+                  <option id="travellingHobby">Travelling</option>
+                  <option id="yachtingHobby">Yachting</option>
+                  <option id="partyingHobby">Partying</option>
+                  <option id="extremeSportsHobby">Extreme Sports</option>
+                </select>
               </div>
             </div>
             
-          </div>
-        </div>        
+            <!-- EVENTS DIV -->
+            <div class="col-md-4 bg-secondary text-white px-0 border-sides-3">
+              <h3 class="bg-primary text-dark py-2 font-carter">Events</h3>
+              <!-- Illnesses -->
+              <!-- Cold -->
+              <div id="eventMigraine">
+                <div class="row col-md-12 bg-light px-0 mx-0 py-2">
+                  <p class="col-md-11 text-left py-0 my-0 pt-1">Migraine</p>
+                </div>
+              </div>
+              <!-- Cold -->
+              <div id="eventCold">
+                <div class="row col-md-12 bg-light px-0 mx-0 py-2">
+                  <p class="col-md-11 text-left py-0 my-0 pt-1">Cold</p>
+                </div>
+              </div>
+              <!-- Diarrhea -->
+              <div id="eventDiarrhea">
+                <div class="row col-md-12 bg-light px-0 mx-0 py-2">
+                  <p class="col-md-11 text-left py-0 my-0 pt-1">Diarrhea</p>
+                </div>
+              </div>
+              <!-- Cancer -->
+              <div id="eventCancer">
+                <div class="row col-md-12 bg-light px-0 mx-0 py-2">
+                  <p class="col-md-11 text-left py-0 my-0 pt-1">Cancer</p>
+                </div>
+              </div>
+              <!-- Depression -->
+              <div id="eventDepression">
+                <div class="row col-md-12 bg-light px-0 mx-0 py-2">
+                  <p class="col-md-11 text-left py-0 my-0 pt-1">Depression</p>
+                </div>
+              </div>
+  
+              <!-- Accidents -->
+              <!-- Lost Wallet -->
+              <div id="eventLostWallet">
+                <div class="row col-md-12 bg-light px-0 mx-0 py-2">
+                  <p class="col-md-11 text-left py-0 my-0 pt-1">Lost Wallet</p>
+                </div>
+              </div>
+              <!-- Theft -->
+              <div id="eventTheft">
+                <div class="row col-md-12 bg-light px-0 mx-0 py-2">
+                  <p class="col-md-11 text-left py-0 my-0 pt-1">Theft</p>
+                </div>
+              </div>
+              <!-- Robery -->
+              <div id="eventRobery">
+                <div class="row col-md-12 bg-light px-0 mx-0 py-2">
+                  <p class="col-md-11 text-left py-0 my-0 pt-1">Robery</p>
+                </div>
+              </div>
+              <!-- Scam -->
+              <div id="eventScam">
+                <div class="row col-md-12 bg-light px-0 mx-0 py-2">
+                  <p class="col-md-11 text-left py-0 my-0 pt-1">Scam</p>
+                </div>
+              </div>
+              <!-- Extortion -->
+              <div id="eventExtortion">
+                <div class="row col-md-12 bg-light px-0 mx-0 py-2">
+                  <p class="col-md-11 text-left py-0 my-0 pt-1">Extortion</p>
+                </div>
+              </div>
+              <!-- Blackmail -->
+              <div id="eventBlackmail">
+                <div class="row col-md-12 bg-light px-0 mx-0 py-2">
+                  <p class="col-md-11 text-left py-0 my-0 pt-1">Blackmail</p>
+                </div>
+              </div>
+              <!-- Fire -->
+              <div id="eventFire">
+                <div class="row col-md-12 bg-light px-0 mx-0 py-2">
+                  <p class="col-md-11 text-left py-0 my-0 pt-1">Fire</p>
+                </div>
+              </div>
+              <!-- BrokeArm -->
+              <div id="eventBrokeArm">
+                <div class="row col-md-12 bg-light px-0 mx-0 py-2">
+                  <p class="col-md-11 text-left py-0 my-0 pt-1">Broke Arm</p>
+                </div>
+              </div>
+              <!-- BrokeLeg -->
+              <div id="eventBrokeLeg">
+                <div class="row col-md-12 bg-light px-0 mx-0 py-2">
+                  <p class="col-md-11 text-left py-0 my-0 pt-1">Broke Leg</p>
+                </div>
+              </div>
+              <!-- BrokeBack -->
+              <div id="eventBrokeBack">
+                <div class="row col-md-12 bg-light px-0 mx-0 py-2">
+                  <p class="col-md-11 text-left py-0 my-0 pt-1">Broke Back</p>
+                </div>
+              </div>
+              <!-- BrokeNeck -->
+              <div id="eventBrokeNeck">
+                <div class="row col-md-12 bg-light px-0 mx-0 py-2">
+                  <p class="col-md-11 text-left py-0 my-0 pt-1">Broke Neck</p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- STUFF DIV -->
+            <div class="col-md-4 bg-secondary text-white px-0">
+              <h3 class="bg-primary text-dark py-2 font-carter">Your Stuff</h3>
+  
+              <!-- Cheap Phone -->
+              <div id="ownedCheapPhone">
+                <div class="row px-0 mx-0 bg-info py-1 border border-white pr-2">
+                  <p class="col-md-8 text-left mb-0 py-0 mt-2">Cheap Phone <small class="text-muted">(monthly<span id="cheapPhoneDOMmonthlyCost"></span>$)</small></p>
+                  <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="sellCheapPhone"> <p class="mb-1 pb-0 "><span id="cheapPhoneDOMpriceSell"></span>$</p> </button>
+                </div>
+              </div>
+              <!-- Phone -->
+              <div id="ownedPhone">
+                <div class="row px-0 mx-0 bg-info py-1 border border-white pr-2">
+                  <p class="col-md-8 text-left mb-0 py-0 mt-2">Phone <small class="text-muted">(monthly<span id="phoneDOMmonthlyCost"></span>$)</small></p>
+                  <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="sellPhone"> <p class="mb-1 pb-0 "><span id="phoneDOMpriceSell"></span>$</p> </button>
+                </div>
+              </div>
+              <!-- Lux Phone -->
+              <div id="ownedLuxPhone">
+                <div class="row px-0 mx-0 bg-info py-1 border border-white pr-2">
+                  <p class="col-md-8 text-left mb-0 py-0 mt-2">Latest Phone <small class="text-muted">(monthly<span id="luxPhoneDOMmonthlyCost"></span>$)</small></p>
+                  <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="sellLuxPhone"> <p class="mb-1 pb-0 "><span id="luxPhoneDOMpriceSell"></span>$</p> </button>
+                </div>
+              </div>
+              <!-- Rusty Car -->
+              <div id="ownedRustyCar">
+                <div class="row px-0 mx-0 bg-info py-1 border border-white pr-2">
+                  <p class="col-md-8 text-left mb-0 py-0 mt-2">Rusty Car <small class="text-muted">(monthly<span id="rustyCarDOMmonthlyCost"></span>$)</small></p>
+                  <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="sellRustyCar"> <p class="mb-1 pb-0 "><span id="rustyCarDOMpriceSell"></span>$</p> </button>
+                </div>
+              </div>
+              <!-- Owned Car -->
+              <div id="ownedOwnedCar">
+                <div class="row px-0 mx-0 bg-info py-1 border border-white pr-2">
+                  <p class="col-md-8 text-left mb-0 py-0 mt-2">Owned Car <small class="text-muted">(monthly<span id="ownedCarDOMmonthlyCost"></span>$)</small></p>
+                  <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="sellOwnedCar"> <p class="mb-1 pb-0 "><span id="ownedCarDOMpriceSell"></span>$</p> </button>
+                </div>
+              </div>
+              <!-- New Car -->
+              <div id="ownedNewCar">
+                <div class="row px-0 mx-0 bg-info py-1 border border-white pr-2">
+                  <p class="col-md-8 text-left mb-0 py-0 mt-2">New Car <small class="text-muted">(monthly<span id="newCarDOMmonthlyCost"></span>$)</small></p>
+                  <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="sellNewCar"> <p class="mb-1 pb-0 "><span id="newCarDOMpriceSell"></span>$</p> </button>
+                </div>
+              </div>
+              <!-- Lux Car -->
+              <div id="ownedLuxCar">
+                <div class="row px-0 mx-0 bg-info py-1 border border-white pr-2">
+                  <p class="col-md-8 text-left mb-0 py-0 mt-2">Luxury Car <small class="text-muted">(monthly<span id="luxCarDOMmonthlyCost"></span>$)</small></p>
+                  <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="sellLuxCar"> <p class="mb-1 pb-0 "><span id="luxCarDOMpriceSell"></span>$</p> </button>
+                </div>
+              </div>
+              <!-- Sports Car -->
+              <div id="ownedSportsCar">
+                <div class="row px-0 mx-0 bg-info py-1 border border-white pr-2">
+                  <p class="col-md-8 text-left mb-0 py-0 mt-2">Sports Car <small class="text-muted">(monthly<span id="sportsCarDOMmonthlyCost"></span>$)</small></p>
+                  <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="sellSportsCar"> <p class="mb-1 pb-0 "><span id="sportsCarDOMpriceSell"></span>$</p> </button>
+                </div>
+              </div>
+              <!-- Plane -->
+              <div id="ownedPlane">
+                <div class="row px-0 mx-0 bg-info py-1 border border-white pr-2">
+                  <p class="col-md-8 text-left mb-0 py-0 mt-2">Plane <small class="text-muted">(monthly<span id="planeDOMmonthlyCost"></span>$)</small></p>
+                  <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="sellPlane"> <p class="mb-1 pb-0 "><span id="planeDOMpriceSell"></span>$</p> </button>
+                </div>
+              </div>
+              <!-- Lux Watch -->
+              <div id="ownedLuxWatch">
+                <div class="row px-0 mx-0 bg-info py-1 border border-white pr-2">
+                  <p class="col-md-8 text-left mb-0 py-0 mt-2">Luxury Watch <small class="text-muted">(monthly<span id="luxWatchDOMmonthlyCost"></span>$)</small></p>
+                  <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="sellLuxWatch"> <p class="mb-1 pb-0 "><span id="luxWatchDOMpriceSell"></span>$</p> </button>
+                </div>
+              </div>
+              
+            </div>
+          </div>        
+        </div>
 
         <!-- MESSAGES AND BUTTON -->
         <div id="sideDiv">
-          <div class="col-md-12 mx-0 px-0 bg-info">
-            <h4 class="text-center bg-primary mb-0 py-2">Messages From Life</h4>
+          <div class="col-md-12 mx-0 px-0 bg-secondary">
+            <h4 class="bg-primary text-white mb-0 py-2 font-carter">Messages From Life</h4>
             <ul id="messages" class="list-group text-left ml-2">
             </ul>
           </div>
@@ -369,19 +409,19 @@
     </div>
     
     <!-- Button -->
-    <button type="button" id="gameBTN" class="col-md-5 btn btn-danger mt-3 p-5"><h3>Spend One Month</h3></button>
+    <button type="button" id="gameBTN" class="col-md-4 btn btn-danger mt-4 p-5"><h3 class="font-carter">Spend One Month</h3></button>
     
     <!-- SHOP -->
-    <h3 class="col-md-12 bg-light text-secondary mt-5 py-3">Shop</h3>        
+    <h2 class="col-md-6 bg-primary text-white mt-4 mb-0 mx-auto py-3 font-carter border-b-3">Shop</h2>        
     <div class="col-md-12 mx-0 px-0 row">
       
       <!-- Instant -->
+      <h4 class="col-md-12 bg-primary text-center py-3 mb-0">Instant Items</h4>
       <div class="col-md-12">
-        <h4 class="text-center">Instant Items</h4>
       </div>
       <!-- Alcohol -->
       <div id="shopAlcohol" class="col-md-4 px-0">
-        <div class="row px-0 mx-0 bg-secondary py-1 border pr-2">
+        <div class="row px-0 mx-0 bg-secondary py-1 border border-light pr-2">
           <p class="col-md-8 text-left mb-0 py-0 mt-2"> Alcohol </p>
           <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="buyAlcohol"> <p class="mb-1 pb-0 "><span id="alcoholDOMprice"></span>$</p> </button>
         </div>
@@ -390,70 +430,70 @@
 
       <!-- Drugs -->
       <div id="shopDrugs" class="col-md-4 px-0">
-        <div class="row px-0 mx-0 bg-secondary py-1 border pr-2">
+        <div class="row px-0 mx-0 bg-secondary py-1 border border-light pr-2">
           <p class="col-md-8 text-left mb-0 py-0 mt-2"> Drugs </p>
           <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="buyDrugs"> <p class="mb-1 pb-0 "><span id="drugsDOMprice"></span>$</p> </button>
         </div>
       </div>
       <!-- Trendy Clothes -->
       <div id="shopTrendyClothes" class="col-md-4 px-0">
-        <div class="row px-0 mx-0 bg-secondary py-1 border pr-2">
+        <div class="row px-0 mx-0 bg-secondary py-1 border border-light pr-2">
           <p class="col-md-8 text-left mb-0 py-0 mt-2"> Trendy Clothes </p>
           <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="buyTrendyClothes"> <p class="mb-1 pb-0 "><span id="trendyClothesDOMprice"></span>$</p> </button>
         </div>
       </div>
       <!-- Online course -->
       <div id="shopOnlineCourse" class="col-md-4 px-0">
-        <div class="row px-0 mx-0 bg-secondary py-1 border pr-2">
+        <div class="row px-0 mx-0 bg-secondary py-1 border border-light pr-2">
           <p class="col-md-8 text-left mb-0 py-0 mt-2"> Online course </p>
           <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="buyOnlineCourse"> <p class="mb-1 pb-0 "><span id="onlineCourseDOMprice"></span>$</p> </button>
         </div>
       </div>
       <!-- Offline course -->
       <div id="shopOfflineCourse" class="col-md-4 px-0">
-        <div class="row px-0 mx-0 bg-secondary py-1 border pr-2">
+        <div class="row px-0 mx-0 bg-secondary py-1 border border-light pr-2">
           <p class="col-md-8 text-left mb-0 py-0 mt-2"> Offline course  </p>
           <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="buyOfflineCourse"> <p class="mb-1 pb-0 "><span id="offlineCourseDOMprice"></span>$</p> </button>
         </div>
       </div>
       <!-- Training -->
       <div id="shopTraining" class="col-md-4 px-0">
-        <div class="row px-0 mx-0 bg-secondary py-1 border pr-2">
+        <div class="row px-0 mx-0 bg-secondary py-1 border border-light pr-2">
           <p class="col-md-8 text-left mb-0 py-0 mt-2"> Training  </p>
           <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="buyTraining"> <p class="mb-1 pb-0 "><span id="trainingDOMprice"></span>$</p> </button>
         </div>
       </div>
       <!-- Self Help Book -->
       <div id="shopSelfHelpBook" class="col-md-4 px-0">
-        <div class="row px-0 mx-0 bg-secondary py-1 border pr-2">
+        <div class="row px-0 mx-0 bg-secondary py-1 border border-light pr-2">
           <p class="col-md-8 text-left mb-0 py-0 mt-2"> Self-Help Book  </p>
           <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="buySelfHelpBook"> <p class="mb-1 pb-0 "><span id="selfHelpBookDOMprice"></span>$</p> </button>
         </div>
       </div>
       <!-- Fiction Book -->
       <div id="shopFictionBook" class="col-md-4 px-0">
-        <div class="row px-0 mx-0 bg-secondary py-1 border pr-2">
+        <div class="row px-0 mx-0 bg-secondary py-1 border border-light pr-2">
           <p class="col-md-8 text-left mb-0 py-0 mt-2"> Fiction Book  </p>
           <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="buyFictionBook"> <p class="mb-1 pb-0 "><span id="fictionBookDOMprice"></span>$</p> </button>
         </div>
       </div>
       <!-- Professional Literature -->
       <div id="shopProfLiterature" class="col-md-4 px-0">
-        <div class="row px-0 mx-0 bg-secondary py-1 border pr-2">
+        <div class="row px-0 mx-0 bg-secondary py-1 border border-light pr-2">
           <p class="col-md-8 text-left mb-0 py-0 mt-2"> Professional Literature </p>
           <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="buyProfLiterature"> <p class="mb-1 pb-0 "><span id="profLiteratureDOMprice"></span>$</p> </button>
         </div>
       </div>
       <!-- Medical Test -->
       <div id="shopMedicalTest" class="col-md-4 px-0">
-        <div class="row px-0 mx-0 bg-secondary py-1 border pr-2">
+        <div class="row px-0 mx-0 bg-secondary py-1 border border-light pr-2">
           <p class="col-md-8 text-left mb-0 py-0 mt-2"> Medical Check-Up </p>
           <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="buyMedicalTest"> <p class="mb-1 pb-0 "><span id="medicalTestDOMprice"></span>$</p> </button>
         </div>
       </div>
       <!-- Short Vacation -->
       <div id="shopShortVacation" class="col-md-4 px-0">
-        <div class="row px-0 mx-0 bg-secondary py-1 border pr-2">
+        <div class="row px-0 mx-0 bg-secondary py-1 border border-light pr-2">
           <p class="col-md-8 text-left mb-0 py-0 mt-2"> Short Vacation </p>
           <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="buyShortVacation"> <p class="mb-1 pb-0 "><span id="shortVacationDOMprice"></span>$</p> </button>
         </div>
@@ -461,101 +501,101 @@
       
 
       <!-- Permanent -->
+      <h4 class="col-md-12 bg-primary text-center py-3 mb-0">Permanent Items</h4>
       <div class="col-md-12">
-        <h4 class="text-center">Permanent Items</h4>
       </div>
       <!-- Cheap Phone -->
       <div id="shopCheapPhone" class="col-md-4 px-0">
-        <div class="row px-0 mx-0 bg-secondary py-1 border pr-2">
+        <div class="row px-0 mx-0 bg-secondary py-1 border border-light pr-2">
           <p class="col-md-8 text-left mb-0 py-0 mt-2"> Cheap Mobile Phone </p>
           <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="buyCheapPhone"> <p class="mb-1 pb-0 "><span id="cheapPhoneDOMprice"></span>$</p> </button>
         </div>
       </div>
       <!-- Phone -->
       <div id="shopPhone" class="col-md-4 px-0">
-        <div class="row px-0 mx-0 bg-secondary py-1 border pr-2">
+        <div class="row px-0 mx-0 bg-secondary py-1 border border-light pr-2">
           <p class="col-md-8 text-left mb-0 py-0 mt-2"> Mobile Phone </p>
           <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="buyPhone"> <p class="mb-1 pb-0 "><span id="phoneDOMprice"></span>$</p> </button>
         </div>
       </div>
       <!-- Lux Phone -->
       <div id="shopLuxPhone" class="col-md-4 px-0">
-        <div class="row px-0 mx-0 bg-secondary py-1 border pr-2">
+        <div class="row px-0 mx-0 bg-secondary py-1 border border-light pr-2">
           <p class="col-md-8 text-left mb-0 py-0 mt-2"> Luxury Phone </p>
           <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="buyLuxPhone"> <p class="mb-1 pb-0 "><span id="luxPhoneDOMprice"></span>$</p> </button>
         </div>
       </div>
       <!-- Rusty Car -->
       <div id="shopRustyCar" class="col-md-4 px-0">
-        <div class="row px-0 mx-0 bg-secondary py-1 border pr-2">
+        <div class="row px-0 mx-0 bg-secondary py-1 border border-light pr-2">
           <p class="col-md-8 text-left mb-0 py-0 mt-2"> Car </p>
           <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="buyRustyCar"> <p class="mb-1 pb-0"><span id="rustyCarDOMprice"></span>$</p> </button>
         </div>
       </div>
       <!-- Owned Car -->
       <div id="shopOwnedCar" class="col-md-4 px-0">
-        <div class="row px-0 mx-0 bg-secondary py-1 border pr-2">
+        <div class="row px-0 mx-0 bg-secondary py-1 border border-light pr-2">
           <p class="col-md-8 text-left mb-0 py-0 mt-2"> Owned Car </p>
           <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="buyOwnedCar"> <p class="mb-1 pb-0"><span id="ownedCarDOMprice"></span>$</p> </button>
         </div>
       </div>
       <!-- New Car -->
       <div id="shopNewCar" class="col-md-4 px-0">
-        <div class="row px-0 mx-0 bg-secondary py-1 border pr-2">
+        <div class="row px-0 mx-0 bg-secondary py-1 border border-light pr-2">
           <p class="col-md-8 text-left mb-0 py-0 mt-2"> New Car </p>
           <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="buyNewCar"> <p class="mb-1 pb-0"><span id="newCarDOMprice"></span>$</p> </button>
         </div>
       </div>
       <!-- Luxury Car -->
       <div id="shopLuxCar" class="col-md-4 px-0">
-        <div class="row px-0 mx-0 bg-secondary py-1 border pr-2">
+        <div class="row px-0 mx-0 bg-secondary py-1 border border-light pr-2">
           <p class="col-md-8 text-left mb-0 py-0 mt-2"> Luxury Car </p>
           <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="buyLuxCar"> <p class="mb-1 pb-0"><span id="luxCarDOMprice"></span>$</p> </button>
         </div>
       </div>
       <!-- Sports Car -->
       <div id="shopSportsCar" class="col-md-4 px-0">
-        <div class="row px-0 mx-0 bg-secondary py-1 border pr-2">
+        <div class="row px-0 mx-0 bg-secondary py-1 border border-light pr-2">
           <p class="col-md-8 text-left mb-0 py-0 mt-2"> Sports Car </p>
           <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="buySportsCar"> <p class="mb-1 pb-0"><span id="sportsCarDOMprice"></span>$</p> </button>
         </div>
       </div>
       <!-- Plane -->
       <div id="shopPlane" class="col-md-4 px-0">
-        <div class="row px-0 mx-0 bg-secondary py-1 border pr-2">
+        <div class="row px-0 mx-0 bg-secondary py-1 border border-light pr-2">
           <p class="col-md-8 text-left mb-0 py-0 mt-2"> Plane </p>
           <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="buyPlane"> <p class="mb-1 pb-0"><span id="planeDOMprice"></span>$</p> </button>
         </div>
       </div>
       <!-- Luxury Watch -->
       <div id="shopLuxWatch" class="col-md-4 px-0">
-        <div class="row px-0 mx-0 bg-secondary py-1 border pr-2">
+        <div class="row px-0 mx-0 bg-secondary py-1 border border-light pr-2">
           <p class="col-md-8 text-left mb-0 py-0 mt-2"> Luxury Watch </p>
           <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="buyLuxWatch"> <p class="mb-1 pb-0"><span id="luxWatchDOMprice"></span>$</p> </button>
         </div>
       </div>
 
       <!-- Medicine -->
+      <h4 class="col-md-12 bg-primary text-center py-3 mb-0">Medicine</h4>
       <div class="col-md-12">
-        <h4 class="text-center">Medicine</h4>
       </div>
       <!-- Cold Treatment -->
       <div id="shopTreatmentCold" class="col-md-4 px-0">
-        <div class="row px-0 mx-0 bg-secondary py-1 border pr-2">
+        <div class="row px-0 mx-0 bg-secondary py-1 border border-light pr-2">
           <p class="col-md-8 text-left mb-0 py-0 mt-2"> Cold Treatment </p>
           <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="buyTreatmentCold"> <p class="mb-1 pb-0"><span id="tColdDOMprice"></span>$</p> </button>
         </div>
       </div>
       <!-- Diarhhea Treatment -->
       <div id="shopTreatmentDiarrhea" class="col-md-4 px-0">
-        <div class="row px-0 mx-0 bg-secondary py-1 border pr-2">
+        <div class="row px-0 mx-0 bg-secondary py-1 border border-light pr-2">
           <p class="col-md-8 text-left mb-0 py-0 mt-2"> Diarrhea Treatment </p>
           <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="buyTreatmentDiarrhea"> <p class="mb-1 pb-0"><span id="tDiarrheaDOMprice"></span>$</p> </button>
         </div>
       </div>
       <!-- Cancer Treatment -->
       <div id="shopTreatmentCancer" class="col-md-4 px-0">
-        <div class="row px-0 mx-0 bg-secondary py-1 border pr-2">
+        <div class="row px-0 mx-0 bg-secondary py-1 border border-light pr-2">
           <p class="col-md-8 text-left mb-0 py-0 mt-2"> Cancer Treatment </p>
           <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="buyTreatmentCancer"> <p class="mb-1 pb-0"><span id="tCancerDOMprice"></span>$</p> </button>
         </div>
