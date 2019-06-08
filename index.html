@@ -77,7 +77,7 @@
       </div>
       <div class="row col-md-4 mx-auto">
         <h3 class="col-md-6 bg-danger pt-2 font-carter shadow-red">Energy</h3>
-        <h4 class="col-md-6 bg-white text-dark py-2"><span id="statEnergy"></span></h4>
+        <h4 class="col-md-6 bg-white text-dark py-2"><span id="statEnergy"></span> / 10</h4>
       </div>
       <p class="row col-md-4 mx-auto mt-3 text-white">All of this didn't depend on you. Now you are a grown up and you choose everything by yourself. Almost. Make thoughtful decisions, but don't forget - human life is full of random and wild sh#t.</p>
       <div class="row justify-content-center">
@@ -95,7 +95,7 @@
   
         <!-- MAIN INDICATORS -->
         <h2 class="col-md-6 bg-primary text-white mx-auto mb-0 font-carter border-b-3">Your Stats</h2>
-        <div class="container">
+        <div class="container sticky-top">
           <!-- Months -->
           <div class="row justify-content-center">
             <div class="col-md-12 bg-secondary text-white">
@@ -218,10 +218,10 @@
             <div class="col-md-4 bg-secondary text-white px-0 border-sides-3">
               <h3 class="bg-primary text-dark py-2 font-carter">Events</h3>
               <!-- Illnesses -->
-              <!-- Cold -->
-              <div id="eventMigraine">
+              <!-- Headache -->
+              <div id="eventHeadache">
                 <div class="row col-md-12 bg-light px-0 mx-0 py-2">
-                  <p class="col-md-11 text-left py-0 my-0 pt-1">Migraine</p>
+                  <p class="col-md-11 text-left py-0 my-0 pt-1">Headache</p>
                 </div>
               </div>
               <!-- Cold -->
@@ -230,22 +230,29 @@
                   <p class="col-md-11 text-left py-0 my-0 pt-1">Cold</p>
                 </div>
               </div>
-              <!-- Diarrhea -->
-              <div id="eventDiarrhea">
+              <!-- Stomachache -->
+              <div id="eventStomachache">
                 <div class="row col-md-12 bg-light px-0 mx-0 py-2">
-                  <p class="col-md-11 text-left py-0 my-0 pt-1">Diarrhea</p>
+                  <p class="col-md-11 text-left py-0 my-0 pt-1">Stomachache</p>
+                </div>
+              </div>
+              <!-- Toothache -->
+              <div id="eventToothache">
+                <div class="row col-md-12 bg-light px-0 mx-0 py-2">
+                  <p class="col-md-11 text-left py-0 my-0 pt-1">Toothache</p>
+                </div>
+              </div>
+
+              <!-- Depression -->
+              <div id="eventDepression">
+                <div class="row col-md-12 bg-light px-0 mx-0 py-2">
+                  <p class="col-md-11 text-left py-0 my-0 pt-1">Depression</p>
                 </div>
               </div>
               <!-- Cancer -->
               <div id="eventCancer">
                 <div class="row col-md-12 bg-light px-0 mx-0 py-2">
                   <p class="col-md-11 text-left py-0 my-0 pt-1">Cancer</p>
-                </div>
-              </div>
-              <!-- Depression -->
-              <div id="eventDepression">
-                <div class="row col-md-12 bg-light px-0 mx-0 py-2">
-                  <p class="col-md-11 text-left py-0 my-0 pt-1">Depression</p>
                 </div>
               </div>
   
@@ -426,8 +433,6 @@
           <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="buyAlcohol"> <p class="mb-1 pb-0 "><span id="alcoholDOMprice"></span>$</p> </button>
         </div>
       </div>
-
-
       <!-- Drugs -->
       <div id="shopDrugs" class="col-md-4 px-0">
         <div class="row px-0 mx-0 bg-secondary py-1 border border-light pr-2">
@@ -579,6 +584,13 @@
       <h4 class="col-md-12 bg-primary text-center py-3 mb-0">Medicine</h4>
       <div class="col-md-12">
       </div>
+      <!-- Headache Treatment -->
+      <div id="shopTreatmentHeadache" class="col-md-4 px-0">
+        <div class="row px-0 mx-0 bg-secondary py-1 border border-light pr-2">
+          <p class="col-md-8 text-left mb-0 py-0 mt-2"> Headache Treatment </p>
+          <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="buyTreatmentHeadache"> <p class="mb-1 pb-0"><span id="tHeadacheDOMprice"></span>$</p> </button>
+        </div>
+      </div>
       <!-- Cold Treatment -->
       <div id="shopTreatmentCold" class="col-md-4 px-0">
         <div class="row px-0 mx-0 bg-secondary py-1 border border-light pr-2">
@@ -587,10 +599,24 @@
         </div>
       </div>
       <!-- Diarhhea Treatment -->
-      <div id="shopTreatmentDiarrhea" class="col-md-4 px-0">
+      <div id="shopTreatmentStomachache" class="col-md-4 px-0">
         <div class="row px-0 mx-0 bg-secondary py-1 border border-light pr-2">
-          <p class="col-md-8 text-left mb-0 py-0 mt-2"> Diarrhea Treatment </p>
-          <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="buyTreatmentDiarrhea"> <p class="mb-1 pb-0"><span id="tDiarrheaDOMprice"></span>$</p> </button>
+          <p class="col-md-8 text-left mb-0 py-0 mt-2"> Stomachache Treatment </p>
+          <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="buyTreatmentStomachache"> <p class="mb-1 pb-0"><span id="tStomachacheDOMprice"></span>$</p> </button>
+        </div>
+      </div>
+      <!-- Visit Dentist(Toothache treatment) -->
+      <div id="shopVisitDentist" class="col-md-4 px-0">
+        <div class="row px-0 mx-0 bg-secondary py-1 border border-light pr-2">
+          <p class="col-md-8 text-left mb-0 py-0 mt-2"> Visit Dentist </p>
+          <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="buyVisitDentist"> <p class="mb-1 pb-0"><span id="visitDentistDOMprice"></span>$</p> </button>
+        </div>
+      </div>
+      <!-- Depression Treatment -->
+      <div id="shopTreatmentDepression" class="col-md-4 px-0">
+        <div class="row px-0 mx-0 bg-secondary py-1 border border-light pr-2">
+          <p class="col-md-8 text-left mb-0 py-0 mt-2"> Depression Treatment </p>
+          <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="buyTreatmentDepression"> <p class="mb-1 pb-0"><span id="tDepressionDOMprice"></span>$</p> </button>
         </div>
       </div>
       <!-- Cancer Treatment -->
@@ -600,12 +626,13 @@
           <button class="col-md-4 btn btn-danger mb-0 pb-0" type="button" id="buyTreatmentCancer"> <p class="mb-1 pb-0"><span id="tCancerDOMprice"></span>$</p> </button>
         </div>
       </div>
+      
     </div>
   </div>
 
   <!-- DEATH DIV -->
   <div clas="container text-center" id="deathDIV">
-    <div class="col-md-12 mx-auto text-center">
+    <div class="col-md-12 mx-auto text-center text-white">
       <h4 class="mt-3" id="message">Unfortunately, you died! </h4>
         <p class="lead mb-5">Yet, somehow you managed to survive <span class="font-weight-bold" id="deathMonths"></span> months in this cruel world (or <span class="font-weight-bold" id="deathYears"></span> full years)!</p></p>
         <div class="row mt-5 justify-content-center">

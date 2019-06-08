@@ -70,37 +70,37 @@ function Routine(nameR, typeR, moneyR, healthR, moraleR, intelligenceR, prestige
 };
 // Routine Variables
 // Job
-let unemployed = new Routine('Unemployed', 'job', 0, -5, -5, 0, -5, true, 0, document.querySelector("#unemployedJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-let courier = new Routine('Courier', 'job', 500, -3, -3, 0, -2, true, 0, document.querySelector("#courierJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 6, 600, 12, 800, 24, 900, 36, 1200, 0, 0, 0, 0)
-let retailWorker = new Routine('Retail worker', 'job', 600, -4, -3, 0, -2, true, 0, document.querySelector("#retailJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 6, 800, 12, 1000, 24, 1200, 48, 2000, 0, 0, 0, 0);
-let waiter = new Routine('Waiter', 'job', 800, -3, -4, 0, -2, true, 0, document.querySelector("#waiterJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 6, 1000, 12, 1200, 24, 1400, 36, 1800, 0, 0, 0, 0);
-let constructionWorker = new Routine('Construction worker', 'job', 800, -4, -3, 0, -1, false, 0, document.querySelector("#constructionWorkerJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 12, 1000, 24, 2000, 60, 4000, 120, 5000, 30, 0, 0, 0);
-let hrManager = new Routine('HR manager', 'job', 1000, -3, -3, 0, -1, false, 0, document.querySelector("#hrManagerJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 12, 1200, 24, 1600, 48, 2000, 60, 2500, 0, 30, 0, 0);
-let manager = new Routine('Manager', 'job', 1000, -3, -3, 0, -1, false, 0, document.querySelector("#managerJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 12, 1400, 24, 1800, 48, 2200, 72, 3500, 0, 0, 30, 0);
-let hairStylist = new Routine('Hair stylist', 'job', 900, -3, -3, 0, -1, false, 0, document.querySelector("#hairStylistJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 6, 1000, 18, 1400, 36, 2000, 60, 2800, 0, 0, 0, 30);
-let fitnessCoach = new Routine('Fitness Coach', 'job', 600, -3, -3, 0, 0, false, 0, document.querySelector("#fitnessCoachJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 6, 800, 12, 1200, 36, 2000, 60, 3500, 50, 0, 0, 0);
-let salesman = new Routine('Salesman', 'job', 1000, -3, -3, 0, 0, false, 0, document.querySelector("#salesmanJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 12, 1300,	24,	1800,	48,	2500,	84,	4500,	0, 50, 0, 0);
-let journalist = new Routine('Jouranlist', 'job', 1200, -3, -4,	0,	0, false,	0, document.querySelector("#journalistJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 12,	1500,	24,	2000,	48,	2500,	72,	3300,	0, 0, 50,	0);
-let model	= new Routine('Model', 'job', 500, -3, -3, 0, 0, false, 0, document.querySelector("#modelJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 6, 800, 12, 1200, 36, 2000, 60, 3000, 0, 0,	0, 50);
-let engineer = new Routine('Engineer', 'job', 2000, -3, -3, 1, 1, false, 0, document.querySelector("#engineerJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 24, 3000, 48, 4000, 96, 7000, 120,	13000, 0, 0, 80, 0);
-let lawyer = new Routine('Lawyer', 'job', 1500, -3, -2, 0, 1, false, 0, document.querySelector("#lawyerJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 24, 2500, 48, 3500, 96, 5500, 120, 10000, 0, 0, 60, 60);
-let teacher = new Routine('Teacher', 'job', 1000, -2, -2, 1, 1, false, 0, document.querySelector("#teacherJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 12, 1500, 24, 2000, 48, 2500, 72, 3300, 0, 40, 60, 0);
-let marketingManager = new Routine('Marketing Manager', 'job', 1500, -3, -4, 0, 1, false, 0, document.querySelector("#marketingManagerJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 12, 2000, 24, 3500, 36, 5500, 72, 10000, 0, 0, 0, 0);
-let doctor = new Routine('Doctor','job', 1200, -3, -3, 1, 2, false, 0, document.querySelector("#doctorJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 24, 2000, 48, 3500, 96, 10000, 240, 20000, 0, 50, 80, 0);
-let composer = new Routine('Composer', 'job', 3000, -3, -3, 1, 2, false, 0, document.querySelector("#composerJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 60, 5000, 120, 8000, 240, 20000, 360, 40000, 0, 70, 70, 70);
-let professor = new Routine('Professor', 'job', 1600, -3, -2, 1, 2, false, 0, document.querySelector("#professorJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 24, 2000, 60, 3000, 120, 4000, 240, 7000, 0, 50, 70, 70);
-let scientist = new Routine('Scientist','job', 2000, -3, -1, 2, 2, false, 0, document.querySelector("#scientistJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 12, 3000, 60, 3500, 120, 4500, 360, 8000, 0, 0, 90, 0);
+let unemployed = new Routine('Unemployed', 'job', 0, 0, -5, 0, -5, true, 0, document.querySelector("#unemployedJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+let courier = new Routine('Courier', 'job', 500, 0, -3, 0, -2, true, 0, document.querySelector("#courierJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 6, 600, 12, 800, 24, 900, 36, 1200, 0, 0, 0, 0)
+let retailWorker = new Routine('Retail worker', 'job', 600, 0, -3, 0, -2, true, 0, document.querySelector("#retailJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 6, 800, 12, 1000, 24, 1200, 48, 2000, 0, 0, 0, 0);
+let waiter = new Routine('Waiter', 'job', 800, 0, -4, 0, -2, true, 0, document.querySelector("#waiterJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 6, 1000, 12, 1200, 24, 1400, 36, 1800, 0, 0, 0, 0);
+let constructionWorker = new Routine('Construction worker', 'job', 800, -1, -3, 0, -1, false, 0, document.querySelector("#constructionWorkerJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 12, 1000, 24, 2000, 60, 4000, 120, 5000, 30, 0, 0, 0);
+let hrManager = new Routine('HR manager', 'job', 1000, 0, -3, 0, -1, false, 0, document.querySelector("#hrManagerJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 12, 1200, 24, 1600, 48, 2000, 60, 2500, 0, 30, 0, 0);
+let manager = new Routine('Manager', 'job', 1000, 0, -3, 0, -1, false, 0, document.querySelector("#managerJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 12, 1400, 24, 1800, 48, 2200, 72, 3500, 0, 0, 30, 0);
+let hairStylist = new Routine('Hair stylist', 'job', 900, 0, -3, 0, -1, false, 0, document.querySelector("#hairStylistJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 6, 1000, 18, 1400, 36, 2000, 60, 2800, 0, 0, 0, 30);
+let fitnessCoach = new Routine('Fitness Coach', 'job', 600, 1, -3, 0, 0, false, 0, document.querySelector("#fitnessCoachJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 6, 800, 12, 1200, 36, 2000, 60, 3500, 50, 0, 0, 0);
+let salesman = new Routine('Salesman', 'job', 1000, 0, -3, 0, 0, false, 0, document.querySelector("#salesmanJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 12, 1300,	24,	1800,	48,	2500,	84,	4500,	0, 50, 0, 0);
+let journalist = new Routine('Jouranlist', 'job', 1200, 0, -4,	0,	0, false,	0, document.querySelector("#journalistJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 12,	1500,	24,	2000,	48,	2500,	72,	3300,	0, 0, 50,	0);
+let model	= new Routine('Model', 'job', 500, 0, -3, 0, 0, false, 0, document.querySelector("#modelJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 6, 800, 12, 1200, 36, 2000, 60, 3000, 0, 0,	0, 50);
+let engineer = new Routine('Engineer', 'job', 2000, 0, -3, 1, 1, false, 0, document.querySelector("#engineerJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 24, 3000, 48, 4000, 96, 7000, 120,	13000, 0, 0, 80, 0);
+let lawyer = new Routine('Lawyer', 'job', 1500, 0, -2, 0, 1, false, 0, document.querySelector("#lawyerJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 24, 2500, 48, 3500, 96, 5500, 120, 10000, 0, 0, 60, 60);
+let teacher = new Routine('Teacher', 'job', 1000, 0, -2, 1, 1, false, 0, document.querySelector("#teacherJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 12, 1500, 24, 2000, 48, 2500, 72, 3300, 0, 40, 60, 0);
+let marketingManager = new Routine('Marketing Manager', 'job', 1500, 0, -4, 0, 1, false, 0, document.querySelector("#marketingManagerJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 12, 2000, 24, 3500, 36, 5500, 72, 10000, 0, 0, 0, 0);
+let doctor = new Routine('Doctor','job', 1200, 0, -3, 1, 2, false, 0, document.querySelector("#doctorJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 24, 2000, 48, 3500, 96, 10000, 240, 20000, 0, 50, 80, 0);
+let composer = new Routine('Composer', 'job', 3000, 0, -3, 1, 2, false, 0, document.querySelector("#composerJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 60, 5000, 120, 8000, 240, 20000, 360, 40000, 0, 70, 70, 70);
+let professor = new Routine('Professor', 'job', 1600, 0, -2, 1, 2, false, 0, document.querySelector("#professorJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 24, 2000, 60, 3000, 120, 4000, 240, 7000, 0, 50, 70, 70);
+let scientist = new Routine('Scientist','job', 2000, 0, -1, 2, 2, false, 0, document.querySelector("#scientistJob"), document.querySelector("#job"), document.querySelector("#jobMonthly"), 12, 3000, 60, 3500, 120, 4500, 360, 8000, 0, 0, 90, 0);
 // Rent
 let noRent = new Routine('Homeless', 'rent', 0, -1, -5, 0, -5, true, 0, document.querySelector("#noRent"), document.querySelector("#rent"), document.querySelector("#rentMonthly"));
-let roomRent = new Routine('Rent a room', 'rent', -200, 1, 1, 0, -1, true, 0, document.querySelector("#roomRent"), document.querySelector("#rent"), document.querySelector("#rentMonthly"));
-let flatRent = new Routine('Rent apartment', 'rent', -800, 1, 2, 0, 0, true, 0, document.querySelector("#flatRent"), document.querySelector("#rent"), document.querySelector("#rentMonthly"));
-let houseRent = new Routine('Rent house', 'rent', -1500, 1, 3, 0, 1, true, 0, document.querySelector("#houseRent"), document.querySelector("#rent"), document.querySelector("#rentMonthly"));
+let roomRent = new Routine('Rent a room', 'rent', -200, 0, 1, 0, -1, true, 0, document.querySelector("#roomRent"), document.querySelector("#rent"), document.querySelector("#rentMonthly"));
+let flatRent = new Routine('Rent apartment', 'rent', -800, 0, 2, 0, 0, true, 0, document.querySelector("#flatRent"), document.querySelector("#rent"), document.querySelector("#rentMonthly"));
+let houseRent = new Routine('Rent house', 'rent', -1500, 0, 3, 0, 1, true, 0, document.querySelector("#houseRent"), document.querySelector("#rent"), document.querySelector("#rentMonthly"));
 // Diet
 let starveFood = new Routine('Starve', 'diet', 0, -20, -20, 0, -3, true, 0, document.querySelector("#starveFood"), document.querySelector("#food"), document.querySelector("#foodMonthly"));
 let junkFood = new Routine('Junk Food', 'diet', -100, -1, 0, 0, 0, true, 0, document.querySelector("#junkFood"), document.querySelector("#food"), document.querySelector("#foodMonthly"));
-let cheapFood = new Routine('Cheap Food', 'diet', -300, 1, 1, 0, 0, true, 0, document.querySelector("#cheapFood"), document.querySelector("#food"), document.querySelector("#foodMonthly"));
-let balancedFood = new Routine('Balanced Diet', 'diet', -500, 2, 2, 0, 0, true, 0, document.querySelector("#balancedFood"), document.querySelector("#food"), document.querySelector("#foodMonthly"));
-let delicFood = new Routine('Delicacies', 'diet', -1000, 2, 3, 0, 2, true, 0, document.querySelector("#delicFood"), document.querySelector("#food"), document.querySelector("#foodMonthly"));
+let cheapFood = new Routine('Cheap Food', 'diet', -300, 0, 1, 0, 0, true, 0, document.querySelector("#cheapFood"), document.querySelector("#food"), document.querySelector("#foodMonthly"));
+let balancedFood = new Routine('Balanced Diet', 'diet', -500, 1, 2, 0, 0, true, 0, document.querySelector("#balancedFood"), document.querySelector("#food"), document.querySelector("#foodMonthly"));
+let delicFood = new Routine('Delicacies', 'diet', -1000, 1, 3, 0, 2, true, 0, document.querySelector("#delicFood"), document.querySelector("#food"), document.querySelector("#foodMonthly"));
 // Hobby
 let noHobby = new Routine('No Hobby', 'hobby', 0, 0, 0, 0, 0, true, 0, document.querySelector("#noHobby"), document.querySelector("#hobby"), document.querySelector("#hobbyMonthly"));
 let hiking = new Routine('Hiking', 'hobby', -100, 1, 0, 0, 0, true, 0, document.querySelector("#hikingHobby"), document.querySelector("#hobby"), document.querySelector("#hobbyMonthly"));
@@ -142,11 +142,14 @@ function Event(nameE, typeE, moneyE, healthE, moraleE, intelligenceE, prestigeE,
   this.prestigeCoeffE = prestigeCoeffE; //Health+Morale+Intelligence+Prestige Coeffs Should not be more than 1
 };
 // Routine Variables
-let migraine = new Event('migraine', 'illness', 0, 0, -1, 0, 0, false, 0.085, 0, 1, document.querySelector("#eventMigraine"), 1, 0, 0, 0);
-let cold = new Event('cold',' illness', 0, -1, -1, 0, 0, false, 0.086, 0, 1, document.querySelector("#eventCold"), 0.5, 0.5, 0, 0);
-let diarrhea = new Event('diarrhea', 'illness', 0, 0, -2, 0, 0, false, 0.086, 0, 3, document.querySelector("#eventDiarrhea"), 1, 0, 0, 0);
+// Illnesses
+let headache = new Event('headache', 'illness', 0, 0, -1, 0, 0, false, 0.06, 0, 1, document.querySelector("#eventHeadache"), 1, 0, 0, 0);
+let cold = new Event('cold',' illness', 0, -1, -1, 0, 0, false, 0.04, 0, 1, document.querySelector("#eventCold"), 0.5, 0.5, 0, 0);
+let stomachache = new Event('stomachache', 'illness', 0, 0, -2, 0, 0, false, 0.04, 0, 3, document.querySelector("#eventStomachache"), 1, 0, 0, 0);
 let cancer = new Event('cancer', 'illness', 0, -5, -5, 0, 0, false, 0.0001, 0, 9999, document.querySelector("#eventCancer"), 1, 0, 0, 0);
-let depression = new Event('depression', 'illness', 0, 0, -3, 0, 0, false, 0.004, 0, 9999, document.querySelector("#eventDepression"), 0.3, 0.3, 0.4, 0);
+let depression = new Event('depression', 'illness', 0, 0, -3, 0, 0, false, 0.5, 0, 9999, document.querySelector("#eventDepression"), 0.3, 0.3, 0.4, 0);
+let toothache	= new Event('toothache', 'illness', 0, 0, -1, 0, 0, false, 0.04, 0, 9999, document.querySelector("#eventToothache"), 1, 0, 0, 0);
+// Accidents
 let lostWallet = new Event('lost your wallet', 'accident', -100, 0, -1, 0, 0, false, 0.0001, 0, 0, document.querySelector("#eventLostWallet"), 0, 0.3, 0.7, 0);
 let theft = new Event('theft', 'accident', -1000, 0, -2, 0, 0, false, 0.0013, 0, 0, document.querySelector("#eventTheft"), 0, 0, 0, 1);
 let robery = new Event('robery', 'accident', -10000, 0, -5, 0, 0, false, 0.0007, 0, 0, document.querySelector("#eventRobery"), 0, 0, 0, 1);
@@ -159,7 +162,7 @@ let brokeLeg = new Event('broke leg', 'accident', 0, -3, -2, 0, 0, false, 0.005,
 let brokeBack = new Event('broke back', 'accident', 0, -10, -5, 0, 0, false, 0.0025, 0, 0, document.querySelector("#eventBrokeBack"), 0.8, 0, 0.2, 0);
 let brokeNeck	= new Event('broke neck', 'accident', 0, -20, -10, 0, 0, false, 0.001, 0, 0, document.querySelector("#eventBrokeNeck"), 0.9, 0, 0.1, 0);
 // Routine Array
-eventsArray = [migraine, cold, diarrhea, cancer, depression, lostWallet, theft, robery, scam, extortion, blackmail, fire, brokeArm, brokeLeg, brokeBack, brokeNeck];
+eventsArray = [headache, cold, stomachache, cancer, depression, toothache, lostWallet, theft, robery, scam, extortion, blackmail, fire, brokeArm, brokeLeg, brokeBack, brokeNeck];
 
 // ITEMS FROM SHOP
 // Shop Item Function
@@ -189,7 +192,7 @@ function ShopItem(nameI, typeI, buyI, healthI, moraleI, intelligenceI, prestigeI
   this.DOMmonthlyCostI = DOMmonthlyCostI;
 };
 // Shop Items Variables - permanent items
-let cheapPhone = new ShopItem('heap phone', 'permanent', 100, 0, 1, 0, -1, 0, 0, false, -10, 24, undefined, 0, document.querySelector('#shopCheapPhone'), document.querySelector('#buyCheapPhone'), document.querySelector('#ownedCheapPhone'), document.querySelector('#sellCheapPhone'), document.querySelector('#cheapPhoneDOMprice'), document.querySelector('#cheapPhoneDOMpriceSell'), document.querySelector('#cheapPhoneDOMmonthlyCost'));
+let cheapPhone = new ShopItem('cheap phone', 'permanent', 100, 0, 1, 0, -1, 0, 0, false, -10, 24, undefined, 0, document.querySelector('#shopCheapPhone'), document.querySelector('#buyCheapPhone'), document.querySelector('#ownedCheapPhone'), document.querySelector('#sellCheapPhone'), document.querySelector('#cheapPhoneDOMprice'), document.querySelector('#cheapPhoneDOMpriceSell'), document.querySelector('#cheapPhoneDOMmonthlyCost'));
 let phone = new ShopItem('phone', 'permanent', 200, 0, 1, 0, 0, 0, 0, false, -10, 36, undefined, 0, document.querySelector('#shopPhone'), document.querySelector('#buyPhone'), document.querySelector('#ownedPhone'), document.querySelector('#sellPhone'), document.querySelector('#phoneDOMprice'), document.querySelector('#phoneDOMpriceSell'), document.querySelector('#phoneDOMmonthlyCost'));
 let luxPhone = new ShopItem('latest phone', 'permanent', 1000, 0, 1, 0, 1, 0, 0, false, -10, 12, undefined, 1, document.querySelector('#shopLuxPhone'), document.querySelector('#buyLuxPhone'), document.querySelector('#ownedLuxPhone'), document.querySelector('#sellLuxPhone'), document.querySelector('#luxPhoneDOMprice'), document.querySelector('#luxPhoneDOMpriceSell'), document.querySelector('#luxPhoneDOMmonthlyCost'));
 let rustyCar = new ShopItem('rusty car', 'permanent', 2000, -1, 1, 0, -1, 0, 0, false, -300, 12, undefined, -1, document.querySelector('#shopRustyCar'), document.querySelector('#buyRustyCar'), document.querySelector('#ownedRustyCar'), document.querySelector('#sellRustyCar'), document.querySelector('#rustyCarDOMprice'), document.querySelector('#rustyCarDOMpriceSell'), document.querySelector('#rustyCarDOMmonthlyCost'));
@@ -212,11 +215,14 @@ let profLiterature = new ShopItem('professional literature', 'instant', 100, 0, 
 let medicalTest = new ShopItem('medical check-up', 'instant', 500, 2, -2, 0, 0, -6, 0, false, undefined, undefined, 1, undefined, document.querySelector('#shopMedicalTest'), document.querySelector('#buyMedicalTest'), undefined, undefined, document.querySelector('#medicalTestDOMprice'), undefined, undefined);
 let shortVacation = new ShopItem('short vacation', 'instant', 800, 1, 1, 0, 0, -10, 0, false, undefined, undefined, 1, undefined, document.querySelector('#shopShortVacation'), document.querySelector('#buyShortVacation'), undefined, undefined, document.querySelector('#shortVacationDOMprice'), undefined, undefined);
 // Shop Items Variables - medicine
-let treatmentCold = new ShopItem('cold treatment', 'medicine', 50, 0, -1, 0, 0, 0, 0, false, undefined, undefined, 0.5, undefined, document.querySelector('#shopTreatmentCold'), document.querySelector('#buyTreatmentCold'), undefined, undefined, document.querySelector('#tColdDOMprice'), undefined, undefined);
-let treatmentDiarrhea = new ShopItem('diarrhea treatment', 'medicine', 10, 0, -1, 0, 0, 0, 0, false, undefined, undefined, 0.9, undefined, document.querySelector('#shopTreatmentDiarrhea'), document.querySelector('#buyTreatmentDiarrhea'), undefined, undefined, document.querySelector('#tDiarrheaDOMprice'), undefined, undefined);
+let treatmentHeadache	= new ShopItem('headache treatment', 'medicine', 10, 0, 0, 0, 0, 0, 0, false, undefined, undefined, 0.8, undefined, document.querySelector('#shopTreatmentHeadache'), document.querySelector('#buyTreatmentHeadache'), undefined, undefined, document.querySelector('#tHeadacheDOMprice'), undefined, undefined);
+let treatmentCold = new ShopItem('cold treatment', 'medicine', 50, 0, 0, 0, 0, 0, 0, false, undefined, undefined, 0.5, undefined, document.querySelector('#shopTreatmentCold'), document.querySelector('#buyTreatmentCold'), undefined, undefined, document.querySelector('#tColdDOMprice'), undefined, undefined);
+let treatmentStomachache = new ShopItem('stomachache treatment', 'medicine', 10, 0, 0, 0, 0, 0, 0, false, undefined, undefined, 0.9, undefined, document.querySelector('#shopTreatmentStomachache'), document.querySelector('#buyTreatmentStomachache'), undefined, undefined, document.querySelector('#tStomachacheDOMprice'), undefined, undefined);
+let visitDentist	= new ShopItem('visit dentist', 'medicine', 300, 0, -1, 0, 0, 0, 0, false, undefined, undefined, 1, undefined, document.querySelector('#shopVisitDentist'), document.querySelector('#buyVisitDentist'), undefined, undefined, document.querySelector('#visitDentistDOMprice'), undefined, undefined);
+let treatmentDepression	= new ShopItem('depression treatment', 'medicine', 100, 0, 0, 0, 0, 0, 0, false, undefined, undefined, 0.1, undefined, document.querySelector('#shopTreatmentDepression'), document.querySelector('#buyTreatmentDepression'), undefined, undefined,document.querySelector('#tDepressionDOMprice'), undefined, undefined);
 let treatmentCancer = new ShopItem('cancer treatment', 'medicine', 10000, 0, -3, 0, 0, 0, 0, false, undefined, undefined, 0.1, undefined, document.querySelector('#shopTreatmentCancer'), document.querySelector('#buyTreatmentCancer'), undefined, undefined, document.querySelector('#tCancerDOMprice'), undefined, undefined);
 // Shop Items Array (permanent & instant)
-let itemsArray = [cheapPhone, phone, luxPhone, rustyCar, ownedCar, newCar, luxCar, sportsCar, plane, luxWatch, alcohol, treatmentDiarrhea, treatmentCold, treatmentCancer, drugs, trendyClothes, onlineCourse, offlineCourse, training, selfHelpBook, fictionBook, profLiterature, medicalTest, shortVacation];
+let itemsArray = [cheapPhone, phone, luxPhone, rustyCar, ownedCar, newCar, luxCar, sportsCar, plane, luxWatch, alcohol, drugs, trendyClothes, onlineCourse, offlineCourse, training, selfHelpBook, fictionBook, profLiterature, medicalTest, shortVacation, treatmentHeadache, treatmentStomachache, treatmentCold, visitDentist, treatmentDepression, treatmentCancer];
 
 
 
@@ -393,6 +399,8 @@ function liveOneMonth() {
           someEvent.DOME.style.display = 'block';
           message(msgIllnessStart + ' ' + someEvent.nameE);
         } else if (someEvent.typeE === 'accident') {
+          someEvent.isHappeningE = true;
+          someEvent.DOME.style.display = 'block';
           money = money + someEvent.moneyE;
           health = health + someEvent.healthE;
           morale = morale + someEvent.moraleE;
@@ -537,8 +545,11 @@ function buySpecificItem(certaintItem) {
     certaintItem.usageCountI ++;
     certaintItem.boughtI = true; //Make true so certaintItem can heal
     // Special healing for different diseases
+    if (certaintItem.nameI === 'headache treatment') { headacheHeal(); };
     if (certaintItem.nameI === 'cold treatment') { coldHeal(); };
-    if (certaintItem.nameI === 'diarrhea treatment') { diarrheaHeal(); };
+    if (certaintItem.nameI === 'stomachache treatment') { stomachacheHeal(); };
+    if (certaintItem.nameI === 'visit dentist') { toothacheHeal(); };
+    if (certaintItem.nameI === 'depression treatment') { depressionHeal(); };
     if (certaintItem.nameI === 'cancer treatment') { cancerHeal(); };
     certaintItem.boughtI = false; //Make false so certaintItem is no longer bought
     updateEvents();
@@ -548,8 +559,11 @@ function buySpecificItem(certaintItem) {
 };
 
 // Healing diseases
+function headacheHeal() { isHealing(headache, treatmentHeadache); };
 function coldHeal() { isHealing(cold, treatmentCold); };
-function diarrheaHeal() { isHealing(diarrhea, treatmentDiarrhea); };
+function stomachacheHeal() { isHealing(stomachache, treatmentStomachache); };
+function toothacheHeal() { isHealing(toothache, visitDentist); };
+function depressionHeal() { isHealing(depression, treatmentDepression); };
 function cancerHeal() { isHealing(cancer, treatmentCancer); };
 
 //Commom Healing Function 
@@ -770,12 +784,12 @@ function resetMessages() {
 // Messages
 let msgBuy = 'Congratulations with new purchase! You bought ';
 let msgSell = 'Items are good, but money is better. You sold ';
-let msgIllnessStart = 'Unfortunately, now you got some problem with health. You got ill with ';
-let msgHeal = 'Medicine worked perfectly and you are no longer suffering from ';
+let msgIllnessStart = 'Unfortunately, now you got some problem with health. Now you are suffering from ';
+let msgHeal = 'This solution worked this time and now you healed. You are no longer suffering from ';
 let msgEnd = 'You have suffered enough. Time healed you from ';
-let msgMedicineNotWorked = 'Treatment that you took wasn\'t effective. You still ill with ';
-let msgNotIll = 'It\'s great that you took medicine, but you weren\'t even suffering form ';
-let msgAccident = 'Damn! Bad luck! You ';
+let msgMedicineNotWorked = 'For some reason this time this solution didn\'t work well. You still suffer from ';
+let msgNotIll = 'It\'s great that you tried doing this, but you weren\'t even suffering from ';
+let msgAccident = 'Damn! Bad luck! You suffered from ';
 let msgFired = 'Your company decided that you are no longer fit for the job and fired you. You no longer work as ';
 let msgItemBroke = ' worked you well for quite a time. Unfortunately, it broke.';
 let msgUsefulItem = ' was useful for you. You learned some and become better';
