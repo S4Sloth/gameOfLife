@@ -50,7 +50,7 @@
   animation-name: msgRecieved;
   animation-duration: 3s; }
 
-@media (max-width: 1200px) {
+@media (max-width: 1830px) {
   #sideDiv {
     position: static;
     width: 100%;

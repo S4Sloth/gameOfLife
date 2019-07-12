@@ -147,7 +147,7 @@ let headache = new Event('headache', 'illness', 0, 0, -1, 0, 0, false, 0.06, 0, 
 let cold = new Event('cold',' illness', 0, -1, -1, 0, 0, false, 0.04, 0, 1, document.querySelector("#eventCold"), 0.5, 0.5, 0, 0);
 let stomachache = new Event('stomachache', 'illness', 0, 0, -2, 0, 0, false, 0.04, 0, 3, document.querySelector("#eventStomachache"), 1, 0, 0, 0);
 let cancer = new Event('cancer', 'illness', 0, -5, -5, 0, 0, false, 0.0001, 0, 9999, document.querySelector("#eventCancer"), 1, 0, 0, 0);
-let depression = new Event('depression', 'illness', 0, 0, -3, 0, 0, false, 0.5, 0, 9999, document.querySelector("#eventDepression"), 0.3, 0.3, 0.4, 0);
+let depression = new Event('depression', 'illness', 0, 0, -3, 0, 0, false, 0.004, 0, 9999, document.querySelector("#eventDepression"), 0.3, 0.3, 0.4, 0);
 let toothache	= new Event('toothache', 'illness', 0, 0, -1, 0, 0, false, 0.04, 0, 9999, document.querySelector("#eventToothache"), 1, 0, 0, 0);
 // Accidents
 let lostWallet = new Event('lost your wallet', 'accident', -100, 0, -1, 0, 0, false, 0.0001, 0, 0, document.querySelector("#eventLostWallet"), 0, 0.3, 0.7, 0);
